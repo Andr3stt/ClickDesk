@@ -37,9 +37,10 @@ O sistema de desenvolvimento adotado é baseado em metodologias ágeis, com spri
 
 O backlog inicial inclui:
 
-- ✅ Cadastro de chamados
-- ✅ Resposta e encerramento de chamados
-- 🔜 Suporte a chatbot para atendimento automático
+- ✅ Cadastro de chamados: Implementação do processo de criação e organização de tickets de suporte, permitindo o registro e categorização de solicitações.
+- ✅ Resposta e encerramento de chamados: Funcionalidade para a equipe de suporte responder, atualizar e fechar tickets de maneira eficaz, com controle de prazos e status.
+- 🔜 Suporte a chatbot para atendimento automático: o para resolver problemas simples e reduzir o tempo de resposta, com integração ao fluxo de chamados.
+- 🔜 Gestão de Categorias de Chamados: Classificação dos tickets por tipo de problema ou área de atendimento, facilitando a priorização e o roteamento das solicitações.
 
 ---
 ## 📋 Colaboradores
