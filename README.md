@@ -43,3 +43,11 @@ O backlog inicial inclui:
 - 🔜 Suporte a chatbot para atendimento automático
 
 ---
+## 📋 Colaboradores
+
+- Erika Cordeiro 
+- André Barbosa
+- Vinicius Fagundes
+- Kaique Uchoa
+
+---
