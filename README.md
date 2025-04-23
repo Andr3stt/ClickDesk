@@ -51,4 +51,4 @@ O backlog inicial inclui:
 - Kaique Uchoa (Dev team)
 
 ---
-![Logo](Backlog/logo-clickdesk)
+![Logo](https://github.com/Andr3stt/ClickDesk/blob/main/Backlog/logo-clickdesk.jpeg)
