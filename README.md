@@ -1,3 +1,7 @@
+-- 
+![Logo](https://github.com/Andr3stt/ClickDesk/blob/main/Backlog/logo-clickdesk.jpeg)
+
+
 # 📞 Clickdesk - Sistema de Atendimento e Suporte Técnico
 
 ## 🧩 Visão Geral
@@ -50,5 +54,4 @@ O backlog inicial inclui:
 - Vinicius Fagundes (Scrum Master)
 - Kaique Uchoa (Dev team)
 
----
-![Logo](https://github.com/Andr3stt/ClickDesk/blob/main/Backlog/logo-clickdesk.jpeg)
+
