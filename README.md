@@ -51,4 +51,4 @@ O backlog inicial inclui:
 - Kaique Uchoa (Dev team)
 
 ---
-![Logo](Logo-ClickDesk.ico)
+![Logo](Logo - ClickDesk.ico)
