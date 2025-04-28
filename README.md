@@ -1,4 +1,5 @@
-  ![Logo] [https://github.com/Andr3stt/ClickDesk/blob/main/Backlog/Logo%20-%20ClickDesk.ico](https://github.com/Andr3stt/ClickDesk/blob/main/Backlog/LOGO.png)
+  ![Logo](https://github.com/Andr3stt/ClickDesk/blob/main/LOGO.png)
+  
 
 
 # 📞 Clickdesk - Sistema de Atendimento e Suporte Técnico
