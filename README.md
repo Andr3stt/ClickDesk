@@ -1,57 +1,67 @@
-  ![Logo](https://github.com/Andr3stt/ClickDesk/blob/main/LOGO.png)
-  
+<p align="center">
+  <img src="https://github.com/ViniFagundes-A/clickdesk/blob/main/assets/clickdesk_logo.png" alt="Clickdesk Logo" width="180" />
+</p>
 
+# 📞 ClickDesk
 
-# 📞 Clickdesk - Sistema de Atendimento e Suporte Técnico
-
-## 🧩 Visão Geral
-
-O Clickdesk é um sistema de atendimento e suporte técnico (Helpdesk) voltado para empresas que desejam otimizar o relacionamento com seus clientes por meio de chamados organizados, controle de SLA e histórico de atendimentos.
-
-Inspirado em modelos já consolidados no mercado, como o Zendesk e soluções internas de TI, o Clickdesk busca entregar uma solução moderna, acessível e eficiente para pequenas e médias empresas.
+Sistema de Atendimento e Suporte Técnico (Helpdesk) para empresas que valorizam o relacionamento com seus clientes.
 
 ---
 
-## 🏢 Sobre a Empresa (Esboço)
+## 🧩 Visão Geral
 
-A empresa fictícia Clickdesk nasceu com o propósito de oferecer soluções acessíveis de suporte técnico e gestão de chamados. Com foco em usabilidade, integração e análise de dados, a empresa atua no desenvolvimento de ferramentas voltadas à melhoria da experiência do cliente e à automação dos processos de atendimento.
+O **ClickDesk** é uma plataforma de helpdesk pensada para pequenas e médias empresas que buscam organizar o atendimento técnico, controlar SLA e manter histórico de chamados com eficiência.
+
+Inspirado em líderes do mercado, como Zendesk e soluções internas de TI, o ClickDesk evolui para entregar uma experiência moderna, acessível e com foco em usabilidade.
+
+---
+
+## 🏢 Sobre a Empresa
+
+A **ClickDesk** nasceu com o propósito de democratizar o acesso a ferramentas de suporte técnico e gestão de chamados. Com foco em integração, automação e análise de dados, desenvolvemos soluções que aprimoram a experiência do cliente e otimizam processos internos de atendimento.
 
 ---
 
 ## ⚙️ Tecnologias Utilizadas
-- `SQLserver` (para banco de dados)
-- `Astah / Lucidchart` (para diagramas)
-- `GitHub Projects` (para controle de backlog e issues)
+
+- **Banco de Dados:** SQL Server
+- **Modelagem & Diagramas:** Astah, Lucidchart
+- **Gestão de Projetos:** GitHub Projects (Backlog, Issues, Sprints)
 
 ---
 
 ## 📦 Estrutura do Projeto
 
-- `docs/`: Documentações gerais e manuais técnicos
-- `diagramas/`: Modelos de processos, casos de uso, banco de dados
-- `banco_de_dados/`: Scripts SQL e modelos relacionais
-- `codigo_fonte/`: Códigos-fonte do sistema, divididos por módulo
-- `backlog/`: Planejamento de tarefas, roadmap e evolução do sistema
+```
+docs/              # Documentação geral e manuais técnicos
+diagramas/         # Diagramas de processos, casos de uso, banco de dados
+banco_de_dados/    # Scripts SQL, modelos relacionais
+codigo_fonte/      # Código-fonte do sistema (módulos)
+backlog/           # Roadmap, planejamento de tarefas, evolução
+```
 
 ---
 
-## 📋 Backlog e Sistema de Desenvolvimento
+## 📋 Metodologia de Desenvolvimento
 
-O sistema de desenvolvimento adotado é baseado em metodologias ágeis, com sprints semanais e controle de tarefas por meio de boards no GitHub Projects.
+Adotamos metodologias ágeis, com sprints semanais e gestão de tarefas via boards no GitHub Projects.
 
-O backlog inicial inclui:
+### Backlog Inicial
 
-- ✅ Cadastro de chamados: Implementação do processo de criação e organização de tickets de suporte, permitindo o registro e categorização de solicitações.
-- ✅ Resposta e encerramento de chamados: Funcionalidade para a equipe de suporte responder, atualizar e fechar tickets de maneira eficaz, com controle de prazos e status.
-- 🔜 Suporte com chatbot para atendimento automático: Para resolver problemas simples e reduzir o tempo de resposta, com integração ao fluxo de chamados.
-- 🔜 Gestão de Categorias de Chamados: Classificação dos tickets por tipo de problema ou área de atendimento, facilitando a priorização e o roteamento das solicitações.
+- ✅ **Cadastro de Chamados:** Criação e organização de tickets de suporte, com registro e categorização de solicitações.
+- ✅ **Resposta e Encerramento:** Equipe de suporte pode responder, atualizar e fechar tickets, com controle de prazos e status.
+- 🔜 **Suporte Automatizado (Chatbot):** Atendimento automático para resolver demandas simples e agilizar respostas, integrado ao fluxo de chamados.
+- 🔜 **Gestão de Categorias:** Classificação dos tickets por tipo/área, facilitando priorização e roteamento das solicitações.
 
 ---
-## 📋 Colaboradores
 
-- Erika Cordeiro (Dev team)
-- André Barbosa (Product Owner)
-- Vinicius Fagundes (Scrum Master)
-- Kaique Uchoa (Dev team)
+## 👥 Equipe
 
+- **Erika Cordeiro** – Dev Team
+- **André Barbosa** – Product Owner
+- **Vinicius Fagundes** – Scrum Master
+- **Kaique Uchoa** – Dev Team
 
+---
+
+> Para dúvidas, sugestões ou colaboração, entre em contato com nossa equipe!
