@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/clickdesk_logo.png" alt="Logo Clickdesk" width="180">
+  <img src="Assets/clickdesk_logo.jpeg" alt="Logo Clickdesk" width="180">
   <h2 align="center">Clickdesk</h2>
 </p>
 
@@ -155,5 +155,6 @@ cd clickdesk
 </div>
 
 ---
+
 
 > Dúvidas, sugestões ou colaboração? Fale com nossa equipe!
