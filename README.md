@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ViniFagundes-A/clickdesk/assets/clickdesk_logo.png" alt="Logo Clickdesk" width="180">
+  <img src="Assets/clickdesk_logo.jpeg" alt="Logo Clickdesk" width="180">
   <h2 align="center">Clickdesk</h2>
 </p>
 
