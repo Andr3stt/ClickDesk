@@ -15,6 +15,8 @@ Para a criação e manutenção destes diagramas, utilizamos principalmente as s
 
 ## 📅 Navegação pelas Sprints
 
+| Sprint | Período | Ação | Documentação |
+| :--- | :--- | :--- | :--- |
 | SPRINT 1 | 19/08/2025 - 25/08/2025 | Estruturação do GitHub e Diagrama de Caso de Uso | [Ver no GitHub](./SPRINT%201%20-%20ESTRUTURACAO%20E%20CASO%20DE%20USO/) |
 | SPRINT 2 | 26/08/2025 - 01/09/2025 | Diagrama de Classe de Implementação | [Ver no GitHub](./SPRINT%202%20-%20DIAGRAMA%20DE%20CLASSE%20DE%20IMPLEMENTACAO/) |
 | SPRINT 3 | 02/09/2025 - 08/09/2025 | Diagrama de Objetos | [Ver no GitHub](./SPRINT%203%20-%20DIAGRAMA%20DE%20OBJETO/) |
@@ -23,5 +25,6 @@ Para a criação e manutenção destes diagramas, utilizamos principalmente as s
 | SPRINT 6 | 23/09/2025 - 29/09/2025 | Diagrama de Pacote | [Ver no GitHub](./SPRINT%206%20-%20DIAGRAMA%20DE%20PACOTE/) |
 | SPRINT 7 | 30/09/2025 - 06/10/2025 | Diagrama de Implantação | [Ver no GitHub](./SPRINT%207%20-%20DIAGRAMA%20DE%20IMPLANTA%C3%87%C3%83O/) |
 | SPRINT 8 | 07/10/2025 - 13/10/2025 | Diagrama de Estrutura | [Ver no GitHub](./SPRINT%208%20-%20DIAGRAMA%20DE%20ESTRUTURA/) |
+
 
 > **Nota:** Para dúvidas sobre a modelagem ou diagramas, entre em contato com o Product Owner (André Barbosa) ou o Scrum Master (Vinicius Fagundes).
