@@ -15,8 +15,6 @@ Para a criação e manutenção destes diagramas, utilizamos principalmente as s
 
 ## 📅 Navegação pelas Sprints
 
-A organização dos arquivos é feita em pastas, uma para cada Sprint. Utilize a tabela abaixo para navegar diretamente para os artefatos (diagramas, descrições) de cada entrega.
-
 | Sprint | Período | Ação | Documentação |
 | :--- | :--- | :--- | :--- |
 | SPRINT 1 | 19/08/2025 - 25/08/2025 | Estruturação do GitHub e Diagrama de Caso de Uso | [Ver no GitHub](SPRINT%201%20-%20ESTRUTURACAO%20E%20CASO%20DE%20USO/) |
