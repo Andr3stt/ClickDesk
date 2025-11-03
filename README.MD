@@ -19,7 +19,7 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
 
 ## 📚 [Documentação do Projeto (DoR, DoD)](docs/) 📚
 
-## 📖 [Manual de Instalação e Execução](docs/) 📖
+## 📖 [Manual de Instalação e Execução](/Documentação%20do%20projeto/README.MD) 📖
 
 ## 📅 [Cronograma de Sprints](docs/sprints/) 📅
 
