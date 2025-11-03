@@ -51,7 +51,7 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
     <tr>
       <td>André Barbosa</td>
       <td>Product Owner</td>
-      <td><a href="https://github.com/Andr3stt><img src="><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/Andr3stt"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
     </tr>
     <tr>
       <td>Vinicius Fagundes</td>
