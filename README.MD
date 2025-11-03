@@ -15,7 +15,7 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
 
 ## 📋 [Backlog do Produto e Roadmap](backlog/) 📋
 
-## 📊 [Estrutura de Diagramas](Diagramas/) 📊
+## 📊 [Estrutura de Diagramas](Diagramas/README.MD) 📊
 
 ## 📚 [Documentação do Projeto (DoR, DoD)](docs/) 📚
 
