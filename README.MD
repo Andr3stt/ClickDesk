@@ -47,25 +47,21 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
       <td>Erika Cordeiro</td>
       <td>Dev Team</td>
       <td><a href="https://github.com/apserika"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
-      <td></td>
     </tr>
     <tr>
       <td>André Barbosa</td>
       <td>Product Owner</td>
       <td><a href="https://github.com/Andr3stt><img src="><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
-      <td></td>
     </tr>
     <tr>
       <td>Vinicius Fagundes</td>
       <td>Scrum Master</td>
       <td><a href="https://github.com/ViniFagundes-A"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
-      <td></td>
     </tr>
     <tr>
       <td>Kaique Uchoa</td>
       <td>Dev Team</td>
       <td><a href="https://github.com/uchoa7"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
-      <td></td>
     </tr>
   </table>
 </div>
