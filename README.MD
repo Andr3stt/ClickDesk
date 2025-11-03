@@ -21,8 +21,6 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
 
 ## 📖 [Manual de Instalação e Execução](/Manual%20de%20instalacao/README.MD) 📖
 
-## 📅 [Cronograma de Sprints](docs/sprints/) 📅
-
 ---
 
 ## 💻 Tecnologias 💻
@@ -44,18 +42,17 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
       <th>Membro</th>
       <th>Função</th>
       <th>Github</th>
-      <th>Linkedin</th>
     </tr>
     <tr>
       <td>Erika Cordeiro</td>
       <td>Dev Team</td>
-      <td><a href="https://github.com/ErikaCordeiro"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/apserika"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td></td>
     </tr>
     <tr>
       <td>André Barbosa</td>
       <td>Product Owner</td>
-      <td></td>
+      <td><a href="https://github.com/Andr3stt><img src="><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td></td>
     </tr>
     <tr>
@@ -67,7 +64,7 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
     <tr>
       <td>Kaique Uchoa</td>
       <td>Dev Team</td>
-      <td></td>
+      <td><a href="https://github.com/uchoa7"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td></td>
     </tr>
   </table>
