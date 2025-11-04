@@ -12,7 +12,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 1 — Estruturação do GitHub e Diagrama de Caso de Uso
 
-**Período:** 19/08/2025 - 25/08/2025&nbsp;&nbsp;
+**Período:** 10/07/2025 - 18/07/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - O repositório central do projeto foi inicializado no GitHub.
@@ -29,7 +29,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 2 — Diagrama de Classe de Implementação
 
-**Período:** 26/08/2025 - 01/09/2025&nbsp;&nbsp;
+**Período:** 20/07/2025 - 29/07/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - O Diagrama de Caso de Uso (Sprint 1) foi formalmente aprovado.
@@ -45,7 +45,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 3 — Diagrama de Objetos
 
-**Período:** 02/09/2025 - 08/09/2025&nbsp;&nbsp;
+**Período:** 04/08/2025 - 08/08/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - O Diagrama de Classe (Sprint 2) é considerado estável e validado.
@@ -61,7 +61,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 4 — Diagrama de Sequência
 
-**Período:** 09/09/2025 - 15/09/2025&nbsp;&nbsp;
+**Período:** 14/09/2025 - 19/09/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - Os cenários (Casos de Uso) que serão detalhados nesta sprint foram priorizados.
@@ -78,7 +78,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 5 — Diagrama de Colaboração (Comunicação)
 
-**Período:** 16/09/2025 - 22/09/2025&nbsp;&nbsp;
+**Período:** 22/09/2025 - 01/10/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - O Diagrama de Sequência (Sprint 4) está completo e aprovado.
@@ -93,7 +93,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 6 — Diagrama de Pacote
 
-**Período:** 23/09/2025 - 29/09/2025&nbsp;&nbsp;
+**Período:** 05/10/2025 - 14/10/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - As principais classes e componentes do sistema (Sprints 2-5) estão identificados.
@@ -109,7 +109,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 7 — Diagrama de Implantação
 
-**Período:** 30/09/2025 - 06/10/2025&nbsp;&nbsp;
+**Período:** 16/10/2025 - 22/10/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - Os requisitos não-funcionais de infraestrutura (hardware, rede, SGBD, servidor de aplicação) foram levantados.
@@ -124,7 +124,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 
 ## 🎯 Sprint 8 — Diagrama de Estrutura
 
-**Período:** 07/10/2025 - 13/10/2025&nbsp;&nbsp;
+**Período:** 25/10/2025 - 31/10/2025&nbsp;&nbsp;
 
 ### 🚀 DoR
 - Os principais componentes lógicos do software foram identificados (baseado no Diagrama de Pacotes).
