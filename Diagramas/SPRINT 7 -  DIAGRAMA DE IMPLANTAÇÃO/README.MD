@@ -1,4 +1,4 @@
-# 🎯 Requisitos Funcionais
+# 🎯 Diagrama de Implamentaçao
 
 <details>
   <summary><b>## Diagrama de Implamentaçao</b></summary>
