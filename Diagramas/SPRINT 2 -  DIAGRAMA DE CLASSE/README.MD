@@ -24,6 +24,7 @@
   <img alt="Consultar Chamado" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Classe%20consultar%20chamado.png" />
 </details>
 
+<br>
 
 <details>
   <summary><b>##Controle de Status </b></summary>
