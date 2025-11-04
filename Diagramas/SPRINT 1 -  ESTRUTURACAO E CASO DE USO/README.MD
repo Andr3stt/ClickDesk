@@ -1,4 +1,4 @@
-# 🎯 Requisitos Funcionais
+# 🎯 Diagrama de Casos de Uso
 
 <details>
   <summary><b>## Diagrama de Casos de Uso </b></summary>
