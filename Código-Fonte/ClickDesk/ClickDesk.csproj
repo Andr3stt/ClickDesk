@@ -148,6 +148,7 @@
     <Compile Include="Services\API\FAQService.cs" />
     <Compile Include="Services\API\UserService.cs" />
     <Compile Include="Utils\AppColors.cs" />
+    <Compile Include="Utils\ClickDeskStyles.cs" />
     <Compile Include="Utils\SessionManager.cs" />
     <Compile Include="Utils\UIHelper.cs" />
     <Compile Include="Program.cs" />

@@ -118,6 +118,7 @@ ClickDesk/
 │   └── UserService.cs
 ├── Utils/
 │   ├── AppColors.cs
+│   ├── ClickDeskStyles.cs
 │   ├── SessionManager.cs
 │   └── UIHelper.cs
 ├── Properties/
@@ -127,8 +128,17 @@ ClickDesk/
 └── ClickDesk.sln
 ```
 
-## 🎨 Paleta de Cores
+## 🎨 Identidade Visual
 
+### Cores Principais
+| Cor | Hex | Uso |
+|-----|-----|-----|
+| Background | #EDE6D9 | Background da aplicação |
+| Cards | #F5EFE6 | Surface/cards |
+| Brand (Laranja) | #F28A1A | Ações principais |
+| Texto | #1E2A22 | Texto principal |
+
+### Paleta Secundária
 | Cor | Hex | Uso |
 |-----|-----|-----|
 | Primary | #2563eb | Botões principais, links |
@@ -138,6 +148,21 @@ ClickDesk/
 | Gray900 | #111827 | Texto principal |
 | Gray800 | #1f2937 | Sidebar |
 | Gray100 | #f3f4f6 | Backgrounds |
+
+### Espaçamentos
+| Elemento | Valor | Uso |
+|----------|-------|-----|
+| Main area horizontal | 32px | Padding horizontal da área principal |
+| Main area vertical | 28px | Padding vertical da área principal |
+| Cards padding | 14px | Padding interno dos cards |
+| Gap entre cards | 14px | Espaçamento entre cards |
+
+### Border Radius
+| Elemento | Valor |
+|----------|-------|
+| Sidebar | 18px (cantos direitos) |
+| Cards | 16px |
+| Botões | 10px |
 
 ## 🔒 Níveis de Acesso
 
@@ -180,6 +205,14 @@ ClickDesk/
 ### "Acesso negado"
 - Verifique se você tem permissão para a operação
 - Contate o administrador
+
+### "ClickDeskStyles não existe"
+- Verifique se `using ClickDesk.Utils;` está presente
+- Recompile: Build → Rebuild Solution
+
+### "Cannot connect to API"
+- Verifique se a API está rodando
+- Confirme URL em `App.config`
 
 ## 👥 Equipe
 

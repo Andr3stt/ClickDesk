@@ -50,6 +50,26 @@ namespace ClickDesk.Forms.Auth
                 BackColor = AppColors.White,
                 Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 500) / 2)
             };
+
+            // Bordas arredondadas para o painel de login
+            panelLogin.Paint += (s, e) =>
+            {
+                var rect = new Rectangle(0, 0, panelLogin.Width - 1, panelLogin.Height - 1);
+                var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
+
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                using (var brush = new SolidBrush(Color.White))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                using (var pen = new Pen(ClickDeskColors.Border, 1))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            };
+
             this.Controls.Add(panelLogin);
 
             // Logo/Título
