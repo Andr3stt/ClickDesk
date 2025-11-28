@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ClickDesk</RootNamespace>
+    <AssemblyName>ClickDesk</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\Auth\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auth\FormRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth\FormRegistro.Designer.cs">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dashboard\FormDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dashboard\FormDashboard.Designer.cs">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dashboard\FormDashboardAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dashboard\FormDashboardAdmin.Designer.cs">
+      <DependentUpon>FormDashboardAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormNovoChamado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormNovoChamado.Designer.cs">
+      <DependentUpon>FormNovoChamado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormMeusChamados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormMeusChamados.Designer.cs">
+      <DependentUpon>FormMeusChamados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormDetalhesChamado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormDetalhesChamado.Designer.cs">
+      <DependentUpon>FormDetalhesChamado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormListaChamados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormListaChamados.Designer.cs">
+      <DependentUpon>FormListaChamados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormAprovarChamados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormAprovarChamados.Designer.cs">
+      <DependentUpon>FormAprovarChamados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FAQ\FormFAQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FAQ\FormFAQ.Designer.cs">
+      <DependentUpon>FormFAQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FAQ\FormFAQAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FAQ\FormFAQAdmin.Designer.cs">
+      <DependentUpon>FormFAQAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormPerfil.Designer.cs">
+      <DependentUpon>FormPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormEditarPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormEditarPerfil.Designer.cs">
+      <DependentUpon>FormEditarPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormCriarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Perfil\FormCriarUsuario.Designer.cs">
+      <DependentUpon>FormCriarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Chamado.cs" />
+    <Compile Include="Models\FAQ.cs" />
+    <Compile Include="Models\ApiResponse.cs" />
+    <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\RegisterRequest.cs" />
+    <Compile Include="Models\ChamadoRequest.cs" />
+    <Compile Include="Services\API\ApiConfig.cs" />
+    <Compile Include="Services\API\ApiService.cs" />
+    <Compile Include="Services\API\AuthService.cs" />
+    <Compile Include="Services\API\ChamadoService.cs" />
+    <Compile Include="Services\API\FAQService.cs" />
+    <Compile Include="Services\API\UserService.cs" />
+    <Compile Include="Utils\AppColors.cs" />
+    <Compile Include="Utils\SessionManager.cs" />
+    <Compile Include="Utils\UIHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Auth\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auth\FormRegistro.resx">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dashboard\FormDashboard.resx">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dashboard\FormDashboardAdmin.resx">
+      <DependentUpon>FormDashboardAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
