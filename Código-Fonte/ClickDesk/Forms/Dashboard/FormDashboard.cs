@@ -70,6 +70,20 @@ namespace ClickDesk.Forms.Dashboard
             sidebarPanel = UIHelper.CreateSidebar(260);
             this.Controls.Add(sidebarPanel);
 
+            // Bordas arredondadas apenas nos cantos direitos
+            sidebarPanel.Paint += (s, e) =>
+            {
+                var rect = new Rectangle(0, 0, sidebarPanel.Width - 1, sidebarPanel.Height - 1);
+                var path = ClickDeskStyles.GetRoundedRectangleRight(rect, ClickDeskStyles.RadiusXXL);
+
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                using (var brush = new SolidBrush(AppColors.SidebarBackground))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+            };
+
             int y = 0;
 
             // Cabeçalho com logo
@@ -189,6 +203,7 @@ namespace ClickDesk.Forms.Dashboard
         protected virtual void SetupContent()
         {
             contentPanel = UIHelper.CreateContentArea();
+            contentPanel.Padding = new Padding(ClickDeskStyles.PaddingMainArea, ClickDeskStyles.PaddingMainAreaVertical, ClickDeskStyles.PaddingMainArea, ClickDeskStyles.PaddingMainAreaVertical);
             this.Controls.Add(contentPanel);
 
             // Título
@@ -197,17 +212,17 @@ namespace ClickDesk.Forms.Dashboard
                 Text = "Dashboard",
                 Font = new Font("Segoe UI", 24, FontStyle.Bold),
                 ForeColor = AppColors.TextPrimary,
-                Location = new Point(20, 10),
+                Location = new Point(ClickDeskStyles.PaddingMainArea, 10),
                 AutoSize = true
             };
             contentPanel.Controls.Add(lblTitle);
 
             Label lblSubtitle = new Label
             {
-                Text = $"Bem-vindo, {SessionManager.UserDisplayName}!",
+                Text = $"Bem-vindo, {SessionManager.UserDisplayName}!  👋",
                 Font = new Font("Segoe UI", 12),
                 ForeColor = AppColors.Gray500,
-                Location = new Point(20, 50),
+                Location = new Point(ClickDeskStyles.PaddingMainArea, 50),
                 AutoSize = true
             };
             contentPanel.Controls.Add(lblSubtitle);
@@ -224,10 +239,10 @@ namespace ClickDesk.Forms.Dashboard
         /// </summary>
         protected virtual void SetupStatsCards()
         {
-            int cardWidth = 220;
-            int cardHeight = 120;
-            int cardSpacing = 30;
-            int startX = 20;
+            int cardWidth = 260;
+            int cardHeight = 130;
+            int cardSpacing = ClickDeskStyles.GapGrid;
+            int startX = ClickDeskStyles.PaddingMainArea;
             int startY = 90;
 
             // Card Total
@@ -260,26 +275,38 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Size = new Size(width, height),
                 Location = new Point(x, y),
-                BackColor = AppColors.White
+                BackColor = ClickDeskColors.Surface,
+                Padding = new Padding(ClickDeskStyles.PaddingCard)
             };
 
-            // Barra de cor lateral
-            var colorBar = new Panel
+            // Bordas arredondadas
+            panel.Paint += (s, e) =>
             {
-                Size = new Size(5, height),
-                Location = new Point(0, 0),
-                BackColor = accentColor
+                var rect = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
+                var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
+
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                using (var brush = new SolidBrush(ClickDeskColors.Surface))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                using (var pen = new Pen(ClickDeskColors.Border, 1))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
             };
-            panel.Controls.Add(colorBar);
 
             // Título
             var lblTitle = new Label
             {
                 Text = title,
-                Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
-                Location = new Point(20, 20),
-                AutoSize = true
+                Font = ClickDeskStyles.FontLG,
+                ForeColor = ClickDeskColors.TextSecondary,
+                Location = new Point(ClickDeskStyles.PaddingCard, ClickDeskStyles.PaddingCard),
+                Size = new Size(230, 30),
+                BackColor = Color.Transparent
             };
             panel.Controls.Add(lblTitle);
 
@@ -287,10 +314,11 @@ namespace ClickDesk.Forms.Dashboard
             var lblValue = new Label
             {
                 Text = value,
-                Font = new Font("Segoe UI", 28, FontStyle.Bold),
+                Font = ClickDeskStyles.Font5XL,
                 ForeColor = accentColor,
-                Location = new Point(20, 50),
-                AutoSize = true
+                Location = new Point(ClickDeskStyles.PaddingCard, 50),
+                Size = new Size(230, 60),
+                BackColor = Color.Transparent
             };
             panel.Controls.Add(lblValue);
 
@@ -308,21 +336,22 @@ namespace ClickDesk.Forms.Dashboard
                 Text = "Últimos Chamados",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
                 ForeColor = AppColors.TextPrimary,
-                Location = new Point(20, 230),
+                Location = new Point(ClickDeskStyles.PaddingMainArea, 240),
                 AutoSize = true
             };
             contentPanel.Controls.Add(lblUltimos);
 
             // Botão Novo Chamado
             var btnNovo = UIHelper.CreatePrimaryButton("+ Novo Chamado", 150, 35);
-            btnNovo.Location = new Point(850, 225);
+            btnNovo.Location = new Point(850, 235);
             btnNovo.Click += BtnNovoChamado_Click;
+            btnNovo.FlatAppearance.MouseOverBackColor = ClickDeskColors.BrandDark;
             contentPanel.Controls.Add(btnNovo);
 
             // DataGridView
             dgvChamados = new DataGridView
             {
-                Location = new Point(20, 270),
+                Location = new Point(ClickDeskStyles.PaddingMainArea, 280),
                 Size = new Size(980, 400),
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
