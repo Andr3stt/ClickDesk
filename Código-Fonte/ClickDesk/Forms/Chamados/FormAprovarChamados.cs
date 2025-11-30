@@ -35,7 +35,7 @@ namespace ClickDesk.Forms.Chamados
             this.Text = "ClickDesk - Aprovar Chamados";
             this.Size = new Size(1200, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = ClickDeskColors.ContentBackground;
+            this.BackColor = ClickDeskColors.BackgroundApp;
 
             int y = 20;
             int leftMargin = 30;

@@ -41,7 +41,7 @@ namespace ClickDesk.Forms.Auth
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.BackColor = ClickDeskColors.Gray800;
+            this.BackColor = ClickDeskColors.BackgroundApp; // Bege #EDE6D9
 
             // Painel central branco
             Panel panelLogin = new Panel
@@ -77,7 +77,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "🖥️ ClickDesk",
                 Font = new Font("Segoe UI", 28, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Primary,
+                ForeColor = ClickDeskColors.Brand, // Laranja #F28A1A
                 AutoSize = true,
                 Location = new Point(85, 40)
             };
@@ -156,13 +156,16 @@ namespace ClickDesk.Forms.Auth
                 Text = "ENTRAR",
                 Size = new Size(300, 45),
                 Location = new Point(50, 335),
-                BackColor = ClickDeskColors.Primary,
+                BackColor = ClickDeskColors.Brand, // Laranja #F28A1A
                 ForeColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 Cursor = Cursors.Hand
             };
             btnLogin.FlatAppearance.BorderSize = 0;
+            // Hover effect laranja escuro
+            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = ClickDeskColors.BrandDark;
+            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = ClickDeskColors.Brand;
             btnLogin.Click += BtnLogin_Click;
             panelLogin.Controls.Add(btnLogin);
 

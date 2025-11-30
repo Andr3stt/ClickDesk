@@ -20,8 +20,31 @@ namespace ClickDesk.Utils
         public const int SidebarWidth = 260;
 
         // ===== FONTES =====
-        public static Font FontLG => new Font("Segoe UI", 10F);
-        public static Font Font5XL => new Font("Segoe UI", 28F, FontStyle.Bold);
+        public static readonly string FontFamily = "Segoe UI";
+
+        /// <summary>42px - KPI grandes</summary>
+        public static readonly Font Font5XL = new Font(FontFamily, 42f, FontStyle.Bold);
+
+        /// <summary>28px - Títulos de página</summary>
+        public static readonly Font Font3XL = new Font(FontFamily, 28f, FontStyle.Bold);
+
+        /// <summary>16px - Subtítulos</summary>
+        public static readonly Font FontLG = new Font(FontFamily, 16f, FontStyle.Bold);
+
+        /// <summary>15px - Navegação</summary>
+        public static readonly Font FontMD = new Font(FontFamily, 15f, FontStyle.Bold);
+
+        /// <summary>14px - Texto base</summary>
+        public static readonly Font FontBase = new Font(FontFamily, 14f, FontStyle.Regular);
+
+        /// <summary>14px - Texto base bold</summary>
+        public static readonly Font FontBaseStrong = new Font(FontFamily, 14f, FontStyle.Bold);
+
+        /// <summary>13px - Texto small</summary>
+        public static readonly Font FontSM = new Font(FontFamily, 13f, FontStyle.Regular);
+
+        /// <summary>12px - Badges</summary>
+        public static readonly Font FontXS = new Font(FontFamily, 12f, FontStyle.Bold);
 
         // ===== ESPAÇAMENTOS (baseado no sistema web) =====
         public const int PaddingMainArea = 32; // Horizontal
