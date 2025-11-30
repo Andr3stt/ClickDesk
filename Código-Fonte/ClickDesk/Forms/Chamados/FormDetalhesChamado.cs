@@ -40,7 +40,7 @@ namespace ClickDesk.Forms.Chamados
             this.Text = "ClickDesk - Detalhes do Chamado";
             this.Size = new Size(900, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = AppColors.White;
+            this.BackColor = ClickDeskColors.White;
 
             // Container principal com scroll
             Panel mainPanel = new Panel
@@ -60,7 +60,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblTitle",
                 Text = "Carregando...",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -73,8 +73,8 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "STATUS",
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.White,
+                BackColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin, y),
                 Size = new Size(100, 25),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -85,8 +85,8 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "SEVERIDADE",
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = AppColors.Warning,
+                ForeColor = ClickDeskColors.White,
+                BackColor = ClickDeskColors.Warning,
                 Location = new Point(leftMargin + 110, y),
                 Size = new Size(100, 25),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -99,7 +99,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblId",
                 Text = $"#",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(leftMargin + 230, y + 3),
                 AutoSize = true
             };
@@ -112,7 +112,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Location = new Point(leftMargin, y),
                 Size = new Size(800, 100),
-                BackColor = AppColors.Gray50
+                BackColor = ClickDeskColors.Gray50
             };
             mainPanel.Controls.Add(infoPanel);
 
@@ -121,7 +121,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblCategoria",
                 Text = "Categoria: -",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(15, 15),
                 AutoSize = true
             };
@@ -132,7 +132,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblData",
                 Text = "Aberto em: -",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(250, 15),
                 AutoSize = true
             };
@@ -143,7 +143,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblUsuario",
                 Text = "Por: -",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(500, 15),
                 AutoSize = true
             };
@@ -154,7 +154,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblTecnico",
                 Text = "Técnico: -",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(15, 50),
                 AutoSize = true
             };
@@ -165,7 +165,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "lblResolvidoIA",
                 Text = "",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Success,
+                ForeColor = ClickDeskColors.Success,
                 Location = new Point(250, 50),
                 AutoSize = true
             };
@@ -178,7 +178,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Descrição:",
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -195,7 +195,7 @@ namespace ClickDesk.Forms.Chamados
                 Multiline = true,
                 ReadOnly = true,
                 BorderStyle = BorderStyle.FixedSingle,
-                BackColor = AppColors.Gray50,
+                BackColor = ClickDeskColors.Gray50,
                 ScrollBars = ScrollBars.Vertical
             };
             mainPanel.Controls.Add(txtDescricao);
@@ -208,7 +208,7 @@ namespace ClickDesk.Forms.Chamados
                 Name = "panelSolucaoIA",
                 Location = new Point(leftMargin, y),
                 Size = new Size(800, 100),
-                BackColor = AppColors.SuccessLight,
+                BackColor = ClickDeskColors.SuccessLight,
                 Visible = false
             };
             mainPanel.Controls.Add(panelSolucaoIA);
@@ -217,7 +217,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "🤖 Solução da IA:",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Success,
+                ForeColor = ClickDeskColors.Success,
                 Location = new Point(15, 10),
                 AutoSize = true
             };
@@ -232,7 +232,7 @@ namespace ClickDesk.Forms.Chamados
                 Multiline = true,
                 ReadOnly = true,
                 BorderStyle = BorderStyle.None,
-                BackColor = AppColors.SuccessLight
+                BackColor = ClickDeskColors.SuccessLight
             };
             panelSolucaoIA.Controls.Add(txtSolucaoIA);
 
@@ -243,7 +243,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Comentários:",
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -258,7 +258,7 @@ namespace ClickDesk.Forms.Chamados
                 AutoScroll = true,
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
-                BackColor = AppColors.Gray50
+                BackColor = ClickDeskColors.Gray50
             };
             mainPanel.Controls.Add(panelComentarios);
 
@@ -269,7 +269,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Adicionar Comentário:",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -364,9 +364,9 @@ namespace ClickDesk.Forms.Chamados
             lblTitle.Text = chamado.Titulo;
             lblId.Text = $"#{chamado.Id}";
             lblStatus.Text = chamado.Status;
-            lblStatus.BackColor = AppColors.GetStatusColor(chamado.Status);
+            lblStatus.BackColor = ClickDeskColors.GetStatusColor(chamado.Status);
             lblSeveridade.Text = chamado.Severidade;
-            lblSeveridade.BackColor = AppColors.GetSeveridadeColor(chamado.Severidade);
+            lblSeveridade.BackColor = ClickDeskColors.GetSeveridadeColor(chamado.Severidade);
 
             lblCategoria.Text = $"Categoria: {chamado.Categoria}";
             lblData.Text = $"Aberto em: {chamado.DataAbertura:dd/MM/yyyy HH:mm}";
@@ -412,7 +412,7 @@ namespace ClickDesk.Forms.Chamados
                 {
                     Text = "Nenhum comentário ainda.",
                     Font = new Font("Segoe UI", 10),
-                    ForeColor = AppColors.Gray500,
+                    ForeColor = ClickDeskColors.Gray500,
                     Padding = new Padding(10),
                     AutoSize = true
                 };
@@ -428,7 +428,7 @@ namespace ClickDesk.Forms.Chamados
             var panel = new Panel
             {
                 Size = new Size(760, 50),
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 Margin = new Padding(5)
             };
 
@@ -436,7 +436,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = $"{comentario.UsuarioNome} - {comentario.DataCriacao:dd/MM/yyyy HH:mm}",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(10, 5),
                 AutoSize = true
             };
@@ -446,7 +446,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = comentario.Texto,
                 Font = new Font("Segoe UI", 9),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(10, 25),
                 MaximumSize = new Size(740, 0),
                 AutoSize = true

@@ -18,7 +18,6 @@ namespace ClickDesk.Forms.Dashboard
     {
         // Labels adicionais para admin
         private Label lblResolvidosPorIA;
-        private Label lblTempoMedio;
 
         /// <summary>
         /// Construtor do dashboard admin.
@@ -51,7 +50,7 @@ namespace ClickDesk.Forms.Dashboard
             Panel headerPanel = new Panel
             {
                 Size = new Size(260, 80),
-                BackColor = AppColors.Gray900,
+                BackColor = ClickDeskColors.Gray900,
                 Location = new Point(0, y)
             };
             sidebarPanel.Controls.Add(headerPanel);
@@ -60,7 +59,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = "🖥️ ClickDesk",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 Location = new Point(45, 25),
                 AutoSize = true
             };
@@ -72,7 +71,7 @@ namespace ClickDesk.Forms.Dashboard
             Panel userPanel = new Panel
             {
                 Size = new Size(260, 70),
-                BackColor = AppColors.Gray700,
+                BackColor = ClickDeskColors.Gray700,
                 Location = new Point(0, y)
             };
             sidebarPanel.Controls.Add(userPanel);
@@ -81,7 +80,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = SessionManager.UserDisplayName,
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 Location = new Point(20, 15),
                 AutoSize = true
             };
@@ -92,8 +91,8 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = SessionManager.UserRole,
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = SessionManager.IsAdmin ? AppColors.Danger : AppColors.Warning,
+                ForeColor = ClickDeskColors.White,
+                BackColor = SessionManager.IsAdmin ? ClickDeskColors.Danger : ClickDeskColors.Warning,
                 Location = new Point(20, 40),
                 Size = new Size(60, 20),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -173,27 +172,27 @@ namespace ClickDesk.Forms.Dashboard
             int startY = 90;
 
             // Card Total
-            var cardTotal = CreateStatCard("Total", "0", AppColors.Primary, startX, startY, cardWidth, cardHeight);
+            var cardTotal = CreateStatCard("Total", "0", ClickDeskColors.Primary, startX, startY, cardWidth, cardHeight);
             lblTotalChamados = (Label)cardTotal.Controls[1];
             contentPanel.Controls.Add(cardTotal);
 
             // Card Abertos
-            var cardAbertos = CreateStatCard("Abertos", "0", AppColors.Warning, startX + cardWidth + cardSpacing, startY, cardWidth, cardHeight);
+            var cardAbertos = CreateStatCard("Abertos", "0", ClickDeskColors.Warning, startX + cardWidth + cardSpacing, startY, cardWidth, cardHeight);
             lblChamadosAbertos = (Label)cardAbertos.Controls[1];
             contentPanel.Controls.Add(cardAbertos);
 
             // Card Resolvidos
-            var cardResolvidos = CreateStatCard("Resolvidos", "0", AppColors.Success, startX + (cardWidth + cardSpacing) * 2, startY, cardWidth, cardHeight);
+            var cardResolvidos = CreateStatCard("Resolvidos", "0", ClickDeskColors.Success, startX + (cardWidth + cardSpacing) * 2, startY, cardWidth, cardHeight);
             lblChamadosResolvidos = (Label)cardResolvidos.Controls[1];
             contentPanel.Controls.Add(cardResolvidos);
 
             // Card Escalados
-            var cardEscalados = CreateStatCard("Escalados", "0", AppColors.Danger, startX + (cardWidth + cardSpacing) * 3, startY, cardWidth, cardHeight);
+            var cardEscalados = CreateStatCard("Escalados", "0", ClickDeskColors.Danger, startX + (cardWidth + cardSpacing) * 3, startY, cardWidth, cardHeight);
             lblChamadosEscalados = (Label)cardEscalados.Controls[1];
             contentPanel.Controls.Add(cardEscalados);
 
             // Card Resolvidos por IA
-            var cardIA = CreateStatCard("IA", "0", AppColors.Info, startX + (cardWidth + cardSpacing) * 4, startY, cardWidth, cardHeight);
+            var cardIA = CreateStatCard("IA", "0", ClickDeskColors.Info, startX + (cardWidth + cardSpacing) * 4, startY, cardWidth, cardHeight);
             lblResolvidosPorIA = (Label)cardIA.Controls[1];
             contentPanel.Controls.Add(cardIA);
         }

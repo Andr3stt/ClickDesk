@@ -40,7 +40,7 @@ namespace ClickDesk.Forms.Chamados
             this.Text = "ClickDesk - Meus Chamados";
             this.Size = new Size(1100, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = AppColors.ContentBackground;
+            this.BackColor = ClickDeskColors.ContentBackground;
 
             int y = 20;
             int leftMargin = 30;
@@ -50,7 +50,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Meus Chamados",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -63,7 +63,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Filtrar por:",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(leftMargin, y + 8),
                 AutoSize = true
             };
@@ -111,8 +111,8 @@ namespace ClickDesk.Forms.Chamados
                 Text = "🔍",
                 Size = new Size(40, 30),
                 Location = new Point(leftMargin + 680, y),
-                BackColor = AppColors.Primary,
-                ForeColor = AppColors.White,
+                BackColor = ClickDeskColors.Primary,
+                ForeColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 10),
                 Cursor = Cursors.Hand

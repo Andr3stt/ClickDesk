@@ -49,7 +49,7 @@ namespace ClickDesk.Forms.Dashboard
             this.Text = "ClickDesk - Dashboard";
             this.Size = new Size(1400, 800);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = AppColors.ContentBackground;
+            this.BackColor = ClickDeskColors.ContentBackground;
             this.MinimumSize = new Size(1200, 700);
 
             // Cria a sidebar
@@ -78,7 +78,7 @@ namespace ClickDesk.Forms.Dashboard
 
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                using (var brush = new SolidBrush(AppColors.SidebarBackground))
+                using (var brush = new SolidBrush(ClickDeskColors.SidebarBackground))
                 {
                     e.Graphics.FillPath(brush, path);
                 }
@@ -90,7 +90,7 @@ namespace ClickDesk.Forms.Dashboard
             Panel headerPanel = new Panel
             {
                 Size = new Size(260, 80),
-                BackColor = AppColors.Gray900,
+                BackColor = ClickDeskColors.Gray900,
                 Location = new Point(0, y)
             };
             sidebarPanel.Controls.Add(headerPanel);
@@ -99,7 +99,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = "🖥️ ClickDesk",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 Location = new Point(45, 25),
                 AutoSize = true
             };
@@ -111,7 +111,7 @@ namespace ClickDesk.Forms.Dashboard
             Panel userPanel = new Panel
             {
                 Size = new Size(260, 70),
-                BackColor = AppColors.Gray700,
+                BackColor = ClickDeskColors.Gray700,
                 Location = new Point(0, y)
             };
             sidebarPanel.Controls.Add(userPanel);
@@ -120,7 +120,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = SessionManager.UserDisplayName,
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 Location = new Point(20, 15),
                 AutoSize = true
             };
@@ -130,7 +130,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = SessionManager.UserRole,
                 Font = new Font("Segoe UI", 9),
-                ForeColor = AppColors.Gray400,
+                ForeColor = ClickDeskColors.Gray400,
                 Location = new Point(20, 40),
                 AutoSize = true
             };
@@ -211,7 +211,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = "Dashboard",
                 Font = new Font("Segoe UI", 24, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 10),
                 AutoSize = true
             };
@@ -221,7 +221,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = $"Bem-vindo, {SessionManager.UserDisplayName}!  👋",
                 Font = new Font("Segoe UI", 12),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 50),
                 AutoSize = true
             };
@@ -246,22 +246,22 @@ namespace ClickDesk.Forms.Dashboard
             int startY = 90;
 
             // Card Total
-            var cardTotal = CreateStatCard("Total de Chamados", "0", AppColors.Primary, startX, startY, cardWidth, cardHeight);
+            var cardTotal = CreateStatCard("Total de Chamados", "0", ClickDeskColors.Primary, startX, startY, cardWidth, cardHeight);
             lblTotalChamados = (Label)cardTotal.Controls[1];
             contentPanel.Controls.Add(cardTotal);
 
             // Card Abertos
-            var cardAbertos = CreateStatCard("Abertos", "0", AppColors.Warning, startX + cardWidth + cardSpacing, startY, cardWidth, cardHeight);
+            var cardAbertos = CreateStatCard("Abertos", "0", ClickDeskColors.Warning, startX + cardWidth + cardSpacing, startY, cardWidth, cardHeight);
             lblChamadosAbertos = (Label)cardAbertos.Controls[1];
             contentPanel.Controls.Add(cardAbertos);
 
             // Card Resolvidos
-            var cardResolvidos = CreateStatCard("Resolvidos", "0", AppColors.Success, startX + (cardWidth + cardSpacing) * 2, startY, cardWidth, cardHeight);
+            var cardResolvidos = CreateStatCard("Resolvidos", "0", ClickDeskColors.Success, startX + (cardWidth + cardSpacing) * 2, startY, cardWidth, cardHeight);
             lblChamadosResolvidos = (Label)cardResolvidos.Controls[1];
             contentPanel.Controls.Add(cardResolvidos);
 
             // Card Escalados
-            var cardEscalados = CreateStatCard("Escalados", "0", AppColors.Danger, startX + (cardWidth + cardSpacing) * 3, startY, cardWidth, cardHeight);
+            var cardEscalados = CreateStatCard("Escalados", "0", ClickDeskColors.Danger, startX + (cardWidth + cardSpacing) * 3, startY, cardWidth, cardHeight);
             lblChamadosEscalados = (Label)cardEscalados.Controls[1];
             contentPanel.Controls.Add(cardEscalados);
         }
@@ -335,7 +335,7 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = "Últimos Chamados",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 240),
                 AutoSize = true
             };

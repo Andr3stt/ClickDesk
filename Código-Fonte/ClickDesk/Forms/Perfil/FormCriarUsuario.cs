@@ -43,7 +43,7 @@ namespace ClickDesk.Forms.Perfil
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = AppColors.White;
+            this.BackColor = ClickDeskColors.White;
 
             int y = 20;
             int leftMargin = 40;
@@ -54,7 +54,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = "👤 Criar Novo Usuário",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -82,7 +82,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = "Papel/Função *",
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -132,7 +132,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = label,
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(x, y),
                 AutoSize = true
             };

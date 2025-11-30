@@ -36,7 +36,7 @@ namespace ClickDesk.Forms.FAQ
             this.Text = "ClickDesk - FAQ";
             this.Size = new Size(900, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = AppColors.ContentBackground;
+            this.BackColor = ClickDeskColors.ContentBackground;
 
             int y = 20;
             int leftMargin = 30;
@@ -46,7 +46,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "📚 Base de Conhecimento (FAQ)",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -56,7 +56,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Encontre respostas para as perguntas mais frequentes",
                 Font = new Font("Segoe UI", 11),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(leftMargin, y + 40),
                 AutoSize = true
             };
@@ -91,7 +91,7 @@ namespace ClickDesk.Forms.FAQ
                 AutoScroll = true,
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
-                BackColor = AppColors.ContentBackground
+                BackColor = ClickDeskColors.ContentBackground
             };
             this.Controls.Add(panelFAQs);
 
@@ -137,7 +137,7 @@ namespace ClickDesk.Forms.FAQ
                 {
                     Text = "Nenhuma FAQ encontrada.",
                     Font = new Font("Segoe UI", 12),
-                    ForeColor = AppColors.Gray500,
+                    ForeColor = ClickDeskColors.Gray500,
                     AutoSize = true,
                     Padding = new Padding(20)
                 };
@@ -160,7 +160,7 @@ namespace ClickDesk.Forms.FAQ
             var panel = new Panel
             {
                 Size = new Size(panelFAQs.Width - 40, 120),
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 Margin = new Padding(0, 0, 0, 15),
                 Padding = new Padding(15),
                 Cursor = Cursors.Hand
@@ -171,8 +171,8 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = faq.Categoria ?? "Geral",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.White,
+                BackColor = ClickDeskColors.Primary,
                 Location = new Point(15, 10),
                 Size = new Size(80, 20),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -184,7 +184,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = faq.Pergunta,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(15, 40),
                 MaximumSize = new Size(panel.Width - 40, 0),
                 AutoSize = true
@@ -200,7 +200,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = respostaPreview,
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray600,
+                ForeColor = ClickDeskColors.Gray600,
                 Location = new Point(15, 70),
                 MaximumSize = new Size(panel.Width - 40, 0),
                 AutoSize = true
@@ -225,7 +225,7 @@ namespace ClickDesk.Forms.FAQ
                 Text = "FAQ - Detalhes",
                 Size = new Size(700, 500),
                 StartPosition = FormStartPosition.CenterParent,
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
                 MinimizeBox = false
@@ -235,8 +235,8 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = faq.Categoria ?? "Geral",
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.White,
+                BackColor = ClickDeskColors.Primary,
                 Location = new Point(30, 20),
                 Size = new Size(100, 25),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -247,7 +247,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = faq.Pergunta,
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(30, 60),
                 MaximumSize = new Size(620, 0),
                 AutoSize = true
@@ -258,13 +258,13 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = faq.Resposta,
                 Font = new Font("Segoe UI", 11),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(30, 120),
                 Size = new Size(620, 280),
                 Multiline = true,
                 ReadOnly = true,
                 BorderStyle = BorderStyle.None,
-                BackColor = AppColors.Gray50,
+                BackColor = ClickDeskColors.Gray50,
                 ScrollBars = ScrollBars.Vertical
             };
             form.Controls.Add(txtResposta);

@@ -41,13 +41,13 @@ namespace ClickDesk.Forms.Auth
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.BackColor = AppColors.Gray800;
+            this.BackColor = ClickDeskColors.Gray800;
 
             // Painel central branco
             Panel panelLogin = new Panel
             {
                 Size = new Size(400, 500),
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 500) / 2)
             };
 
@@ -77,7 +77,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "🖥️ ClickDesk",
                 Font = new Font("Segoe UI", 28, FontStyle.Bold),
-                ForeColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.Primary,
                 AutoSize = true,
                 Location = new Point(85, 40)
             };
@@ -88,7 +88,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Sistema de Helpdesk",
                 Font = new Font("Segoe UI", 12),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 AutoSize = true,
                 Location = new Point(125, 90)
             };
@@ -99,7 +99,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Usuário",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(50, 150),
                 AutoSize = true
             };
@@ -120,7 +120,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Senha",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(50, 230),
                 AutoSize = true
             };
@@ -142,7 +142,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "",
                 Font = new Font("Segoe UI", 9),
-                ForeColor = AppColors.Danger,
+                ForeColor = ClickDeskColors.Danger,
                 Location = new Point(50, 305),
                 Size = new Size(300, 20),
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -156,8 +156,8 @@ namespace ClickDesk.Forms.Auth
                 Text = "ENTRAR",
                 Size = new Size(300, 45),
                 Location = new Point(50, 335),
-                BackColor = AppColors.Primary,
-                ForeColor = AppColors.White,
+                BackColor = ClickDeskColors.Primary,
+                ForeColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -171,7 +171,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Não tem uma conta?",
                 Font = new Font("Segoe UI", 9),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(100, 400),
                 AutoSize = true
             };
@@ -183,8 +183,8 @@ namespace ClickDesk.Forms.Auth
                 Text = "Criar conta",
                 Size = new Size(100, 25),
                 Location = new Point(230, 396),
-                BackColor = AppColors.White,
-                ForeColor = AppColors.Primary,
+                BackColor = ClickDeskColors.White,
+                ForeColor = ClickDeskColors.Primary,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 9, FontStyle.Underline),
                 Cursor = Cursors.Hand
@@ -198,7 +198,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "© 2024 ClickDesk - Todos os direitos reservados",
                 Font = new Font("Segoe UI", 8),
-                ForeColor = AppColors.Gray400,
+                ForeColor = ClickDeskColors.Gray400,
                 Location = new Point(80, 460),
                 AutoSize = true
             };

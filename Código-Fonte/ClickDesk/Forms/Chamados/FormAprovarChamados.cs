@@ -35,7 +35,7 @@ namespace ClickDesk.Forms.Chamados
             this.Text = "ClickDesk - Aprovar Chamados";
             this.Size = new Size(1200, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = AppColors.ContentBackground;
+            this.BackColor = ClickDeskColors.ContentBackground;
 
             int y = 20;
             int leftMargin = 30;
@@ -45,7 +45,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Aprovar/Gerenciar Chamados",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -55,7 +55,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Gerencie o status dos chamados e atribua técnicos responsáveis",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(leftMargin, y + 35),
                 AutoSize = true
             };
