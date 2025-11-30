@@ -83,24 +83,27 @@ ou via Visual Studio: Clique com botão direito na solução → Restaurar Pacot
 ClickDesk/
 ├── Forms/
 │   ├── Auth/
-│   │   ├── FormLogin.cs
-│   │   └── FormRegistro.cs
+│   │   ├── FormLogin.cs           # Tela de login
+│   │   ├── FormRegistro.cs        # Criação de nova conta
+│   │   ├── FormTermosUso.cs       # Termos de uso e privacidade
+│   │   └── FormRecuperarSenha.cs  # Recuperação de senha
 │   ├── Dashboard/
-│   │   ├── FormDashboard.cs
-│   │   └── FormDashboardAdmin.cs
+│   │   ├── FormDashboard.cs       # Dashboard do usuário
+│   │   └── FormDashboardAdmin.cs  # Dashboard administrativo (Tech/Admin)
 │   ├── Chamados/
-│   │   ├── FormNovoChamado.cs
-│   │   ├── FormMeusChamados.cs
-│   │   ├── FormDetalhesChamado.cs
-│   │   ├── FormListaChamados.cs
-│   │   └── FormAprovarChamados.cs
+│   │   ├── FormNovoChamado.cs           # Criar novo chamado
+│   │   ├── FormMeusChamados.cs          # Lista de chamados do usuário
+│   │   ├── FormDetalhesChamado.cs       # Detalhes do chamado (usuário)
+│   │   ├── FormDetalhesChamadoTecnico.cs # Detalhes do chamado (técnico - edição)
+│   │   ├── FormListaChamados.cs         # Lista de todos os chamados
+│   │   └── FormAprovarChamados.cs       # Aprovação de chamados
 │   ├── FAQ/
-│   │   ├── FormFAQ.cs
-│   │   └── FormFAQAdmin.cs
+│   │   ├── FormFAQ.cs             # Base de conhecimento (usuário)
+│   │   └── FormFAQAdmin.cs        # Gerenciamento de FAQ (admin)
 │   └── Perfil/
-│       ├── FormPerfil.cs
-│       ├── FormEditarPerfil.cs
-│       └── FormCriarUsuario.cs
+│       ├── FormPerfil.cs          # Visualização do perfil
+│       ├── FormEditarPerfil.cs    # Edição do perfil
+│       └── FormCriarUsuario.cs    # Criação de usuário (admin)
 ├── Models/
 │   ├── User.cs
 │   ├── Chamado.cs
@@ -117,7 +120,6 @@ ClickDesk/
 │   ├── FAQService.cs
 │   └── UserService.cs
 ├── Utils/
-│   ├── AppColors.cs
 │   ├── ClickDeskStyles.cs
 │   ├── SessionManager.cs
 │   └── UIHelper.cs
