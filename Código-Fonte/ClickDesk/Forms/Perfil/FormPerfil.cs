@@ -35,7 +35,7 @@ namespace ClickDesk.Forms.Perfil
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = AppColors.White;
+            this.BackColor = ClickDeskColors.White;
 
             int y = 30;
             int leftMargin = 40;
@@ -45,7 +45,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = "👤 Meu Perfil",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -58,7 +58,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Size = new Size(80, 80),
                 Location = new Point(leftMargin, y),
-                BackColor = AppColors.Primary
+                BackColor = ClickDeskColors.Primary
             };
             this.Controls.Add(avatarPanel);
 
@@ -67,7 +67,7 @@ namespace ClickDesk.Forms.Perfil
                 Name = "lblAvatar",
                 Text = "U",
                 Font = new Font("Segoe UI", 28, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 Size = new Size(80, 80),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -79,7 +79,7 @@ namespace ClickDesk.Forms.Perfil
                 Name = "lblNome",
                 Text = "Carregando...",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin + 100, y + 10),
                 AutoSize = true
             };
@@ -91,8 +91,8 @@ namespace ClickDesk.Forms.Perfil
                 Name = "lblRole",
                 Text = "USER",
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.White,
-                BackColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.White,
+                BackColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin + 100, y + 50),
                 Size = new Size(60, 22),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -106,7 +106,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Size = new Size(500, 1),
                 Location = new Point(leftMargin, y),
-                BackColor = AppColors.Gray200
+                BackColor = ClickDeskColors.Gray200
             };
             this.Controls.Add(separator);
 
@@ -148,7 +148,7 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = label,
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(x, y),
                 Size = new Size(120, 20)
             };
@@ -159,7 +159,7 @@ namespace ClickDesk.Forms.Perfil
                 Name = valueName,
                 Text = "-",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(x + 130, y),
                 AutoSize = true
             };
@@ -228,7 +228,7 @@ namespace ClickDesk.Forms.Perfil
 
             lblNome.Text = usuario.Nome ?? usuario.Username;
             lblRole.Text = usuario.Role ?? "USER";
-            lblRole.BackColor = AppColors.GetRoleColor(usuario.Role);
+            lblRole.BackColor = ClickDeskColors.GetRoleColor(usuario.Role);
 
             lblUsername.Text = usuario.Username ?? "-";
             lblEmail.Text = usuario.Email ?? "-";

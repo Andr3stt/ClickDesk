@@ -35,7 +35,7 @@ namespace ClickDesk.Forms.FAQ
             this.Text = "ClickDesk - Gerenciar FAQ";
             this.Size = new Size(1100, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = AppColors.ContentBackground;
+            this.BackColor = ClickDeskColors.ContentBackground;
 
             int y = 20;
             int leftMargin = 30;
@@ -45,7 +45,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "📚 Gerenciar FAQ",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -229,7 +229,7 @@ namespace ClickDesk.Forms.FAQ
                 Text = faq == null ? "Nova FAQ" : "Editar FAQ",
                 Size = new Size(600, 500),
                 StartPosition = FormStartPosition.CenterParent,
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
                 MinimizeBox = false
@@ -243,7 +243,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Pergunta *",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -267,7 +267,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Resposta *",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -292,7 +292,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Categoria",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -314,7 +314,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Ativa",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin + 250, y + 27),
                 Checked = faq?.Ativa ?? true,
                 AutoSize = true
@@ -328,7 +328,7 @@ namespace ClickDesk.Forms.FAQ
             {
                 Text = "Palavras-chave (separadas por vírgula)",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };

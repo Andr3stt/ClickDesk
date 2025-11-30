@@ -49,7 +49,7 @@ namespace ClickDesk.Forms.Chamados
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = AppColors.White;
+            this.BackColor = ClickDeskColors.White;
 
             int leftMargin = 40;
             int inputWidth = 600;
@@ -60,7 +60,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Abrir Novo Chamado",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -73,7 +73,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Descreva seu problema. Nossa IA tentará resolver automaticamente!",
                 Font = new Font("Segoe UI", 10),
-                ForeColor = AppColors.Gray500,
+                ForeColor = ClickDeskColors.Gray500,
                 Location = new Point(leftMargin, y),
                 AutoSize = true
             };
@@ -159,7 +159,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Size = new Size(inputWidth, 120),
                 Location = new Point(leftMargin, y),
-                BackColor = AppColors.SuccessLight,
+                BackColor = ClickDeskColors.SuccessLight,
                 Visible = false
             };
             this.Controls.Add(panelResultadoIA);
@@ -168,7 +168,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "🤖 Solução encontrada pela IA:",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Success,
+                ForeColor = ClickDeskColors.Success,
                 Location = new Point(15, 10),
                 AutoSize = true
             };
@@ -182,7 +182,7 @@ namespace ClickDesk.Forms.Chamados
                 Multiline = true,
                 ReadOnly = true,
                 BorderStyle = BorderStyle.None,
-                BackColor = AppColors.SuccessLight
+                BackColor = ClickDeskColors.SuccessLight
             };
             panelResultadoIA.Controls.Add(txtSolucaoIA);
 
@@ -194,8 +194,8 @@ namespace ClickDesk.Forms.Chamados
                 Text = "Cancelar",
                 Size = new Size(150, 45),
                 Location = new Point(leftMargin + inputWidth - 320, y),
-                BackColor = AppColors.Gray200,
-                ForeColor = AppColors.Gray700,
+                BackColor = ClickDeskColors.Gray200,
+                ForeColor = ClickDeskColors.Gray700,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -209,8 +209,8 @@ namespace ClickDesk.Forms.Chamados
                 Text = "ENVIAR CHAMADO",
                 Size = new Size(160, 45),
                 Location = new Point(leftMargin + inputWidth - 160, y),
-                BackColor = AppColors.Primary,
-                ForeColor = AppColors.White,
+                BackColor = ClickDeskColors.Primary,
+                ForeColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -232,7 +232,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = text,
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(x, y),
                 AutoSize = true
             };

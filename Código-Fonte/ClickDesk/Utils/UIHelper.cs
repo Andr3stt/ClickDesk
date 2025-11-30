@@ -20,7 +20,7 @@ namespace ClickDesk.Utils
         /// </summary>
         public static Button CreatePrimaryButton(string text, int width = 150, int height = 40)
         {
-            return CreateStyledButton(text, AppColors.Primary, AppColors.White, width, height);
+            return CreateStyledButton(text, ClickDeskColors.Primary, ClickDeskColors.White, width, height);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace ClickDesk.Utils
         /// </summary>
         public static Button CreateSuccessButton(string text, int width = 150, int height = 40)
         {
-            return CreateStyledButton(text, AppColors.Success, AppColors.White, width, height);
+            return CreateStyledButton(text, ClickDeskColors.Success, ClickDeskColors.White, width, height);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace ClickDesk.Utils
         /// </summary>
         public static Button CreateDangerButton(string text, int width = 150, int height = 40)
         {
-            return CreateStyledButton(text, AppColors.Danger, AppColors.White, width, height);
+            return CreateStyledButton(text, ClickDeskColors.Danger, ClickDeskColors.White, width, height);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ClickDesk.Utils
         /// </summary>
         public static Button CreateWarningButton(string text, int width = 150, int height = 40)
         {
-            return CreateStyledButton(text, AppColors.Warning, AppColors.White, width, height);
+            return CreateStyledButton(text, ClickDeskColors.Warning, ClickDeskColors.White, width, height);
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace ClickDesk.Utils
         /// </summary>
         public static Button CreateSecondaryButton(string text, int width = 150, int height = 40)
         {
-            var button = CreateStyledButton(text, AppColors.White, AppColors.Primary, width, height);
+            var button = CreateStyledButton(text, ClickDeskColors.White, ClickDeskColors.Primary, width, height);
             button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderColor = AppColors.Primary;
+            button.FlatAppearance.BorderColor = ClickDeskColors.Primary;
             button.FlatAppearance.BorderSize = 2;
             return button;
         }
@@ -99,7 +99,7 @@ namespace ClickDesk.Utils
                 Size = new Size(width, 35),
                 Font = new Font("Segoe UI", 11F),
                 BorderStyle = BorderStyle.FixedSingle,
-                BackColor = AppColors.White
+                BackColor = ClickDeskColors.White
             };
 
             if (isPassword)
@@ -111,14 +111,14 @@ namespace ClickDesk.Utils
             if (!string.IsNullOrEmpty(placeholder))
             {
                 textBox.Text = placeholder;
-                textBox.ForeColor = AppColors.Gray400;
+                textBox.ForeColor = ClickDeskColors.Gray400;
 
                 textBox.Enter += (s, e) =>
                 {
                     if (textBox.Text == placeholder)
                     {
                         textBox.Text = "";
-                        textBox.ForeColor = AppColors.TextPrimary;
+                        textBox.ForeColor = ClickDeskColors.TextPrimary;
                     }
                 };
 
@@ -127,7 +127,7 @@ namespace ClickDesk.Utils
                     if (string.IsNullOrEmpty(textBox.Text))
                     {
                         textBox.Text = placeholder;
-                        textBox.ForeColor = AppColors.Gray400;
+                        textBox.ForeColor = ClickDeskColors.Gray400;
                     }
                 };
             }
@@ -145,7 +145,7 @@ namespace ClickDesk.Utils
                 Size = new Size(width, height),
                 Font = new Font("Segoe UI", 10F),
                 BorderStyle = BorderStyle.FixedSingle,
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical
             };
@@ -164,7 +164,7 @@ namespace ClickDesk.Utils
             {
                 Text = text,
                 Font = new Font("Segoe UI", fontSize, FontStyle.Bold),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 AutoSize = true
             };
         }
@@ -178,7 +178,7 @@ namespace ClickDesk.Utils
             {
                 Text = text,
                 Font = new Font("Segoe UI", fontSize),
-                ForeColor = AppColors.TextPrimary,
+                ForeColor = ClickDeskColors.TextPrimary,
                 AutoSize = true
             };
         }
@@ -192,7 +192,7 @@ namespace ClickDesk.Utils
             {
                 Text = text,
                 Font = new Font("Segoe UI", fontSize),
-                ForeColor = AppColors.TextSecondary,
+                ForeColor = ClickDeskColors.TextSecondary,
                 AutoSize = true
             };
         }
@@ -209,7 +209,7 @@ namespace ClickDesk.Utils
             var panel = new Panel
             {
                 Size = new Size(width, height),
-                BackColor = AppColors.CardBackground,
+                BackColor = ClickDeskColors.CardBackground,
                 Padding = new Padding(15)
             };
 
@@ -217,10 +217,10 @@ namespace ClickDesk.Utils
             panel.Paint += (s, e) =>
             {
                 ControlPaint.DrawBorder(e.Graphics, panel.ClientRectangle,
-                    AppColors.Gray200, 1, ButtonBorderStyle.Solid,
-                    AppColors.Gray200, 1, ButtonBorderStyle.Solid,
-                    AppColors.Gray200, 1, ButtonBorderStyle.Solid,
-                    AppColors.Gray200, 1, ButtonBorderStyle.Solid);
+                    ClickDeskColors.Gray200, 1, ButtonBorderStyle.Solid,
+                    ClickDeskColors.Gray200, 1, ButtonBorderStyle.Solid,
+                    ClickDeskColors.Gray200, 1, ButtonBorderStyle.Solid,
+                    ClickDeskColors.Gray200, 1, ButtonBorderStyle.Solid);
             };
 
             return panel;
@@ -235,7 +235,7 @@ namespace ClickDesk.Utils
             {
                 Width = width,
                 Dock = DockStyle.Left,
-                BackColor = AppColors.SidebarBackground,
+                BackColor = ClickDeskColors.SidebarBackground,
                 Padding = new Padding(0)
             };
         }
@@ -248,7 +248,7 @@ namespace ClickDesk.Utils
             return new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = AppColors.ContentBackground,
+                BackColor = ClickDeskColors.ContentBackground,
                 Padding = new Padding(20),
                 AutoScroll = true
             };
@@ -268,8 +268,8 @@ namespace ClickDesk.Utils
                 Text = (icon + "  " + text).Trim(),
                 Size = new Size(260, 50),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = AppColors.SidebarBackground,
-                ForeColor = AppColors.TextLight,
+                BackColor = ClickDeskColors.SidebarBackground,
+                ForeColor = ClickDeskColors.TextLight,
                 Font = new Font("Segoe UI", 11F),
                 TextAlign = ContentAlignment.MiddleLeft,
                 Padding = new Padding(20, 0, 0, 0),
@@ -279,11 +279,11 @@ namespace ClickDesk.Utils
             button.FlatAppearance.BorderSize = 0;
 
             // Efeito hover
-            button.MouseEnter += (s, e) => button.BackColor = AppColors.Gray700;
+            button.MouseEnter += (s, e) => button.BackColor = ClickDeskColors.Gray700;
             button.MouseLeave += (s, e) =>
             {
                 if (!button.Focused)
-                    button.BackColor = AppColors.SidebarBackground;
+                    button.BackColor = ClickDeskColors.SidebarBackground;
             };
 
             return button;
@@ -296,13 +296,13 @@ namespace ClickDesk.Utils
         {
             if (active)
             {
-                button.BackColor = AppColors.Gray700;
-                button.ForeColor = AppColors.Primary;
+                button.BackColor = ClickDeskColors.Gray700;
+                button.ForeColor = ClickDeskColors.Primary;
             }
             else
             {
-                button.BackColor = AppColors.SidebarBackground;
-                button.ForeColor = AppColors.TextLight;
+                button.BackColor = ClickDeskColors.SidebarBackground;
+                button.ForeColor = ClickDeskColors.TextLight;
             }
         }
 
@@ -315,10 +315,10 @@ namespace ClickDesk.Utils
         /// </summary>
         public static void StyleDataGridView(DataGridView dgv)
         {
-            dgv.BackgroundColor = AppColors.White;
+            dgv.BackgroundColor = ClickDeskColors.White;
             dgv.BorderStyle = BorderStyle.None;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = AppColors.Gray200;
+            dgv.GridColor = ClickDeskColors.Gray200;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
             dgv.ReadOnly = true;
@@ -332,8 +332,8 @@ namespace ClickDesk.Utils
             // Estilo do cabeçalho
             dgv.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
-                BackColor = AppColors.Gray800,
-                ForeColor = AppColors.White,
+                BackColor = ClickDeskColors.Gray800,
+                ForeColor = ClickDeskColors.White,
                 Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(10, 0, 0, 0)
@@ -343,18 +343,18 @@ namespace ClickDesk.Utils
             // Estilo das células
             dgv.DefaultCellStyle = new DataGridViewCellStyle
             {
-                BackColor = AppColors.White,
-                ForeColor = AppColors.TextPrimary,
+                BackColor = ClickDeskColors.White,
+                ForeColor = ClickDeskColors.TextPrimary,
                 Font = new Font("Segoe UI", 10F),
-                SelectionBackColor = AppColors.PrimaryLight,
-                SelectionForeColor = AppColors.TextPrimary,
+                SelectionBackColor = ClickDeskColors.PrimaryLight,
+                SelectionForeColor = ClickDeskColors.TextPrimary,
                 Padding = new Padding(10, 5, 5, 5)
             };
 
             // Estilo de linhas alternadas
             dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
-                BackColor = AppColors.Gray50
+                BackColor = ClickDeskColors.Gray50
             };
 
             dgv.RowTemplate.Height = 40;
@@ -374,7 +374,7 @@ namespace ClickDesk.Utils
                 Size = new Size(width, 35),
                 Font = new Font("Segoe UI", 11F),
                 DropDownStyle = ComboBoxStyle.DropDownList,
-                BackColor = AppColors.White,
+                BackColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat
             };
         }
@@ -392,7 +392,7 @@ namespace ClickDesk.Utils
             {
                 Text = text,
                 Font = new Font("Segoe UI", 8F, FontStyle.Bold),
-                ForeColor = AppColors.White,
+                ForeColor = ClickDeskColors.White,
                 BackColor = backColor,
                 AutoSize = false,
                 Size = new Size(100, 24),

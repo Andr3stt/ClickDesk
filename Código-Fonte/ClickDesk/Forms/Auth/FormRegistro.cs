@@ -47,7 +47,7 @@ namespace ClickDesk.Forms.Auth
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = AppColors.White;
+            this.BackColor = ClickDeskColors.White;
 
             int startY = 20;
             int spacing = 60;
@@ -61,7 +61,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Criar Nova Conta",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = AppColors.Primary,
+                ForeColor = ClickDeskColors.Primary,
                 Location = new Point(leftMargin, startY),
                 AutoSize = true
             };
@@ -123,7 +123,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "",
                 Font = new Font("Segoe UI", 9),
-                ForeColor = AppColors.Danger,
+                ForeColor = ClickDeskColors.Danger,
                 Location = new Point(leftMargin, startY),
                 Size = new Size(inputWidth, 20),
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -139,8 +139,8 @@ namespace ClickDesk.Forms.Auth
                 Text = "Cancelar",
                 Size = new Size(180, 40),
                 Location = new Point(leftMargin, startY),
-                BackColor = AppColors.Gray200,
-                ForeColor = AppColors.Gray700,
+                BackColor = ClickDeskColors.Gray200,
+                ForeColor = ClickDeskColors.Gray700,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -154,8 +154,8 @@ namespace ClickDesk.Forms.Auth
                 Text = "CRIAR CONTA",
                 Size = new Size(180, 40),
                 Location = new Point(leftMargin + 200, startY),
-                BackColor = AppColors.Primary,
-                ForeColor = AppColors.White,
+                BackColor = ClickDeskColors.Primary,
+                ForeColor = ClickDeskColors.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -177,7 +177,7 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = text,
                 Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = AppColors.Gray700,
+                ForeColor = ClickDeskColors.Gray700,
                 Location = new Point(x, y),
                 AutoSize = true
             };
