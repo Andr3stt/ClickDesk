@@ -245,9 +245,21 @@ namespace ClickDesk.Forms.Chamados
             if (e.RowIndex >= 0)
             {
                 int chamadoId = Convert.ToInt32(dgvChamados.Rows[e.RowIndex].Cells["Id"].Value);
-                var formDetalhes = new FormDetalhesChamado(chamadoId);
-                formDetalhes.FormClosed += async (s, args) => await CarregarChamados();
-                formDetalhes.ShowDialog(this);
+                
+                // Para técnicos e admins, abre o formulário de edição técnica
+                if (SessionManager.HasAdminAccess)
+                {
+                    var formDetalhesTecnico = new FormDetalhesChamadoTecnico(chamadoId);
+                    formDetalhesTecnico.FormClosed += async (s, args) => await CarregarChamados();
+                    formDetalhesTecnico.ShowDialog(this);
+                }
+                else
+                {
+                    // Para usuários comuns, abre o formulário de visualização
+                    var formDetalhes = new FormDetalhesChamado(chamadoId);
+                    formDetalhes.FormClosed += async (s, args) => await CarregarChamados();
+                    formDetalhes.ShowDialog(this);
+                }
             }
         }
     }

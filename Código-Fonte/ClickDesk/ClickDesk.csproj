@@ -62,6 +62,18 @@
     <Compile Include="Forms\Auth\FormRegistro.Designer.cs">
       <DependentUpon>FormRegistro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Auth\FormTermosUso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth\FormTermosUso.Designer.cs">
+      <DependentUpon>FormTermosUso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auth\FormRecuperarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth\FormRecuperarSenha.Designer.cs">
+      <DependentUpon>FormRecuperarSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dashboard\FormDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +115,12 @@
     </Compile>
     <Compile Include="Forms\Chamados\FormAprovarChamados.Designer.cs">
       <DependentUpon>FormAprovarChamados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormDetalhesChamadoTecnico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chamados\FormDetalhesChamadoTecnico.Designer.cs">
+      <DependentUpon>FormDetalhesChamadoTecnico.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FAQ\FormFAQ.cs">
       <SubType>Form</SubType>

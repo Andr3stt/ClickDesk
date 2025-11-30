@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
-using Newtonsoft.Json.Linq;
 
 namespace ClickDesk.Forms.Auth
 {
@@ -144,19 +144,40 @@ namespace ClickDesk.Forms.Auth
             };
             panelCentral.Controls.Add(lblMensagem);
 
+            // Link Esqueceu a Senha
+            var linkEsqueceuSenha = new LinkLabel
+            {
+                Text = "Esqueceu sua senha?",
+                Location = new Point(160, 475),
+                AutoSize = true,
+                LinkColor = ClickDeskColors.Brand,
+                Font = ClickDeskStyles.FontSM
+            };
+            linkEsqueceuSenha.LinkClicked += (s, e) =>
+            {
+                var formRecuperar = new FormRecuperarSenha();
+                formRecuperar.ShowDialog();
+            };
+            panelCentral.Controls.Add(linkEsqueceuSenha);
+
             // Link Criar Conta
             var linkCriarConta = new LinkLabel
             {
                 Text = "Criar Nova Conta",
-                Location = new Point(175, 480),
+                Location = new Point(175, 500),
                 AutoSize = true,
                 LinkColor = ClickDeskColors.Brand,
                 Font = ClickDeskStyles.FontSM
             };
             linkCriarConta.LinkClicked += (s, e) =>
             {
-                var formRegistro = new FormRegistro();
-                formRegistro.ShowDialog();
+                // Mostra termos de uso antes de criar conta
+                var formTermos = new FormTermosUso();
+                if (formTermos.ShowDialog() == DialogResult.OK && formTermos.TermosAceitos)
+                {
+                    var formRegistro = new FormRegistro();
+                    formRegistro.ShowDialog();
+                }
             };
             panelCentral.Controls.Add(linkCriarConta);
 
@@ -233,22 +254,26 @@ namespace ClickDesk.Forms.Auth
 
             try
             {
-                var credenciais = new
+                // Utiliza o AuthService para fazer o login
+                var resposta = await AuthService.LoginAsync(txtUsuario.Text.Trim(), txtSenha.Text);
+
+                if (resposta != null && !string.IsNullOrEmpty(resposta.Token))
                 {
-                    username = txtUsuario.Text.Trim(),
-                    password = txtSenha.Text
-                };
-
-                var resposta = await ApiService.Post<JObject>("/auth/login", credenciais);
-
-                if (resposta != null && resposta["token"] != null)
-                {
-                    ApiConfig.Token = resposta["token"].ToString();
-                    SessionManager.Username = txtUsuario.Text.Trim();
-                    SessionManager.CurrentUser = new { Nome = txtUsuario.Text.Trim() };
-
+                    // Sessão já é salva pelo AuthService
+                    // Redireciona para o dashboard apropriado
                     this.Hide();
-                    var dashboard = new Dashboard.FormDashboard();
+                    
+                    // Verifica se é admin/tech para abrir dashboard administrativo
+                    Form dashboard;
+                    if (SessionManager.HasAdminAccess)
+                    {
+                        dashboard = new Dashboard.FormDashboardAdmin();
+                    }
+                    else
+                    {
+                        dashboard = new Dashboard.FormDashboard();
+                    }
+                    
                     dashboard.FormClosed += (s, e) => this.Close();
                     dashboard.Show();
                 }
@@ -257,6 +282,11 @@ namespace ClickDesk.Forms.Auth
                     MostrarErro("Usuário ou senha inválidos");
                     ReabilitarBotao();
                 }
+            }
+            catch (ApiException ex)
+            {
+                MostrarErro(ex.Message);
+                ReabilitarBotao();
             }
             catch (Exception ex)
             {
