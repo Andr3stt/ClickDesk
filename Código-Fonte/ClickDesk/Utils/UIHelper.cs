@@ -248,7 +248,7 @@ namespace ClickDesk.Utils
             return new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = ClickDeskColors.ContentBackground,
+                BackColor = ClickDeskColors.BackgroundApp, // Bege #EDE6D9
                 Padding = new Padding(20),
                 AutoScroll = true
             };

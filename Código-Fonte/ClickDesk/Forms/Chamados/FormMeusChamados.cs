@@ -40,7 +40,7 @@ namespace ClickDesk.Forms.Chamados
             this.Text = "ClickDesk - Meus Chamados";
             this.Size = new Size(1100, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = ClickDeskColors.ContentBackground;
+            this.BackColor = ClickDeskColors.BackgroundApp;
 
             int y = 20;
             int leftMargin = 30;
