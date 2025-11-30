@@ -49,7 +49,7 @@ namespace ClickDesk.Forms.Dashboard
             this.Text = "ClickDesk - Dashboard";
             this.Size = new Size(1400, 800);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = ClickDeskColors.ContentBackground;
+            this.BackColor = ClickDeskColors.BackgroundApp; // Bege #EDE6D9
             this.MinimumSize = new Size(1200, 700);
 
             // Cria a sidebar

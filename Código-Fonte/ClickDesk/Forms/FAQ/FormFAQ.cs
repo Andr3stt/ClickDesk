@@ -36,7 +36,7 @@ namespace ClickDesk.Forms.FAQ
             this.Text = "ClickDesk - FAQ";
             this.Size = new Size(900, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = ClickDeskColors.ContentBackground;
+            this.BackColor = ClickDeskColors.BackgroundApp;
 
             int y = 20;
             int leftMargin = 30;
@@ -91,7 +91,7 @@ namespace ClickDesk.Forms.FAQ
                 AutoScroll = true,
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
-                BackColor = ClickDeskColors.ContentBackground
+                BackColor = ClickDeskColors.BackgroundApp
             };
             this.Controls.Add(panelFAQs);
 

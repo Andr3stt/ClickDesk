@@ -28,9 +28,15 @@ namespace ClickDesk.Forms.Auth
             // Configurações do Form
             this.Size = new Size(1200, 700);
             this.StartPosition = FormStartPosition.CenterScreen;
+<<<<<<< HEAD
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = ClickDeskColors.BackgroundApp; // #EDE6D9 BEGE
             this.Text = "ClickDesk - Login";
+=======
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.BackColor = ClickDeskColors.BackgroundApp; // Bege #EDE6D9
+>>>>>>> ee39296776078bd091802a3f378d2602e4142d38
 
             // Painel Central Branco
             panelCentral = new Panel
@@ -45,12 +51,20 @@ namespace ClickDesk.Forms.Auth
             // Logo/Título
             var lblLogo = new Label
             {
+<<<<<<< HEAD
                 Text = "ClickDesk",
                 Location = new Point(125, 50),
                 Size = new Size(200, 50),
                 Font = ClickDeskStyles.Font3XL,
                 ForeColor = ClickDeskColors.Brand, // LARANJA
                 TextAlign = ContentAlignment.MiddleCenter
+=======
+                Text = "🖥️ ClickDesk",
+                Font = new Font("Segoe UI", 28, FontStyle.Bold),
+                ForeColor = ClickDeskColors.Brand, // Laranja #F28A1A
+                AutoSize = true,
+                Location = new Point(85, 40)
+>>>>>>> ee39296776078bd091802a3f378d2602e4142d38
             };
             panelCentral.Controls.Add(lblLogo);
 
@@ -117,8 +131,15 @@ namespace ClickDesk.Forms.Auth
             btnLogin = new Button
             {
                 Text = "ENTRAR",
+<<<<<<< HEAD
                 Location = new Point(60, 360),
                 Size = new Size(330, 50),
+=======
+                Size = new Size(300, 45),
+                Location = new Point(50, 335),
+                BackColor = ClickDeskColors.Brand, // Laranja #F28A1A
+                ForeColor = ClickDeskColors.White,
+>>>>>>> ee39296776078bd091802a3f378d2602e4142d38
                 FlatStyle = FlatStyle.Flat,
                 BackColor = ClickDeskColors.Brand, // LARANJA #F28A1A
                 ForeColor = Color.White,
@@ -126,6 +147,10 @@ namespace ClickDesk.Forms.Auth
                 Cursor = Cursors.Hand
             };
             btnLogin.FlatAppearance.BorderSize = 0;
+<<<<<<< HEAD
+=======
+            // Hover effect laranja escuro
+>>>>>>> ee39296776078bd091802a3f378d2602e4142d38
             btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = ClickDeskColors.BrandDark;
             btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = ClickDeskColors.Brand;
             btnLogin.Click += BtnLogin_Click;
