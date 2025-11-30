@@ -123,7 +123,8 @@ namespace ClickDesk.Forms.Chamados
                 if (e.RowIndex >= 0)
                 {
                     int id = Convert.ToInt32(dgvChamados.Rows[e.RowIndex].Cells["Id"].Value);
-                    var form = new FormDetalhesChamado(id);
+                    // Abre formulário de edição técnica para gerenciar o chamado
+                    var form = new FormDetalhesChamadoTecnico(id);
                     form.FormClosed += async (sender, args) => await CarregarChamados();
                     form.ShowDialog(this);
                 }
