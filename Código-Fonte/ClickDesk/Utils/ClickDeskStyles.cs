@@ -341,6 +341,16 @@ namespace ClickDesk.Utils
         public static Color BrandDark => Color.FromArgb(217, 119, 6);
 
         // ========================================
+        // CORES DE STATUS PARA FORMULÁRIOS
+        // ========================================
+
+        /// <summary>Status de erro (vermelho) - Para mensagens de erro em formulários</summary>
+        public static Color StatusError => Danger;
+
+        /// <summary>Status fechado (cinza) - Para botões/estados desabilitados</summary>
+        public static Color StatusClosed => Gray400;
+
+        // ========================================
         // MÉTODOS AUXILIARES
         // ========================================
 
