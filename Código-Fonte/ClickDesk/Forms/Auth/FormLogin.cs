@@ -1,339 +1,280 @@
 using System;
 using System.Drawing;
-using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using ClickDesk.Forms.Dashboard;
+using System.Threading.Tasks;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Newtonsoft.Json.Linq;
 
 namespace ClickDesk.Forms.Auth
 {
-    /// <summary>
-    /// Formulário de login do sistema ClickDesk.
-    /// Permite autenticação via usuário/senha com integração JWT.
-    /// </summary>
     public partial class FormLogin : Form
     {
-        // Campos do formulário
-        private TextBox txtUsername;
-        private TextBox txtPassword;
+        private Panel panelCentral;
+        private TextBox txtUsuario;
+        private TextBox txtSenha;
         private Button btnLogin;
-        private Button btnRegistrar;
-        private Label lblError;
+        private Label lblMensagem;
 
-        /// <summary>
-        /// Construtor do formulário de login.
-        /// </summary>
         public FormLogin()
         {
             InitializeComponent();
-            SetupForm();
+            CriarInterface();
         }
 
-        /// <summary>
-        /// Configura a aparência e os controles do formulário.
-        /// </summary>
-        private void SetupForm()
+        private void CriarInterface()
         {
-            // Configurações básicas do form
-            this.Text = "ClickDesk - Login";
-            this.Size = new Size(1000, 600);
+            // Configurações do Form
+            this.Size = new Size(1200, 700);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.BackColor = ClickDeskColors.Gray800;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.BackColor = ClickDeskColors.BackgroundApp; // #EDE6D9 BEGE
+            this.Text = "ClickDesk - Login";
 
-            // Painel central branco
-            Panel panelLogin = new Panel
+            // Painel Central Branco
+            panelCentral = new Panel
             {
-                Size = new Size(400, 500),
-                BackColor = ClickDeskColors.White,
-                Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 500) / 2)
+                Size = new Size(450, 550),
+                Location = new Point((this.Width - 450) / 2, (this.Height - 550) / 2),
+                BackColor = Color.White
             };
-
-            // Bordas arredondadas para o painel de login
-            panelLogin.Paint += (s, e) =>
-            {
-                var rect = new Rectangle(0, 0, panelLogin.Width - 1, panelLogin.Height - 1);
-                var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
-
-                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-                using (var brush = new SolidBrush(Color.White))
-                {
-                    e.Graphics.FillPath(brush, path);
-                }
-
-                using (var pen = new Pen(ClickDeskColors.Border, 1))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            };
-
-            this.Controls.Add(panelLogin);
+            panelCentral.Paint += PanelCentral_Paint;
+            this.Controls.Add(panelCentral);
 
             // Logo/Título
-            Label lblLogo = new Label
+            var lblLogo = new Label
             {
-                Text = "🖥️ ClickDesk",
-                Font = new Font("Segoe UI", 28, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Primary,
-                AutoSize = true,
-                Location = new Point(85, 40)
+                Text = "ClickDesk",
+                Location = new Point(125, 50),
+                Size = new Size(200, 50),
+                Font = ClickDeskStyles.Font3XL,
+                ForeColor = ClickDeskColors.Brand, // LARANJA
+                TextAlign = ContentAlignment.MiddleCenter
             };
-            panelLogin.Controls.Add(lblLogo);
+            panelCentral.Controls.Add(lblLogo);
 
-            // Subtítulo
-            Label lblSubtitle = new Label
+            var lblSubtitulo = new Label
             {
                 Text = "Sistema de Helpdesk",
-                Font = new Font("Segoe UI", 12),
-                ForeColor = ClickDeskColors.Gray500,
-                AutoSize = true,
-                Location = new Point(125, 90)
+                Location = new Point(125, 105),
+                Size = new Size(200, 30),
+                Font = ClickDeskStyles.FontSM,
+                ForeColor = ClickDeskColors.TextSecondary,
+                TextAlign = ContentAlignment.MiddleCenter
             };
-            panelLogin.Controls.Add(lblSubtitle);
+            panelCentral.Controls.Add(lblSubtitulo);
 
             // Label Usuário
-            Label lblUsername = new Label
+            var lblUsuario = new Label
             {
                 Text = "Usuário",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Gray700,
-                Location = new Point(50, 150),
-                AutoSize = true
+                Location = new Point(60, 170),
+                Size = new Size(330, 25),
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ClickDeskColors.TextPrimary
             };
-            panelLogin.Controls.Add(lblUsername);
+            panelCentral.Controls.Add(lblUsuario);
 
-            // Campo Usuário
-            txtUsername = new TextBox
+            // TextBox Usuário
+            txtUsuario = new TextBox
             {
-                Size = new Size(300, 40),
-                Location = new Point(50, 175),
-                Font = new Font("Segoe UI", 12),
-                BorderStyle = BorderStyle.FixedSingle
+                Location = new Point(60, 200),
+                Size = new Size(330, 40),
+                Font = ClickDeskStyles.FontBase,
+                BorderStyle = BorderStyle.FixedSingle,
+                BackColor = Color.White,
+                ForeColor = ClickDeskColors.TextPrimary
             };
-            panelLogin.Controls.Add(txtUsername);
+            panelCentral.Controls.Add(txtUsuario);
 
             // Label Senha
-            Label lblPassword = new Label
+            var lblSenha = new Label
             {
                 Text = "Senha",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Gray700,
-                Location = new Point(50, 230),
-                AutoSize = true
+                Location = new Point(60, 260),
+                Size = new Size(330, 25),
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ClickDeskColors.TextPrimary
             };
-            panelLogin.Controls.Add(lblPassword);
+            panelCentral.Controls.Add(lblSenha);
 
-            // Campo Senha
-            txtPassword = new TextBox
+            // TextBox Senha
+            txtSenha = new TextBox
             {
-                Size = new Size(300, 40),
-                Location = new Point(50, 255),
-                Font = new Font("Segoe UI", 12),
+                Location = new Point(60, 290),
+                Size = new Size(330, 40),
+                Font = ClickDeskStyles.FontBase,
                 BorderStyle = BorderStyle.FixedSingle,
-                UseSystemPasswordChar = true
+                PasswordChar = '●',
+                BackColor = Color.White,
+                ForeColor = ClickDeskColors.TextPrimary
             };
-            panelLogin.Controls.Add(txtPassword);
+            txtSenha.KeyPress += TxtSenha_KeyPress;
+            panelCentral.Controls.Add(txtSenha);
 
-            // Label de erro
-            lblError = new Label
-            {
-                Text = "",
-                Font = new Font("Segoe UI", 9),
-                ForeColor = ClickDeskColors.Danger,
-                Location = new Point(50, 305),
-                Size = new Size(300, 20),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Visible = false
-            };
-            panelLogin.Controls.Add(lblError);
-
-            // Botão Login
+            // Botão Login (LARANJA)
             btnLogin = new Button
             {
                 Text = "ENTRAR",
-                Size = new Size(300, 45),
-                Location = new Point(50, 335),
-                BackColor = ClickDeskColors.Primary,
-                ForeColor = ClickDeskColors.White,
+                Location = new Point(60, 360),
+                Size = new Size(330, 50),
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                BackColor = ClickDeskColors.Brand, // LARANJA #F28A1A
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontLG,
                 Cursor = Cursors.Hand
             };
             btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = ClickDeskColors.BrandDark;
+            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = ClickDeskColors.Brand;
             btnLogin.Click += BtnLogin_Click;
-            panelLogin.Controls.Add(btnLogin);
+            panelCentral.Controls.Add(btnLogin);
 
-            // Link para registro
-            Label lblNoAccount = new Label
+            // Mensagem de Erro
+            lblMensagem = new Label
             {
-                Text = "Não tem uma conta?",
-                Font = new Font("Segoe UI", 9),
-                ForeColor = ClickDeskColors.Gray500,
-                Location = new Point(100, 400),
-                AutoSize = true
+                Location = new Point(60, 425),
+                Size = new Size(330, 40),
+                Font = ClickDeskStyles.FontSM,
+                ForeColor = ClickDeskColors.StatusError,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Visible = false
             };
-            panelLogin.Controls.Add(lblNoAccount);
+            panelCentral.Controls.Add(lblMensagem);
 
-            // Botão Registrar
-            btnRegistrar = new Button
+            // Link Criar Conta
+            var linkCriarConta = new LinkLabel
             {
-                Text = "Criar conta",
-                Size = new Size(100, 25),
-                Location = new Point(230, 396),
-                BackColor = ClickDeskColors.White,
-                ForeColor = ClickDeskColors.Primary,
+                Text = "Criar Nova Conta",
+                Location = new Point(175, 480),
+                AutoSize = true,
+                LinkColor = ClickDeskColors.Brand,
+                Font = ClickDeskStyles.FontSM
+            };
+            linkCriarConta.LinkClicked += (s, e) =>
+            {
+                var formRegistro = new FormRegistro();
+                formRegistro.ShowDialog();
+            };
+            panelCentral.Controls.Add(linkCriarConta);
+
+            // Botão Fechar
+            var btnFechar = new Button
+            {
+                Text = "✕",
+                Size = new Size(40, 40),
+                Location = new Point(this.Width - 50, 10),
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 9, FontStyle.Underline),
+                BackColor = Color.Transparent,
+                ForeColor = ClickDeskColors.TextSecondary,
+                Font = new Font("Segoe UI", 16f, FontStyle.Bold),
                 Cursor = Cursors.Hand
             };
-            btnRegistrar.FlatAppearance.BorderSize = 0;
-            btnRegistrar.Click += BtnRegistrar_Click;
-            panelLogin.Controls.Add(btnRegistrar);
-
-            // Rodapé
-            Label lblFooter = new Label
-            {
-                Text = "© 2024 ClickDesk - Todos os direitos reservados",
-                Font = new Font("Segoe UI", 8),
-                ForeColor = ClickDeskColors.Gray400,
-                Location = new Point(80, 460),
-                AutoSize = true
-            };
-            panelLogin.Controls.Add(lblFooter);
-
-            // Eventos de teclado
-            txtUsername.KeyDown += TxtField_KeyDown;
-            txtPassword.KeyDown += TxtField_KeyDown;
-
-            // Foco inicial
-            this.ActiveControl = txtUsername;
+            btnFechar.FlatAppearance.BorderSize = 0;
+            btnFechar.Click += (s, e) => Application.Exit();
+            this.Controls.Add(btnFechar);
         }
 
-        /// <summary>
-        /// Trata o pressionamento de Enter nos campos.
-        /// </summary>
-        private void TxtField_KeyDown(object sender, KeyEventArgs e)
+        private void PanelCentral_Paint(object sender, PaintEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            var rect = new Rectangle(0, 0, panelCentral.Width - 1, panelCentral.Height - 1);
+            var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (var brush = new SolidBrush(Color.White))
             {
-                e.SuppressKeyPress = true;
+                e.Graphics.FillPath(brush, path);
+            }
+
+            using (var pen = new Pen(ClickDeskColors.Border, 1))
+            {
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
+
+        private void TxtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
                 BtnLogin_Click(sender, e);
             }
         }
 
-        /// <summary>
-        /// Evento de clique no botão de login.
-        /// </summary>
         private async void BtnLogin_Click(object sender, EventArgs e)
         {
             await RealizarLogin();
         }
 
-        /// <summary>
-        /// Realiza o processo de login.
-        /// </summary>
         private async Task RealizarLogin()
         {
-            // Limpa erro anterior
-            lblError.Visible = false;
+            lblMensagem.Visible = false;
 
-            // Validação dos campos
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text;
-
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
-                ShowError("Por favor, informe o usuário.");
-                txtUsername.Focus();
+                MostrarErro("Digite seu usuário");
+                txtUsuario.Focus();
                 return;
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(txtSenha.Text))
             {
-                ShowError("Por favor, informe a senha.");
-                txtPassword.Focus();
+                MostrarErro("Digite sua senha");
+                txtSenha.Focus();
                 return;
             }
 
-            // Desabilita o formulário durante o login
-            SetFormEnabled(false);
+            btnLogin.Enabled = false;
+            btnLogin.Text = "Aguarde...";
+            btnLogin.BackColor = ClickDeskColors.StatusClosed;
 
             try
             {
-                // Tenta fazer login
-                var response = await AuthService.LoginAsync(username, password);
-
-                if (response != null && !string.IsNullOrEmpty(response.Token))
+                var credenciais = new
                 {
-                    // Login bem-sucedido - abre o dashboard
+                    username = txtUsuario.Text.Trim(),
+                    password = txtSenha.Text
+                };
+
+                var resposta = await ApiService.Post<JObject>("/auth/login", credenciais);
+
+                if (resposta != null && resposta["token"] != null)
+                {
+                    ApiConfig.Token = resposta["token"].ToString();
+                    SessionManager.Username = txtUsuario.Text.Trim();
+                    SessionManager.CurrentUser = new { Nome = txtUsuario.Text.Trim() };
+
                     this.Hide();
-
-                    // Verifica se é admin para abrir o dashboard correto
-                    Form dashboard;
-                    if (SessionManager.IsAdmin || SessionManager.IsTech)
-                    {
-                        dashboard = new FormDashboardAdmin();
-                    }
-                    else
-                    {
-                        dashboard = new FormDashboard();
-                    }
-
-                    dashboard.FormClosed += (s, args) => this.Close();
+                    var dashboard = new Dashboard.FormDashboard();
+                    dashboard.FormClosed += (s, e) => this.Close();
                     dashboard.Show();
                 }
                 else
                 {
-                    ShowError("Credenciais inválidas. Verifique usuário e senha.");
+                    MostrarErro("Usuário ou senha inválidos");
+                    ReabilitarBotao();
                 }
-            }
-            catch (ApiException ex)
-            {
-                ShowError(ex.Message);
             }
             catch (Exception ex)
             {
-                ShowError($"Erro ao conectar: {ex.Message}");
-            }
-            finally
-            {
-                SetFormEnabled(true);
+                MostrarErro($"Erro: {ex.Message}");
+                ReabilitarBotao();
             }
         }
 
-        /// <summary>
-        /// Exibe mensagem de erro no label.
-        /// </summary>
-        private void ShowError(string message)
+        private void MostrarErro(string mensagem)
         {
-            lblError.Text = message;
-            lblError.Visible = true;
+            lblMensagem.Text = mensagem;
+            lblMensagem.Visible = true;
         }
 
-        /// <summary>
-        /// Habilita/desabilita o formulário.
-        /// </summary>
-        private void SetFormEnabled(bool enabled)
+        private void ReabilitarBotao()
         {
-            txtUsername.Enabled = enabled;
-            txtPassword.Enabled = enabled;
-            btnLogin.Enabled = enabled;
-            btnRegistrar.Enabled = enabled;
-            btnLogin.Text = enabled ? "ENTRAR" : "AGUARDE...";
-            this.Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
-        }
-
-        /// <summary>
-        /// Evento de clique no botão de registro.
-        /// </summary>
-        private void BtnRegistrar_Click(object sender, EventArgs e)
-        {
-            // Abre o formulário de registro
-            var formRegistro = new FormRegistro();
-            formRegistro.ShowDialog(this);
+            btnLogin.Enabled = true;
+            btnLogin.Text = "ENTRAR";
+            btnLogin.BackColor = ClickDeskColors.Brand;
         }
     }
 }
