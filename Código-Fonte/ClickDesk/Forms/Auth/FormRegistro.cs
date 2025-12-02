@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Auth
 {
@@ -14,17 +15,18 @@ namespace ClickDesk.Forms.Auth
     /// </summary>
     public partial class FormRegistro : Form
     {
-        // Campos do formulário
-        private TextBox txtNome;
-        private TextBox txtUsername;
-        private TextBox txtEmail;
-        private TextBox txtDepartamento;
-        private TextBox txtTelefone;
-        private TextBox txtPassword;
-        private TextBox txtConfirmPassword;
-        private Button btnRegistrar;
-        private Button btnCancelar;
+        // Campos do formulário (modernizados com Siticone)
+        private SiticoneTextBox txtNome;
+        private SiticoneTextBox txtUsername;
+        private SiticoneTextBox txtEmail;
+        private SiticoneTextBox txtDepartamento;
+        private SiticoneTextBox txtTelefone;
+        private SiticoneTextBox txtPassword;
+        private SiticoneTextBox txtConfirmPassword;
+        private SiticoneButton btnRegistrar;
+        private SiticoneButton btnCancelar;
         private Label lblError;
+        private SiticonePanel mainPanel;
 
         /// <summary>
         /// Construtor do formulário de registro.
@@ -42,18 +44,36 @@ namespace ClickDesk.Forms.Auth
         {
             // Configurações básicas do form
             this.Text = "ClickDesk - Criar Conta";
-            this.Size = new Size(500, 650);
+            this.Size = new Size(550, 720);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = ClickDeskColors.White;
+            this.BackColor = ThemeManager.BackgroundApp;
 
-            int startY = 20;
-            int spacing = 60;
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
+            };
+
+            // Main container panel with shadow
+            mainPanel = new SiticonePanel
+            {
+                Size = new Size(500, 680),
+                Location = new Point(25, 20),
+                BorderRadius = ClickDeskStyles.RadiusXL,
+                FillColor = ThemeManager.CardBackground,
+                ShadowDecoration = { Enabled = true, Shadow = new SiticoneShadow() { Depth = 20 } }
+            };
+            this.Controls.Add(mainPanel);
+
+            int startY = 30;
+            int spacing = 70;
             int labelOffset = 0;
-            int inputOffset = 22;
-            int leftMargin = 50;
+            int inputOffset = 25;
+            int leftMargin = 60;
             int inputWidth = 380;
 
             // Título
@@ -61,62 +81,63 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Criar Nova Conta",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Primary,
+                ForeColor = ThemeManager.Brand,
                 Location = new Point(leftMargin, startY),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblTitle);
+            mainPanel.Controls.Add(lblTitle);
 
             startY += 50;
 
             // Nome Completo
-            this.Controls.Add(CreateLabel("Nome Completo *", leftMargin, startY + labelOffset));
-            txtNome = CreateTextBox(leftMargin, startY + inputOffset, inputWidth);
-            this.Controls.Add(txtNome);
+            mainPanel.Controls.Add(CreateLabel("Nome Completo *", leftMargin, startY + labelOffset));
+            txtNome = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "Digite seu nome completo");
+            mainPanel.Controls.Add(txtNome);
 
             startY += spacing;
 
             // Username
-            this.Controls.Add(CreateLabel("Nome de Usuário *", leftMargin, startY + labelOffset));
-            txtUsername = CreateTextBox(leftMargin, startY + inputOffset, inputWidth);
-            this.Controls.Add(txtUsername);
+            mainPanel.Controls.Add(CreateLabel("Nome de Usuário *", leftMargin, startY + labelOffset));
+            txtUsername = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "Digite seu usuário");
+            mainPanel.Controls.Add(txtUsername);
 
             startY += spacing;
 
             // Email
-            this.Controls.Add(CreateLabel("E-mail *", leftMargin, startY + labelOffset));
-            txtEmail = CreateTextBox(leftMargin, startY + inputOffset, inputWidth);
-            this.Controls.Add(txtEmail);
+            mainPanel.Controls.Add(CreateLabel("E-mail *", leftMargin, startY + labelOffset));
+            txtEmail = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "seu.email@exemplo.com");
+            mainPanel.Controls.Add(txtEmail);
 
             startY += spacing;
 
             // Departamento
-            this.Controls.Add(CreateLabel("Departamento", leftMargin, startY + labelOffset));
-            txtDepartamento = CreateTextBox(leftMargin, startY + inputOffset, inputWidth);
-            this.Controls.Add(txtDepartamento);
+            mainPanel.Controls.Add(CreateLabel("Departamento", leftMargin, startY + labelOffset));
+            txtDepartamento = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "Ex: TI, RH, Financeiro");
+            mainPanel.Controls.Add(txtDepartamento);
 
             startY += spacing;
 
             // Telefone
-            this.Controls.Add(CreateLabel("Telefone", leftMargin, startY + labelOffset));
-            txtTelefone = CreateTextBox(leftMargin, startY + inputOffset, inputWidth);
-            this.Controls.Add(txtTelefone);
+            mainPanel.Controls.Add(CreateLabel("Telefone", leftMargin, startY + labelOffset));
+            txtTelefone = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "(00) 00000-0000");
+            mainPanel.Controls.Add(txtTelefone);
 
             startY += spacing;
 
             // Senha
-            this.Controls.Add(CreateLabel("Senha *", leftMargin, startY + labelOffset));
-            txtPassword = CreateTextBox(leftMargin, startY + inputOffset, inputWidth, true);
-            this.Controls.Add(txtPassword);
+            mainPanel.Controls.Add(CreateLabel("Senha *", leftMargin, startY + labelOffset));
+            txtPassword = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "Mínimo 6 caracteres", true);
+            mainPanel.Controls.Add(txtPassword);
 
             startY += spacing;
 
             // Confirmar Senha
-            this.Controls.Add(CreateLabel("Confirmar Senha *", leftMargin, startY + labelOffset));
-            txtConfirmPassword = CreateTextBox(leftMargin, startY + inputOffset, inputWidth, true);
-            this.Controls.Add(txtConfirmPassword);
+            mainPanel.Controls.Add(CreateLabel("Confirmar Senha *", leftMargin, startY + labelOffset));
+            txtConfirmPassword = CreateSiticoneTextBox(leftMargin, startY + inputOffset, inputWidth, "Digite a senha novamente", true);
+            mainPanel.Controls.Add(txtConfirmPassword);
 
-            startY += spacing;
+            startY += spacing + 10;
 
             // Label de erro
             lblError = new Label
@@ -127,42 +148,43 @@ namespace ClickDesk.Forms.Auth
                 Location = new Point(leftMargin, startY),
                 Size = new Size(inputWidth, 20),
                 TextAlign = ContentAlignment.MiddleCenter,
-                Visible = false
+                Visible = false,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblError);
+            mainPanel.Controls.Add(lblError);
 
             startY += 30;
 
             // Botões
-            btnCancelar = new Button
+            btnCancelar = new SiticoneButton
             {
                 Text = "Cancelar",
-                Size = new Size(180, 40),
+                Size = new Size(180, 45),
                 Location = new Point(leftMargin, startY),
-                BackColor = ClickDeskColors.Gray200,
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray300,
                 ForeColor = ClickDeskColors.Gray700,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.Gray400 }
             };
-            btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.Click += BtnCancelar_Click;
-            this.Controls.Add(btnCancelar);
+            mainPanel.Controls.Add(btnCancelar);
 
-            btnRegistrar = new Button
+            btnRegistrar = new SiticoneButton
             {
                 Text = "CRIAR CONTA",
-                Size = new Size(180, 40),
+                Size = new Size(180, 45),
                 Location = new Point(leftMargin + 200, startY),
-                BackColor = ClickDeskColors.Primary,
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
                 ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnRegistrar.FlatAppearance.BorderSize = 0;
             btnRegistrar.Click += BtnRegistrar_Click;
-            this.Controls.Add(btnRegistrar);
+            mainPanel.Controls.Add(btnRegistrar);
 
             // Foco inicial
             this.ActiveControl = txtNome;
@@ -176,26 +198,62 @@ namespace ClickDesk.Forms.Auth
             return new Label
             {
                 Text = text,
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Gray700,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(x, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
         }
 
         /// <summary>
-        /// Cria um textbox estilizado.
+        /// Cria um textbox Siticone estilizado.
         /// </summary>
-        private TextBox CreateTextBox(int x, int y, int width, bool isPassword = false)
+        private SiticoneTextBox CreateSiticoneTextBox(int x, int y, int width, string placeholder, bool isPassword = false)
         {
-            return new TextBox
+            return new SiticoneTextBox
             {
-                Size = new Size(width, 30),
+                Size = new Size(width, 40),
                 Location = new Point(x, y),
-                Font = new Font("Segoe UI", 10),
-                BorderStyle = BorderStyle.FixedSingle,
-                UseSystemPasswordChar = isPassword
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = placeholder,
+                PasswordChar = isPassword ? '●' : '\0',
+                TextOffset = new Point(10, 0)
             };
+        }
+
+        /// <summary>
+        /// Aplica o tema atual aos controles.
+        /// </summary>
+        private void ApplyTheme()
+        {
+            mainPanel.FillColor = ThemeManager.CardBackground;
+            
+            // Update all textboxes
+            foreach (Control control in mainPanel.Controls)
+            {
+                if (control is SiticoneTextBox textBox)
+                {
+                    textBox.FillColor = ThemeManager.CardBackground;
+                    textBox.ForeColor = ThemeManager.TextPrimary;
+                    textBox.BorderColor = ThemeManager.Border;
+                }
+                else if (control is Label label && label != lblError)
+                {
+                    label.ForeColor = ThemeManager.TextPrimary;
+                }
+            }
+
+            btnRegistrar.FillColor = ThemeManager.Brand;
+            btnRegistrar.HoverState.FillColor = ThemeManager.BrandHover;
+
+            mainPanel.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
