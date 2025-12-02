@@ -48,9 +48,10 @@ namespace ClickDesk.Forms.Auth
                 Size = new Size(450, 580),
                 Location = new Point((this.Width - 450) / 2, (this.Height - 580) / 2),
                 BackColor = ThemeManager.CardBackground,
-                BorderRadius = ClickDeskStyles.RadiusXL,
-                ShadowDecoration = { Enabled = true, Shadow = new SiticoneShadow() { Depth = 20 } }
+                BorderRadius = ClickDeskStyles.RadiusXL
             };
+            panelCentral.ShadowDecoration.Enabled = true;
+            panelCentral.ShadowDecoration.Depth = 20;
             this.Controls.Add(panelCentral);
 
             // Logo/Título

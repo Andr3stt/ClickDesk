@@ -7,6 +7,7 @@ using ClickDesk.Forms.FAQ;
 using ClickDesk.Forms.Perfil;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Dashboard
 {
@@ -41,7 +42,13 @@ namespace ClickDesk.Forms.Dashboard
         /// </summary>
         protected override void SetupSidebar()
         {
-            sidebarPanel = UIHelper.CreateSidebar(260);
+            sidebarPanel = new SiticonePanel
+            {
+                Width = 260,
+                Dock = DockStyle.Left,
+                FillColor = ThemeManager.SidebarBackground,
+                Padding = new Padding(0)
+            };
             this.Controls.Add(sidebarPanel);
 
             int y = 0;
@@ -107,7 +114,7 @@ namespace ClickDesk.Forms.Dashboard
             // Dashboard
             var btnDashboard = CreateMenuButton("📊  Dashboard", y);
             btnDashboard.Click += (s, e) => { /* Já está no dashboard */ };
-            UIHelper.SetMenuButtonActive(btnDashboard, true);
+            SetMenuButtonActive(btnDashboard, true);
             sidebarPanel.Controls.Add(btnDashboard);
             y += 50;
 

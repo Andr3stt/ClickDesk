@@ -64,9 +64,10 @@ namespace ClickDesk.Forms.Auth
                 Size = new Size(500, 680),
                 Location = new Point(25, 20),
                 BorderRadius = ClickDeskStyles.RadiusXL,
-                FillColor = ThemeManager.CardBackground,
-                ShadowDecoration = { Enabled = true, Shadow = new SiticoneShadow() { Depth = 20 } }
+                FillColor = ThemeManager.CardBackground
             };
+            mainPanel.ShadowDecoration.Enabled = true;
+            mainPanel.ShadowDecoration.Depth = 20;
             this.Controls.Add(mainPanel);
 
             int startY = 30;
