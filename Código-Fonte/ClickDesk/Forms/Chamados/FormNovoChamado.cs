@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Chamados
 {
@@ -15,13 +16,14 @@ namespace ClickDesk.Forms.Chamados
     public partial class FormNovoChamado : Form
     {
         // Campos do formulário
-        private TextBox txtTitulo;
-        private TextBox txtDescricao;
-        private ComboBox cmbCategoria;
-        private ComboBox cmbSeveridade;
-        private Button btnEnviar;
-        private Button btnCancelar;
-        private Panel panelResultadoIA;
+        private SiticonePanel mainPanel;
+        private SiticoneTextBox txtTitulo;
+        private SiticoneTextBox txtDescricao;
+        private SiticoneComboBox cmbCategoria;
+        private SiticoneComboBox cmbSeveridade;
+        private SiticoneButton btnEnviar;
+        private SiticoneButton btnCancelar;
+        private SiticonePanel panelResultadoIA;
         private Label lblResultadoIA;
         private TextBox txtSolucaoIA;
 
@@ -44,15 +46,34 @@ namespace ClickDesk.Forms.Chamados
         {
             // Configurações do form
             this.Text = "ClickDesk - Novo Chamado";
-            this.Size = new Size(700, 650);
+            this.Size = new Size(760, 700);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = ClickDeskColors.White;
+            this.BackColor = ThemeManager.BackgroundApp;
+
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
+            };
+
+            // Main panel with Siticone
+            mainPanel = new SiticonePanel
+            {
+                Size = new Size(700, 640),
+                Location = new Point((this.Width - 700) / 2, 30),
+                FillColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL
+            };
+            mainPanel.ShadowDecoration.Enabled = true;
+            mainPanel.ShadowDecoration.Depth = 20;
+            this.Controls.Add(mainPanel);
 
             int leftMargin = 40;
-            int inputWidth = 600;
+            int inputWidth = 620;
             int y = 30;
 
             // Título do formulário
@@ -60,11 +81,12 @@ namespace ClickDesk.Forms.Chamados
             {
                 Text = "Abrir Novo Chamado",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Primary,
+                ForeColor = ThemeManager.Brand,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblTitle);
+            mainPanel.Controls.Add(lblTitle);
 
             y += 50;
 
@@ -72,38 +94,49 @@ namespace ClickDesk.Forms.Chamados
             Label lblSubtitle = new Label
             {
                 Text = "Descreva seu problema. Nossa IA tentará resolver automaticamente!",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.Gray500,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblSubtitle);
+            mainPanel.Controls.Add(lblSubtitle);
 
             y += 40;
 
             // Título do chamado
-            this.Controls.Add(CreateLabel("Título *", leftMargin, y));
-            y += 22;
-            txtTitulo = new TextBox
+            mainPanel.Controls.Add(CreateLabel("Título *", leftMargin, y));
+            y += 25;
+            txtTitulo = new SiticoneTextBox
             {
-                Size = new Size(inputWidth, 35),
+                Size = new Size(inputWidth, 45),
                 Location = new Point(leftMargin, y),
-                Font = new Font("Segoe UI", 11),
-                BorderStyle = BorderStyle.FixedSingle
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "Ex: Computador não liga",
+                TextOffset = new Point(10, 0)
             };
-            this.Controls.Add(txtTitulo);
+            mainPanel.Controls.Add(txtTitulo);
 
-            y += 50;
+            y += 55;
 
             // Categoria
-            this.Controls.Add(CreateLabel("Categoria *", leftMargin, y));
-            y += 22;
-            cmbCategoria = new ComboBox
+            mainPanel.Controls.Add(CreateLabel("Categoria *", leftMargin, y));
+            y += 25;
+            cmbCategoria = new SiticoneComboBox
             {
-                Size = new Size(280, 35),
+                Size = new Size(290, 40),
                 Location = new Point(leftMargin, y),
-                Font = new Font("Segoe UI", 11),
-                DropDownStyle = ComboBoxStyle.DropDownList
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                Style = Siticone.Desktop.UI.WinForms.Enums.TextBoxStyle.Material
             };
             cmbCategoria.Items.AddRange(new object[] {
                 "Hardware",
@@ -116,16 +149,20 @@ namespace ClickDesk.Forms.Chamados
                 "Outros"
             });
             cmbCategoria.SelectedIndex = 0;
-            this.Controls.Add(cmbCategoria);
+            mainPanel.Controls.Add(cmbCategoria);
 
             // Severidade
-            this.Controls.Add(CreateLabel("Severidade", leftMargin + 320, y - 22));
-            cmbSeveridade = new ComboBox
+            mainPanel.Controls.Add(CreateLabel("Severidade", leftMargin + 330, y - 25));
+            cmbSeveridade = new SiticoneComboBox
             {
-                Size = new Size(280, 35),
-                Location = new Point(leftMargin + 320, y),
-                Font = new Font("Segoe UI", 11),
-                DropDownStyle = ComboBoxStyle.DropDownList
+                Size = new Size(290, 40),
+                Location = new Point(leftMargin + 330, y),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                Style = Siticone.Desktop.UI.WinForms.Enums.TextBoxStyle.Material
             };
             cmbSeveridade.Items.AddRange(new object[] {
                 "Baixa",
@@ -134,43 +171,51 @@ namespace ClickDesk.Forms.Chamados
                 "Crítica"
             });
             cmbSeveridade.SelectedIndex = 0;
-            this.Controls.Add(cmbSeveridade);
+            mainPanel.Controls.Add(cmbSeveridade);
 
             y += 50;
 
             // Descrição
-            this.Controls.Add(CreateLabel("Descrição do Problema *", leftMargin, y));
-            y += 22;
-            txtDescricao = new TextBox
+            mainPanel.Controls.Add(CreateLabel("Descrição do Problema *", leftMargin, y));
+            y += 25;
+            txtDescricao = new SiticoneTextBox
             {
-                Size = new Size(inputWidth, 150),
+                Size = new Size(inputWidth, 160),
                 Location = new Point(leftMargin, y),
-                Font = new Font("Segoe UI", 10),
-                BorderStyle = BorderStyle.FixedSingle,
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "Descreva o problema em detalhes...",
+                TextOffset = new Point(10, 0),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical
             };
-            this.Controls.Add(txtDescricao);
+            mainPanel.Controls.Add(txtDescricao);
 
             y += 170;
 
             // Painel de resultado da IA (inicialmente oculto)
-            panelResultadoIA = new Panel
+            panelResultadoIA = new SiticonePanel
             {
                 Size = new Size(inputWidth, 120),
                 Location = new Point(leftMargin, y),
-                BackColor = ClickDeskColors.SuccessLight,
+                FillColor = ClickDeskColors.SuccessLight,
+                BorderRadius = ClickDeskStyles.RadiusMD,
                 Visible = false
             };
-            this.Controls.Add(panelResultadoIA);
+            mainPanel.Controls.Add(panelResultadoIA);
 
             lblResultadoIA = new Label
             {
                 Text = "🤖 Solução encontrada pela IA:",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Font = ClickDeskStyles.FontBaseStrong,
                 ForeColor = ClickDeskColors.Success,
                 Location = new Point(15, 10),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelResultadoIA.Controls.Add(lblResultadoIA);
 
@@ -178,7 +223,7 @@ namespace ClickDesk.Forms.Chamados
             {
                 Size = new Size(inputWidth - 30, 70),
                 Location = new Point(15, 35),
-                Font = new Font("Segoe UI", 9),
+                Font = ClickDeskStyles.FontSM,
                 Multiline = true,
                 ReadOnly = true,
                 BorderStyle = BorderStyle.None,
@@ -189,35 +234,35 @@ namespace ClickDesk.Forms.Chamados
             y += 130;
 
             // Botões
-            btnCancelar = new Button
+            btnCancelar = new SiticoneButton
             {
                 Text = "Cancelar",
                 Size = new Size(150, 45),
-                Location = new Point(leftMargin + inputWidth - 320, y),
-                BackColor = ClickDeskColors.Gray200,
+                Location = new Point(leftMargin + inputWidth - 330, y),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray300,
                 ForeColor = ClickDeskColors.Gray700,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Font = ClickDeskStyles.FontLG,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.Gray400 }
             };
-            btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.Click += BtnCancelar_Click;
-            this.Controls.Add(btnCancelar);
+            mainPanel.Controls.Add(btnCancelar);
 
-            btnEnviar = new Button
+            btnEnviar = new SiticoneButton
             {
                 Text = "ENVIAR CHAMADO",
                 Size = new Size(160, 45),
                 Location = new Point(leftMargin + inputWidth - 160, y),
-                BackColor = ClickDeskColors.Primary,
-                ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontLG,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnEnviar.FlatAppearance.BorderSize = 0;
             btnEnviar.Click += BtnEnviar_Click;
-            this.Controls.Add(btnEnviar);
+            mainPanel.Controls.Add(btnEnviar);
 
             // Foco inicial
             this.ActiveControl = txtTitulo;
@@ -231,11 +276,53 @@ namespace ClickDesk.Forms.Chamados
             return new Label
             {
                 Text = text,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Gray700,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(x, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
+        }
+
+        /// <summary>
+        /// Aplica o tema atual aos controles do formulário.
+        /// </summary>
+        private void ApplyTheme()
+        {
+            mainPanel.FillColor = ThemeManager.CardBackground;
+            txtTitulo.FillColor = ThemeManager.CardBackground;
+            txtTitulo.ForeColor = ThemeManager.TextPrimary;
+            txtTitulo.BorderColor = ThemeManager.Border;
+            txtDescricao.FillColor = ThemeManager.CardBackground;
+            txtDescricao.ForeColor = ThemeManager.TextPrimary;
+            txtDescricao.BorderColor = ThemeManager.Border;
+            cmbCategoria.FillColor = ThemeManager.CardBackground;
+            cmbCategoria.ForeColor = ThemeManager.TextPrimary;
+            cmbCategoria.BorderColor = ThemeManager.Border;
+            cmbSeveridade.FillColor = ThemeManager.CardBackground;
+            cmbSeveridade.ForeColor = ThemeManager.TextPrimary;
+            cmbSeveridade.BorderColor = ThemeManager.Border;
+            btnEnviar.FillColor = ThemeManager.Brand;
+            btnEnviar.HoverState.FillColor = ThemeManager.BrandHover;
+
+            // Update all labels
+            foreach (Control control in mainPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    if (label.Font.Bold)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
+            }
+
+            mainPanel.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
