@@ -1,10 +1,10 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Auth
 {
@@ -15,14 +15,14 @@ namespace ClickDesk.Forms.Auth
     public partial class FormRecuperarSenha : Form
     {
         // Componentes do formulário
-        private Panel panelPrincipal;
-        private TextBox txtEmail;
-        private TextBox txtCodigo;
-        private TextBox txtNovaSenha;
-        private TextBox txtConfirmarSenha;
-        private Button btnEnviarCodigo;
-        private Button btnConfirmar;
-        private Button btnVoltar;
+        private SiticonePanel panelPrincipal;
+        private SiticoneTextBox txtEmail;
+        private SiticoneTextBox txtCodigo;
+        private SiticoneTextBox txtNovaSenha;
+        private SiticoneTextBox txtConfirmarSenha;
+        private SiticoneButton btnEnviarCodigo;
+        private SiticoneButton btnConfirmar;
+        private SiticoneButton btnVoltar;
         private Label lblMensagem;
         private Panel panelEtapa1;
         private Panel panelEtapa2;
@@ -47,21 +47,30 @@ namespace ClickDesk.Forms.Auth
         {
             // Configurações do formulário
             this.Text = "ClickDesk - Recuperar Senha";
-            this.Size = new Size(550, 500);
+            this.Size = new Size(550, 520);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = ClickDeskColors.BackgroundApp;
+            this.BackColor = ThemeManager.BackgroundApp;
 
-            // Painel principal
-            panelPrincipal = new Panel
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
             {
-                Size = new Size(450, 420),
-                Location = new Point((this.ClientSize.Width - 450) / 2, 20),
-                BackColor = ClickDeskColors.White
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
             };
-            panelPrincipal.Paint += PanelPrincipal_Paint;
+
+            // Painel principal com Siticone
+            panelPrincipal = new SiticonePanel
+            {
+                Size = new Size(480, 460),
+                Location = new Point((this.Width - 480) / 2, 30),
+                FillColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL
+            };
+            panelPrincipal.ShadowDecoration.Enabled = true;
+            panelPrincipal.ShadowDecoration.Depth = 20;
             this.Controls.Add(panelPrincipal);
 
             // Criar as duas etapas
@@ -87,7 +96,7 @@ namespace ClickDesk.Forms.Auth
             panelPrincipal.Controls.Add(panelEtapa1);
 
             int y = 30;
-            int leftMargin = 50;
+            int leftMargin = 65;
             int inputWidth = 350;
 
             // Ícone de cadeado
@@ -97,7 +106,8 @@ namespace ClickDesk.Forms.Auth
                 Font = new Font("Segoe UI", 40),
                 Location = new Point(leftMargin + (inputWidth - 80) / 2, y),
                 Size = new Size(80, 60),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelEtapa1.Controls.Add(lblIcone);
 
@@ -108,10 +118,11 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Recuperar Senha",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
                 Size = new Size(inputWidth, 35),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelEtapa1.Controls.Add(lblTitulo);
 
@@ -121,11 +132,12 @@ namespace ClickDesk.Forms.Auth
             Label lblSubtitulo = new Label
             {
                 Text = "Digite seu email para receber um código de verificação.",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.TextSecondary,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y),
                 Size = new Size(inputWidth, 40),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelEtapa1.Controls.Add(lblSubtitulo);
 
@@ -135,54 +147,62 @@ namespace ClickDesk.Forms.Auth
             Label lblEmail = new Label
             {
                 Text = "Email",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelEtapa1.Controls.Add(lblEmail);
 
             y += 25;
 
-            txtEmail = new TextBox
+            txtEmail = new SiticoneTextBox
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(inputWidth, 35),
-                Font = new Font("Segoe UI", 11),
-                BorderStyle = BorderStyle.FixedSingle
+                Size = new Size(inputWidth, 45),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "seu.email@exemplo.com",
+                TextOffset = new Point(10, 0)
             };
             txtEmail.KeyPress += (s, e) => { if (e.KeyChar == (char)Keys.Enter) BtnEnviarCodigo_Click(s, e); };
             panelEtapa1.Controls.Add(txtEmail);
 
-            y += 50;
+            y += 55;
 
             // Mensagem de feedback
             lblMensagem = new Label
             {
                 Location = new Point(leftMargin, y),
                 Size = new Size(inputWidth, 40),
-                Font = new Font("Segoe UI", 9),
+                Font = ClickDeskStyles.FontSM,
                 ForeColor = ClickDeskColors.Danger,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Visible = false
+                Visible = false,
+                BackColor = Color.Transparent
             };
             panelEtapa1.Controls.Add(lblMensagem);
 
             y += 50;
 
             // Botão Enviar Código
-            btnEnviarCodigo = new Button
+            btnEnviarCodigo = new SiticoneButton
             {
                 Text = "ENVIAR CÓDIGO",
-                Size = new Size(inputWidth, 45),
+                Size = new Size(inputWidth, 50),
                 Location = new Point(leftMargin, y),
-                BackColor = ClickDeskColors.Brand,
-                ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontLG,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnEnviarCodigo.FlatAppearance.BorderSize = 0;
             btnEnviarCodigo.Click += BtnEnviarCodigo_Click;
             panelEtapa1.Controls.Add(btnEnviarCodigo);
 
@@ -192,10 +212,11 @@ namespace ClickDesk.Forms.Auth
             LinkLabel linkVoltar = new LinkLabel
             {
                 Text = "← Voltar ao Login",
-                Font = new Font("Segoe UI", 10),
-                LinkColor = ClickDeskColors.Brand,
-                Location = new Point(leftMargin + (inputWidth - 100) / 2, y),
-                AutoSize = true
+                Font = ClickDeskStyles.FontBase,
+                LinkColor = ThemeManager.Brand,
+                Location = new Point(leftMargin + (inputWidth - 120) / 2, y),
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             linkVoltar.LinkClicked += (s, e) => this.Close();
             panelEtapa1.Controls.Add(linkVoltar);
@@ -214,8 +235,8 @@ namespace ClickDesk.Forms.Auth
             };
             panelPrincipal.Controls.Add(panelEtapa2);
 
-            int y = 20;
-            int leftMargin = 50;
+            int y = 30;
+            int leftMargin = 65;
             int inputWidth = 350;
 
             // Título
@@ -223,24 +244,26 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Redefinir Senha",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
                 Size = new Size(inputWidth, 30),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelEtapa2.Controls.Add(lblTitulo);
 
-            y += 35;
+            y += 40;
 
             // Subtítulo
             Label lblSubtitulo = new Label
             {
                 Text = "Insira o código recebido e sua nova senha.",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.TextSecondary,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y),
                 Size = new Size(inputWidth, 25),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelEtapa2.Controls.Add(lblSubtitulo);
 
@@ -250,130 +273,187 @@ namespace ClickDesk.Forms.Auth
             Label lblCodigo = new Label
             {
                 Text = "Código de Verificação",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelEtapa2.Controls.Add(lblCodigo);
 
             y += 25;
 
-            txtCodigo = new TextBox
+            txtCodigo = new SiticoneTextBox
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(inputWidth, 35),
+                Size = new Size(inputWidth, 45),
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
-                BorderStyle = BorderStyle.FixedSingle,
-                TextAlign = HorizontalAlignment.Center,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "000000",
+                TextOffset = new Point(10, 0),
                 MaxLength = 6
             };
             panelEtapa2.Controls.Add(txtCodigo);
 
-            y += 50;
+            y += 55;
 
             // Campo de nova senha
             Label lblNovaSenha = new Label
             {
                 Text = "Nova Senha",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelEtapa2.Controls.Add(lblNovaSenha);
 
             y += 25;
 
-            txtNovaSenha = new TextBox
+            txtNovaSenha = new SiticoneTextBox
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(inputWidth, 35),
-                Font = new Font("Segoe UI", 11),
-                BorderStyle = BorderStyle.FixedSingle,
-                UseSystemPasswordChar = true
+                Size = new Size(inputWidth, 45),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PasswordChar = '●',
+                PlaceholderText = "Digite sua nova senha",
+                TextOffset = new Point(10, 0)
             };
             panelEtapa2.Controls.Add(txtNovaSenha);
 
-            y += 50;
+            y += 55;
 
             // Campo confirmar senha
             Label lblConfirmar = new Label
             {
                 Text = "Confirmar Nova Senha",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelEtapa2.Controls.Add(lblConfirmar);
 
             y += 25;
 
-            txtConfirmarSenha = new TextBox
+            txtConfirmarSenha = new SiticoneTextBox
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(inputWidth, 35),
-                Font = new Font("Segoe UI", 11),
-                BorderStyle = BorderStyle.FixedSingle,
-                UseSystemPasswordChar = true
+                Size = new Size(inputWidth, 45),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PasswordChar = '●',
+                PlaceholderText = "Digite a senha novamente",
+                TextOffset = new Point(10, 0)
             };
             panelEtapa2.Controls.Add(txtConfirmarSenha);
 
-            y += 50;
+            y += 60;
 
             // Botão Voltar
-            btnVoltar = new Button
+            btnVoltar = new SiticoneButton
             {
                 Text = "← Voltar",
                 Size = new Size(100, 45),
                 Location = new Point(leftMargin, y),
-                BackColor = ClickDeskColors.Gray200,
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray300,
                 ForeColor = ClickDeskColors.Gray700,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Font = ClickDeskStyles.FontBase,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.Gray400 }
             };
-            btnVoltar.FlatAppearance.BorderSize = 0;
             btnVoltar.Click += BtnVoltar_Click;
             panelEtapa2.Controls.Add(btnVoltar);
 
             // Botão Confirmar
-            btnConfirmar = new Button
+            btnConfirmar = new SiticoneButton
             {
                 Text = "REDEFINIR SENHA",
                 Size = new Size(230, 45),
                 Location = new Point(leftMargin + 120, y),
-                BackColor = ClickDeskColors.Brand,
-                ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontLG,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnConfirmar.FlatAppearance.BorderSize = 0;
             btnConfirmar.Click += BtnConfirmar_Click;
             panelEtapa2.Controls.Add(btnConfirmar);
         }
 
         /// <summary>
-        /// Desenha bordas arredondadas no painel principal.
+        /// Aplica o tema atual aos controles do formulário.
         /// </summary>
-        private void PanelPrincipal_Paint(object sender, PaintEventArgs e)
+        private void ApplyTheme()
         {
-            var rect = new Rectangle(0, 0, panelPrincipal.Width - 1, panelPrincipal.Height - 1);
-            var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
-
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            using (var brush = new SolidBrush(ClickDeskColors.White))
+            panelPrincipal.FillColor = ThemeManager.CardBackground;
+            
+            if (panelEtapa1.Visible)
             {
-                e.Graphics.FillPath(brush, path);
+                txtEmail.FillColor = ThemeManager.CardBackground;
+                txtEmail.ForeColor = ThemeManager.TextPrimary;
+                txtEmail.BorderColor = ThemeManager.Border;
+                btnEnviarCodigo.FillColor = ThemeManager.Brand;
+                btnEnviarCodigo.HoverState.FillColor = ThemeManager.BrandHover;
+            }
+            
+            if (panelEtapa2.Visible)
+            {
+                txtCodigo.FillColor = ThemeManager.CardBackground;
+                txtCodigo.ForeColor = ThemeManager.TextPrimary;
+                txtCodigo.BorderColor = ThemeManager.Border;
+                txtNovaSenha.FillColor = ThemeManager.CardBackground;
+                txtNovaSenha.ForeColor = ThemeManager.TextPrimary;
+                txtNovaSenha.BorderColor = ThemeManager.Border;
+                txtConfirmarSenha.FillColor = ThemeManager.CardBackground;
+                txtConfirmarSenha.ForeColor = ThemeManager.TextPrimary;
+                txtConfirmarSenha.BorderColor = ThemeManager.Border;
+                btnConfirmar.FillColor = ThemeManager.Brand;
+                btnConfirmar.HoverState.FillColor = ThemeManager.BrandHover;
             }
 
-            using (var pen = new Pen(ClickDeskColors.Border, 1))
+            // Update all labels
+            foreach (Control panel in panelPrincipal.Controls)
             {
-                e.Graphics.DrawPath(pen, path);
+                foreach (Control control in panel.Controls)
+                {
+                    if (control is Label label && label != lblMensagem)
+                    {
+                        if (label.Font.Bold)
+                        {
+                            label.ForeColor = ThemeManager.TextPrimary;
+                        }
+                        else
+                        {
+                            label.ForeColor = ThemeManager.TextSecondary;
+                        }
+                    }
+                    else if (control is LinkLabel link)
+                    {
+                        link.LinkColor = ThemeManager.Brand;
+                    }
+                }
             }
+
+            panelPrincipal.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
@@ -562,7 +642,7 @@ namespace ClickDesk.Forms.Auth
                 txtEmail.Enabled = enabled;
                 btnEnviarCodigo.Enabled = enabled;
                 btnEnviarCodigo.Text = enabled ? "ENVIAR CÓDIGO" : "AGUARDE...";
-                btnEnviarCodigo.BackColor = enabled ? ClickDeskColors.Brand : ClickDeskColors.Gray400;
+                btnEnviarCodigo.FillColor = enabled ? ThemeManager.Brand : ClickDeskColors.Gray400;
             }
             else
             {
@@ -572,7 +652,7 @@ namespace ClickDesk.Forms.Auth
                 btnVoltar.Enabled = enabled;
                 btnConfirmar.Enabled = enabled;
                 btnConfirmar.Text = enabled ? "REDEFINIR SENHA" : "AGUARDE...";
-                btnConfirmar.BackColor = enabled ? ClickDeskColors.Brand : ClickDeskColors.Gray400;
+                btnConfirmar.FillColor = enabled ? ThemeManager.Brand : ClickDeskColors.Gray400;
             }
 
             this.Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;

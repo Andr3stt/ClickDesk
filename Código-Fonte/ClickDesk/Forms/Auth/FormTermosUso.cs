@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Auth
 {
@@ -13,11 +13,11 @@ namespace ClickDesk.Forms.Auth
     public partial class FormTermosUso : Form
     {
         // Componentes do formulário
-        private Panel panelPrincipal;
+        private SiticonePanel panelPrincipal;
         private RichTextBox txtTermos;
-        private CheckBox chkAceito;
-        private Button btnAceitar;
-        private Button btnRecusar;
+        private SiticoneCheckBox chkAceito;
+        private SiticoneButton btnAceitar;
+        private SiticoneButton btnRecusar;
 
         /// <summary>
         /// Indica se o usuário aceitou os termos
@@ -40,35 +40,45 @@ namespace ClickDesk.Forms.Auth
         {
             // Configurações do formulário
             this.Text = "ClickDesk - Termos de Uso";
-            this.Size = new Size(800, 650);
+            this.Size = new Size(820, 680);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = ClickDeskColors.BackgroundApp;
+            this.BackColor = ThemeManager.BackgroundApp;
 
-            // Painel principal com bordas arredondadas
-            panelPrincipal = new Panel
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
             {
-                Size = new Size(700, 570),
-                Location = new Point((this.ClientSize.Width - 700) / 2, 20),
-                BackColor = ClickDeskColors.White
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
             };
-            panelPrincipal.Paint += PanelPrincipal_Paint;
+
+            // Painel principal com Siticone
+            panelPrincipal = new SiticonePanel
+            {
+                Size = new Size(760, 620),
+                Location = new Point((this.Width - 760) / 2, 30),
+                FillColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL
+            };
+            panelPrincipal.ShadowDecoration.Enabled = true;
+            panelPrincipal.ShadowDecoration.Depth = 20;
             this.Controls.Add(panelPrincipal);
 
             int y = 30;
-            int leftMargin = 40;
-            int contentWidth = 620;
+            int leftMargin = 50;
+            int contentWidth = 660;
 
             // Logo e Título
             Label lblLogo = new Label
             {
                 Text = "🖥️ ClickDesk",
-                Font = new Font("Segoe UI", 24, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Brand,
+                Font = ClickDeskStyles.Font3XL,
+                ForeColor = ThemeManager.Brand,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelPrincipal.Controls.Add(lblLogo);
 
@@ -79,22 +89,24 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "Termos de Uso e Política de Privacidade",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelPrincipal.Controls.Add(lblTitulo);
 
-            y += 35;
+            y += 40;
 
             // Subtítulo
             Label lblSubtitulo = new Label
             {
                 Text = "Por favor, leia atentamente os termos abaixo antes de continuar.",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.TextSecondary,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelPrincipal.Controls.Add(lblSubtitulo);
 
@@ -104,9 +116,10 @@ namespace ClickDesk.Forms.Auth
             txtTermos = new RichTextBox
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(contentWidth, 300),
-                Font = new Font("Segoe UI", 10),
-                BackColor = ClickDeskColors.Gray50,
+                Size = new Size(contentWidth, 320),
+                Font = ClickDeskStyles.FontBase,
+                BackColor = ThemeManager.Surface,
+                ForeColor = ThemeManager.TextPrimary,
                 BorderStyle = BorderStyle.None,
                 ReadOnly = true,
                 ScrollBars = RichTextBoxScrollBars.Vertical
@@ -114,29 +127,34 @@ namespace ClickDesk.Forms.Auth
             txtTermos.Text = ObterTextoDosTermos();
             panelPrincipal.Controls.Add(txtTermos);
 
-            y += 320;
+            y += 330;
 
             // Data de atualização
             Label lblAtualizacao = new Label
             {
                 Text = "Última atualização: " + DateTime.Now.ToString("dd/MM/yyyy"),
-                Font = new Font("Segoe UI", 9),
-                ForeColor = ClickDeskColors.Gray500,
+                Font = ClickDeskStyles.FontSM,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             panelPrincipal.Controls.Add(lblAtualizacao);
 
             y += 30;
 
             // Checkbox de aceite
-            chkAceito = new CheckBox
+            chkAceito = new SiticoneCheckBox
             {
                 Text = "Li e aceito os Termos de Uso e Política de Privacidade",
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                CheckedState = { 
+                    FillColor = ThemeManager.Brand,
+                    BorderColor = ThemeManager.Brand
+                }
             };
             chkAceito.CheckedChanged += ChkAceito_CheckedChanged;
             panelPrincipal.Controls.Add(chkAceito);
@@ -144,58 +162,68 @@ namespace ClickDesk.Forms.Auth
             y += 40;
 
             // Botão Recusar
-            btnRecusar = new Button
+            btnRecusar = new SiticoneButton
             {
                 Text = "Recusar",
                 Size = new Size(150, 45),
-                Location = new Point(leftMargin + contentWidth - 320, y),
-                BackColor = ClickDeskColors.Gray200,
+                Location = new Point(leftMargin + contentWidth - 330, y),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray300,
                 ForeColor = ClickDeskColors.Gray700,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Font = ClickDeskStyles.FontLG,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.Gray400 }
             };
-            btnRecusar.FlatAppearance.BorderSize = 0;
             btnRecusar.Click += BtnRecusar_Click;
             panelPrincipal.Controls.Add(btnRecusar);
 
             // Botão Aceitar
-            btnAceitar = new Button
+            btnAceitar = new SiticoneButton
             {
                 Text = "ACEITAR E CONTINUAR",
                 Size = new Size(160, 45),
                 Location = new Point(leftMargin + contentWidth - 160, y),
-                BackColor = ClickDeskColors.Gray400,
-                ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray400,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontLG,
                 Cursor = Cursors.Hand,
                 Enabled = false
             };
-            btnAceitar.FlatAppearance.BorderSize = 0;
             btnAceitar.Click += BtnAceitar_Click;
             panelPrincipal.Controls.Add(btnAceitar);
         }
 
         /// <summary>
-        /// Desenha bordas arredondadas no painel principal.
+        /// Aplica o tema atual aos controles do formulário.
         /// </summary>
-        private void PanelPrincipal_Paint(object sender, PaintEventArgs e)
+        private void ApplyTheme()
         {
-            var rect = new Rectangle(0, 0, panelPrincipal.Width - 1, panelPrincipal.Height - 1);
-            var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
+            panelPrincipal.FillColor = ThemeManager.CardBackground;
+            txtTermos.BackColor = ThemeManager.Surface;
+            txtTermos.ForeColor = ThemeManager.TextPrimary;
+            chkAceito.ForeColor = ThemeManager.TextPrimary;
+            chkAceito.CheckedState.FillColor = ThemeManager.Brand;
+            chkAceito.CheckedState.BorderColor = ThemeManager.Brand;
 
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            using (var brush = new SolidBrush(ClickDeskColors.White))
+            // Update all labels
+            foreach (Control control in panelPrincipal.Controls)
             {
-                e.Graphics.FillPath(brush, path);
+                if (control is Label label)
+                {
+                    if (label.Font.Bold)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
             }
 
-            using (var pen = new Pen(ClickDeskColors.Border, 1))
-            {
-                e.Graphics.DrawPath(pen, path);
-            }
+            panelPrincipal.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
@@ -259,7 +287,8 @@ Em caso de dúvidas sobre estes termos, entre em contato conosco através do sup
         {
             // Habilita/desabilita o botão de aceitar
             btnAceitar.Enabled = chkAceito.Checked;
-            btnAceitar.BackColor = chkAceito.Checked ? ClickDeskColors.Brand : ClickDeskColors.Gray400;
+            btnAceitar.FillColor = chkAceito.Checked ? ThemeManager.Brand : ClickDeskColors.Gray400;
+            btnAceitar.HoverState.FillColor = chkAceito.Checked ? ThemeManager.BrandHover : ClickDeskColors.Gray400;
         }
 
         /// <summary>

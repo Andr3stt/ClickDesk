@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Chamados
 {
@@ -15,12 +16,13 @@ namespace ClickDesk.Forms.Chamados
     /// </summary>
     public partial class FormMeusChamados : Form
     {
-        private DataGridView dgvChamados;
-        private ComboBox cmbStatus;
-        private ComboBox cmbCategoria;
-        private TextBox txtBusca;
-        private Button btnBuscar;
-        private Button btnNovoChamado;
+        private SiticoneDataGridView dgvChamados;
+        private SiticoneComboBox cmbStatus;
+        private SiticoneComboBox cmbCategoria;
+        private SiticoneTextBox txtBusca;
+        private SiticoneButton btnBuscar;
+        private SiticoneButton btnNovoChamado;
+        private SiticonePanel mainPanel;
         private List<Chamado> todosChamados;
 
         /// <summary>
@@ -38,105 +40,157 @@ namespace ClickDesk.Forms.Chamados
         private void SetupForm()
         {
             this.Text = "ClickDesk - Meus Chamados";
-            this.Size = new Size(1100, 700);
+            this.Size = new Size(1160, 750);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = ClickDeskColors.BackgroundApp;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.BackColor = ThemeManager.BackgroundApp;
 
-            int y = 20;
-            int leftMargin = 30;
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
+            };
+
+            // Main panel
+            mainPanel = new SiticonePanel
+            {
+                Size = new Size(1100, 690),
+                Location = new Point((this.Width - 1100) / 2, 30),
+                FillColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL
+            };
+            mainPanel.ShadowDecoration.Enabled = true;
+            mainPanel.ShadowDecoration.Depth = 20;
+            this.Controls.Add(mainPanel);
+
+            int y = 30;
+            int leftMargin = 40;
 
             // Título
             Label lblTitle = new Label
             {
                 Text = "Meus Chamados",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.Brand,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblTitle);
+            mainPanel.Controls.Add(lblTitle);
 
-            y += 50;
+            y += 60;
 
             // Filtros
             Label lblFiltros = new Label
             {
                 Text = "Filtrar por:",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.Gray500,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(leftMargin, y + 8),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblFiltros);
+            mainPanel.Controls.Add(lblFiltros);
 
             // Filtro Status
-            cmbStatus = new ComboBox
+            cmbStatus = new SiticoneComboBox
             {
-                Size = new Size(150, 30),
-                Location = new Point(leftMargin + 80, y),
-                Font = new Font("Segoe UI", 10),
-                DropDownStyle = ComboBoxStyle.DropDownList
+                Size = new Size(160, 40),
+                Location = new Point(leftMargin + 90, y),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary
             };
             cmbStatus.Items.AddRange(new object[] { "Todos", "Aberto", "Em Andamento", "Resolvido", "Fechado", "Escalado" });
             cmbStatus.SelectedIndex = 0;
             cmbStatus.SelectedIndexChanged += (s, e) => FiltrarChamados();
-            this.Controls.Add(cmbStatus);
+            mainPanel.Controls.Add(cmbStatus);
 
             // Filtro Categoria
-            cmbCategoria = new ComboBox
+            cmbCategoria = new SiticoneComboBox
             {
-                Size = new Size(150, 30),
-                Location = new Point(leftMargin + 250, y),
-                Font = new Font("Segoe UI", 10),
-                DropDownStyle = ComboBoxStyle.DropDownList
+                Size = new Size(160, 40),
+                Location = new Point(leftMargin + 270, y),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary
             };
             cmbCategoria.Items.AddRange(new object[] { "Todas", "Hardware", "Software", "Rede", "E-mail", "Sistema", "Acesso", "Impressora", "Outros" });
             cmbCategoria.SelectedIndex = 0;
             cmbCategoria.SelectedIndexChanged += (s, e) => FiltrarChamados();
-            this.Controls.Add(cmbCategoria);
+            mainPanel.Controls.Add(cmbCategoria);
 
             // Campo de busca
-            txtBusca = new TextBox
+            txtBusca = new SiticoneTextBox
             {
-                Size = new Size(250, 30),
-                Location = new Point(leftMargin + 420, y),
-                Font = new Font("Segoe UI", 10),
-                BorderStyle = BorderStyle.FixedSingle
+                Size = new Size(280, 40),
+                Location = new Point(leftMargin + 450, y),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "Buscar por título ou ID...",
+                TextOffset = new Point(10, 0)
             };
             txtBusca.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) FiltrarChamados(); };
-            this.Controls.Add(txtBusca);
+            mainPanel.Controls.Add(txtBusca);
 
-            btnBuscar = new Button
+            btnBuscar = new SiticoneButton
             {
                 Text = "🔍",
-                Size = new Size(40, 30),
-                Location = new Point(leftMargin + 680, y),
-                BackColor = ClickDeskColors.Primary,
-                ForeColor = ClickDeskColors.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10),
-                Cursor = Cursors.Hand
+                Size = new Size(45, 40),
+                Location = new Point(leftMargin + 750, y),
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 14),
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.Click += (s, e) => FiltrarChamados();
-            this.Controls.Add(btnBuscar);
+            mainPanel.Controls.Add(btnBuscar);
 
             // Botão Novo Chamado
-            btnNovoChamado = UIHelper.CreatePrimaryButton("+ Novo Chamado", 140, 35);
-            btnNovoChamado.Location = new Point(this.ClientSize.Width - 180, y - 5);
+            btnNovoChamado = new SiticoneButton
+            {
+                Text = "+ Novo Chamado",
+                Size = new Size(160, 40),
+                Location = new Point(leftMargin + 815, y),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontBase,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
+            };
             btnNovoChamado.Click += BtnNovoChamado_Click;
-            this.Controls.Add(btnNovoChamado);
+            mainPanel.Controls.Add(btnNovoChamado);
 
-            y += 50;
+            y += 60;
 
             // DataGridView
-            dgvChamados = new DataGridView
+            dgvChamados = new SiticoneDataGridView
             {
                 Location = new Point(leftMargin, y),
-                Size = new Size(this.ClientSize.Width - 60, this.ClientSize.Height - y - 60),
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+                Size = new Size(1020, 540),
+                BorderStyle = BorderStyle.None,
+                BackgroundColor = ThemeManager.Surface,
+                GridColor = ThemeManager.Border,
+                CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
             };
-            UIHelper.StyleDataGridView(dgvChamados);
+            dgvChamados.ThemeStyle.HeaderStyle.BackColor = ThemeManager.Brand;
+            dgvChamados.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvChamados.ThemeStyle.HeaderStyle.Font = ClickDeskStyles.FontBaseStrong;
+            dgvChamados.ThemeStyle.AlternatingRowsStyle.BackColor = ThemeManager.Surface;
+            dgvChamados.ThemeStyle.RowsStyle.BackColor = ThemeManager.CardBackground;
+            dgvChamados.ThemeStyle.RowsStyle.ForeColor = ThemeManager.TextPrimary;
 
             dgvChamados.Columns.Add("Id", "ID");
             dgvChamados.Columns.Add("Titulo", "Título");
@@ -156,10 +210,56 @@ namespace ClickDesk.Forms.Chamados
 
             dgvChamados.CellDoubleClick += DgvChamados_CellDoubleClick;
 
-            this.Controls.Add(dgvChamados);
+            mainPanel.Controls.Add(dgvChamados);
 
             // Carrega dados
             this.Load += async (s, e) => await CarregarChamados();
+        }
+
+        /// <summary>
+        /// Aplica o tema atual aos controles do formulário.
+        /// </summary>
+        private void ApplyTheme()
+        {
+            mainPanel.FillColor = ThemeManager.CardBackground;
+            txtBusca.FillColor = ThemeManager.CardBackground;
+            txtBusca.ForeColor = ThemeManager.TextPrimary;
+            txtBusca.BorderColor = ThemeManager.Border;
+            cmbStatus.FillColor = ThemeManager.CardBackground;
+            cmbStatus.ForeColor = ThemeManager.TextPrimary;
+            cmbStatus.BorderColor = ThemeManager.Border;
+            cmbCategoria.FillColor = ThemeManager.CardBackground;
+            cmbCategoria.ForeColor = ThemeManager.TextPrimary;
+            cmbCategoria.BorderColor = ThemeManager.Border;
+            btnBuscar.FillColor = ThemeManager.Brand;
+            btnBuscar.HoverState.FillColor = ThemeManager.BrandHover;
+            btnNovoChamado.FillColor = ThemeManager.Brand;
+            btnNovoChamado.HoverState.FillColor = ThemeManager.BrandHover;
+            dgvChamados.BackgroundColor = ThemeManager.Surface;
+            dgvChamados.GridColor = ThemeManager.Border;
+            dgvChamados.ThemeStyle.HeaderStyle.BackColor = ThemeManager.Brand;
+            dgvChamados.ThemeStyle.AlternatingRowsStyle.BackColor = ThemeManager.Surface;
+            dgvChamados.ThemeStyle.RowsStyle.BackColor = ThemeManager.CardBackground;
+            dgvChamados.ThemeStyle.RowsStyle.ForeColor = ThemeManager.TextPrimary;
+
+            // Update all labels
+            foreach (Control control in mainPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    if (label.Font.Bold)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
+            }
+
+            mainPanel.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>

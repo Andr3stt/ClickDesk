@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Perfil
 {
@@ -14,6 +15,7 @@ namespace ClickDesk.Forms.Perfil
     public partial class FormPerfil : Form
     {
         private User usuario;
+        private SiticonePanel mainPanel;
 
         /// <summary>
         /// Construtor do formulário.
@@ -30,12 +32,31 @@ namespace ClickDesk.Forms.Perfil
         private void SetupForm()
         {
             this.Text = "ClickDesk - Meu Perfil";
-            this.Size = new Size(600, 550);
+            this.Size = new Size(660, 600);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = ClickDeskColors.White;
+            this.BackColor = ThemeManager.BackgroundApp;
+
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
+            };
+
+            // Main panel with Siticone
+            mainPanel = new SiticonePanel
+            {
+                Size = new Size(600, 540),
+                Location = new Point((this.Width - 600) / 2, 30),
+                FillColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL
+            };
+            mainPanel.ShadowDecoration.Enabled = true;
+            mainPanel.ShadowDecoration.Depth = 20;
+            this.Controls.Add(mainPanel);
 
             int y = 30;
             int leftMargin = 40;
@@ -45,31 +66,34 @@ namespace ClickDesk.Forms.Perfil
             {
                 Text = "👤 Meu Perfil",
                 Font = new Font("Segoe UI", 22, FontStyle.Bold),
-                ForeColor = ClickDeskColors.Primary,
+                ForeColor = ThemeManager.Brand,
                 Location = new Point(leftMargin, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblTitle);
+            mainPanel.Controls.Add(lblTitle);
 
             y += 60;
 
             // Avatar/Iniciais
-            Panel avatarPanel = new Panel
+            SiticonePanel avatarPanel = new SiticonePanel
             {
                 Size = new Size(80, 80),
                 Location = new Point(leftMargin, y),
-                BackColor = ClickDeskColors.Primary
+                FillColor = ThemeManager.Brand,
+                BorderRadius = 40
             };
-            this.Controls.Add(avatarPanel);
+            mainPanel.Controls.Add(avatarPanel);
 
             Label lblAvatar = new Label
             {
                 Name = "lblAvatar",
                 Text = "U",
                 Font = new Font("Segoe UI", 28, FontStyle.Bold),
-                ForeColor = ClickDeskColors.White,
+                ForeColor = Color.White,
                 Size = new Size(80, 80),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             avatarPanel.Controls.Add(lblAvatar);
 
@@ -79,36 +103,37 @@ namespace ClickDesk.Forms.Perfil
                 Name = "lblNome",
                 Text = "Carregando...",
                 Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(leftMargin + 100, y + 10),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblNome);
+            mainPanel.Controls.Add(lblNome);
 
             // Role badge
             Label lblRole = new Label
             {
                 Name = "lblRole",
                 Text = "USER",
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = ClickDeskColors.White,
-                BackColor = ClickDeskColors.Primary,
+                Font = ClickDeskStyles.FontSM,
+                ForeColor = Color.White,
+                BackColor = ThemeManager.Brand,
                 Location = new Point(leftMargin + 100, y + 50),
                 Size = new Size(60, 22),
                 TextAlign = ContentAlignment.MiddleCenter
             };
-            this.Controls.Add(lblRole);
+            mainPanel.Controls.Add(lblRole);
 
             y += 110;
 
             // Linha separadora
             Panel separator = new Panel
             {
-                Size = new Size(500, 1),
+                Size = new Size(520, 1),
                 Location = new Point(leftMargin, y),
-                BackColor = ClickDeskColors.Gray200
+                BackColor = ThemeManager.Border
             };
-            this.Controls.Add(separator);
+            mainPanel.Controls.Add(separator);
 
             y += 20;
 
@@ -125,15 +150,35 @@ namespace ClickDesk.Forms.Perfil
             y += 50;
 
             // Botões
-            var btnEditar = UIHelper.CreatePrimaryButton("✏️ Editar Perfil", 140, 40);
-            btnEditar.Location = new Point(leftMargin, y);
+            var btnEditar = new SiticoneButton
+            {
+                Text = "✏️ Editar Perfil",
+                Size = new Size(150, 45),
+                Location = new Point(leftMargin, y),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
+                ForeColor = Color.White,
+                Font = ClickDeskStyles.FontBase,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
+            };
             btnEditar.Click += BtnEditar_Click;
-            this.Controls.Add(btnEditar);
+            mainPanel.Controls.Add(btnEditar);
 
-            var btnFechar = UIHelper.CreateSecondaryButton("Fechar", 100, 40);
-            btnFechar.Location = new Point(leftMargin + 380, y);
+            var btnFechar = new SiticoneButton
+            {
+                Text = "Fechar",
+                Size = new Size(100, 45),
+                Location = new Point(leftMargin + 370, y),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ClickDeskColors.Gray300,
+                ForeColor = ClickDeskColors.Gray700,
+                Font = ClickDeskStyles.FontBase,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.Gray400 }
+            };
             btnFechar.Click += (s, e) => this.Close();
-            this.Controls.Add(btnFechar);
+            mainPanel.Controls.Add(btnFechar);
 
             // Carrega dados
             this.Load += async (s, e) => await CarregarPerfil();
@@ -147,23 +192,60 @@ namespace ClickDesk.Forms.Perfil
             var lblLabel = new Label
             {
                 Text = label,
-                Font = new Font("Segoe UI", 10),
-                ForeColor = ClickDeskColors.Gray500,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(x, y),
-                Size = new Size(120, 20)
+                Size = new Size(120, 20),
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblLabel);
+            mainPanel.Controls.Add(lblLabel);
 
             var lblValue = new Label
             {
                 Name = valueName,
                 Text = "-",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                Font = ClickDeskStyles.FontBaseStrong,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(x + 130, y),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
-            this.Controls.Add(lblValue);
+            mainPanel.Controls.Add(lblValue);
+        }
+
+        /// <summary>
+        /// Aplica o tema atual aos controles do formulário.
+        /// </summary>
+        private void ApplyTheme()
+        {
+            mainPanel.FillColor = ThemeManager.CardBackground;
+
+            // Update all labels
+            foreach (Control control in mainPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    if (label.Font.Bold)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
+                else if (control is Panel separator && separator.Height == 1)
+                {
+                    separator.BackColor = ThemeManager.Border;
+                }
+                else if (control is SiticonePanel avatarPanel && avatarPanel.Size.Width == 80)
+                {
+                    avatarPanel.FillColor = ThemeManager.Brand;
+                }
+            }
+
+            mainPanel.Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
@@ -209,32 +291,47 @@ namespace ClickDesk.Forms.Perfil
         /// </summary>
         private void PreencherDados()
         {
-            // Avatar
-            var avatarPanel = this.Controls[1] as Panel;
-            var lblAvatar = avatarPanel.Controls["lblAvatar"] as Label;
-            if (!string.IsNullOrEmpty(usuario.Nome))
+            // Avatar - Find avatar panel in mainPanel
+            SiticonePanel avatarPanel = null;
+            foreach (Control control in mainPanel.Controls)
             {
-                lblAvatar.Text = usuario.Nome.Substring(0, 1).ToUpper();
+                if (control is SiticonePanel panel && panel.Size.Width == 80)
+                {
+                    avatarPanel = panel;
+                    break;
+                }
             }
 
-            // Informações
-            var lblNome = this.Controls["lblNome"] as Label;
-            var lblRole = this.Controls["lblRole"] as Label;
-            var lblUsername = this.Controls["lblUsername"] as Label;
-            var lblEmail = this.Controls["lblEmail"] as Label;
-            var lblDepartamento = this.Controls["lblDepartamento"] as Label;
-            var lblTelefone = this.Controls["lblTelefone"] as Label;
-            var lblDataCriacao = this.Controls["lblDataCriacao"] as Label;
+            if (avatarPanel != null)
+            {
+                var lblAvatar = avatarPanel.Controls["lblAvatar"] as Label;
+                if (lblAvatar != null && !string.IsNullOrEmpty(usuario.Nome))
+                {
+                    lblAvatar.Text = usuario.Nome.Substring(0, 1).ToUpper();
+                }
+            }
 
-            lblNome.Text = usuario.Nome ?? usuario.Username;
-            lblRole.Text = usuario.Role ?? "USER";
-            lblRole.BackColor = ClickDeskColors.GetRoleColor(usuario.Role);
+            // Informações - Find controls in mainPanel
+            var lblNome = mainPanel.Controls["lblNome"] as Label;
+            var lblRole = mainPanel.Controls["lblRole"] as Label;
+            var lblUsername = mainPanel.Controls["lblUsername"] as Label;
+            var lblEmail = mainPanel.Controls["lblEmail"] as Label;
+            var lblDepartamento = mainPanel.Controls["lblDepartamento"] as Label;
+            var lblTelefone = mainPanel.Controls["lblTelefone"] as Label;
+            var lblDataCriacao = mainPanel.Controls["lblDataCriacao"] as Label;
 
-            lblUsername.Text = usuario.Username ?? "-";
-            lblEmail.Text = usuario.Email ?? "-";
-            lblDepartamento.Text = usuario.Departamento ?? "-";
-            lblTelefone.Text = usuario.Telefone ?? "-";
-            lblDataCriacao.Text = usuario.DataCriacao?.ToString("dd/MM/yyyy") ?? "-";
+            if (lblNome != null) lblNome.Text = usuario.Nome ?? usuario.Username;
+            if (lblRole != null)
+            {
+                lblRole.Text = usuario.Role ?? "USER";
+                lblRole.BackColor = ClickDeskColors.GetRoleColor(usuario.Role);
+            }
+
+            if (lblUsername != null) lblUsername.Text = usuario.Username ?? "-";
+            if (lblEmail != null) lblEmail.Text = usuario.Email ?? "-";
+            if (lblDepartamento != null) lblDepartamento.Text = usuario.Departamento ?? "-";
+            if (lblTelefone != null) lblTelefone.Text = usuario.Telefone ?? "-";
+            if (lblDataCriacao != null) lblDataCriacao.Text = usuario.DataCriacao?.ToString("dd/MM/yyyy") ?? "-";
         }
 
         /// <summary>
