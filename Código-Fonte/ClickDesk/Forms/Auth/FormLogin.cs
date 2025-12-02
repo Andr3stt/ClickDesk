@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Auth
 {
     public partial class FormLogin : Form
     {
-        private Panel panelCentral;
-        private TextBox txtUsuario;
-        private TextBox txtSenha;
-        private Button btnLogin;
+        private SiticonePanel panelCentral;
+        private SiticoneTextBox txtUsuario;
+        private SiticoneTextBox txtSenha;
+        private SiticoneButton btnLogin;
         private Label lblMensagem;
+        private SiticoneButton btnThemeToggle;
 
         public FormLogin()
         {
@@ -28,19 +30,27 @@ namespace ClickDesk.Forms.Auth
             // Configurações do Form
             this.Size = new Size(1200, 700);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.None; // Remove borda para look moderno
             this.MaximizeBox = false;
-            this.BackColor = ClickDeskColors.BackgroundApp; // Bege #EDE6D9
+            this.BackColor = ThemeManager.BackgroundApp;
             this.Text = "ClickDesk - Login";
 
-            // Painel Central Branco
-            panelCentral = new Panel
+            // Subscreve ao evento de mudança de tema
+            ThemeManager.ThemeChanged += (s, e) =>
             {
-                Size = new Size(450, 550),
-                Location = new Point((this.Width - 450) / 2, (this.Height - 550) / 2),
-                BackColor = Color.White
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
             };
-            panelCentral.Paint += PanelCentral_Paint;
+
+            // Painel Central com Siticone
+            panelCentral = new SiticonePanel
+            {
+                Size = new Size(450, 580),
+                Location = new Point((this.Width - 450) / 2, (this.Height - 580) / 2),
+                BackColor = ThemeManager.CardBackground,
+                BorderRadius = ClickDeskStyles.RadiusXL,
+                ShadowDecoration = { Enabled = true, Shadow = new SiticoneShadow() { Depth = 20 } }
+            };
             this.Controls.Add(panelCentral);
 
             // Logo/Título
@@ -48,20 +58,22 @@ namespace ClickDesk.Forms.Auth
             {
                 Text = "🖥️ ClickDesk",
                 Font = ClickDeskStyles.Font3XL,
-                ForeColor = ClickDeskColors.Brand, // Laranja #F28A1A
+                ForeColor = ThemeManager.Brand,
                 AutoSize = true,
-                Location = new Point(85, 40)
+                Location = new Point(85, 40),
+                BackColor = Color.Transparent
             };
             panelCentral.Controls.Add(lblLogo);
 
             var lblSubtitulo = new Label
             {
-                Text = "Sistema de Helpdesk",
-                Location = new Point(125, 105),
-                Size = new Size(200, 30),
+                Text = "Sistema de Helpdesk Inteligente",
+                Location = new Point(105, 105),
+                Size = new Size(240, 30),
                 Font = ClickDeskStyles.FontSM,
-                ForeColor = ClickDeskColors.TextSecondary,
-                TextAlign = ContentAlignment.MiddleCenter
+                ForeColor = ThemeManager.TextSecondary,
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
             };
             panelCentral.Controls.Add(lblSubtitulo);
 
@@ -72,19 +84,24 @@ namespace ClickDesk.Forms.Auth
                 Location = new Point(60, 170),
                 Size = new Size(330, 25),
                 Font = ClickDeskStyles.FontBaseStrong,
-                ForeColor = ClickDeskColors.TextPrimary
+                ForeColor = ThemeManager.TextPrimary,
+                BackColor = Color.Transparent
             };
             panelCentral.Controls.Add(lblUsuario);
 
-            // TextBox Usuário
-            txtUsuario = new TextBox
+            // TextBox Usuário (Siticone)
+            txtUsuario = new SiticoneTextBox
             {
                 Location = new Point(60, 200),
-                Size = new Size(330, 40),
+                Size = new Size(330, 45),
                 Font = ClickDeskStyles.FontBase,
-                BorderStyle = BorderStyle.FixedSingle,
-                BackColor = Color.White,
-                ForeColor = ClickDeskColors.TextPrimary
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = "Digite seu usuário",
+                TextOffset = new Point(10, 0)
             };
             panelCentral.Controls.Add(txtUsuario);
 
@@ -92,55 +109,58 @@ namespace ClickDesk.Forms.Auth
             var lblSenha = new Label
             {
                 Text = "Senha",
-                Location = new Point(60, 260),
+                Location = new Point(60, 265),
                 Size = new Size(330, 25),
                 Font = ClickDeskStyles.FontBaseStrong,
-                ForeColor = ClickDeskColors.TextPrimary
+                ForeColor = ThemeManager.TextPrimary,
+                BackColor = Color.Transparent
             };
             panelCentral.Controls.Add(lblSenha);
 
-            // TextBox Senha
-            txtSenha = new TextBox
+            // TextBox Senha (Siticone)
+            txtSenha = new SiticoneTextBox
             {
-                Location = new Point(60, 290),
-                Size = new Size(330, 40),
+                Location = new Point(60, 295),
+                Size = new Size(330, 45),
                 Font = ClickDeskStyles.FontBase,
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
                 PasswordChar = '●',
-                BackColor = Color.White,
-                ForeColor = ClickDeskColors.TextPrimary
+                PlaceholderText = "Digite sua senha",
+                TextOffset = new Point(10, 0)
             };
             txtSenha.KeyPress += TxtSenha_KeyPress;
             panelCentral.Controls.Add(txtSenha);
 
-            // Botão Login (LARANJA)
-            btnLogin = new Button
+            // Botão Login (Siticone - LARANJA)
+            btnLogin = new SiticoneButton
             {
                 Text = "ENTRAR",
-                Location = new Point(60, 360),
+                Location = new Point(60, 365),
                 Size = new Size(330, 50),
-                FlatStyle = FlatStyle.Flat,
-                BackColor = ClickDeskColors.Brand, // LARANJA #F28A1A
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = ThemeManager.Brand,
                 ForeColor = Color.White,
                 Font = ClickDeskStyles.FontLG,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.BrandHover }
             };
-            btnLogin.FlatAppearance.BorderSize = 0;
-            // Hover effect laranja escuro
-            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = ClickDeskColors.BrandDark;
-            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = ClickDeskColors.Brand;
             btnLogin.Click += BtnLogin_Click;
             panelCentral.Controls.Add(btnLogin);
 
             // Mensagem de Erro
             lblMensagem = new Label
             {
-                Location = new Point(60, 425),
+                Location = new Point(60, 435),
                 Size = new Size(330, 40),
                 Font = ClickDeskStyles.FontSM,
                 ForeColor = ClickDeskColors.StatusError,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Visible = false
+                Visible = false,
+                BackColor = Color.Transparent
             };
             panelCentral.Controls.Add(lblMensagem);
 
@@ -148,10 +168,11 @@ namespace ClickDesk.Forms.Auth
             var linkEsqueceuSenha = new LinkLabel
             {
                 Text = "Esqueceu sua senha?",
-                Location = new Point(160, 475),
+                Location = new Point(160, 485),
                 AutoSize = true,
-                LinkColor = ClickDeskColors.Brand,
-                Font = ClickDeskStyles.FontSM
+                LinkColor = ThemeManager.Brand,
+                Font = ClickDeskStyles.FontSM,
+                BackColor = Color.Transparent
             };
             linkEsqueceuSenha.LinkClicked += (s, e) =>
             {
@@ -164,10 +185,11 @@ namespace ClickDesk.Forms.Auth
             var linkCriarConta = new LinkLabel
             {
                 Text = "Criar Nova Conta",
-                Location = new Point(175, 500),
+                Location = new Point(175, 510),
                 AutoSize = true,
-                LinkColor = ClickDeskColors.Brand,
-                Font = ClickDeskStyles.FontSM
+                LinkColor = ThemeManager.Brand,
+                Font = ClickDeskStyles.FontSM,
+                BackColor = Color.Transparent
             };
             linkCriarConta.LinkClicked += (s, e) =>
             {
@@ -181,39 +203,83 @@ namespace ClickDesk.Forms.Auth
             };
             panelCentral.Controls.Add(linkCriarConta);
 
+            // Botão de alternância de tema
+            btnThemeToggle = new SiticoneButton
+            {
+                Text = ThemeManager.IsDarkMode ? "🌙" : "☀️",
+                Size = new Size(50, 50),
+                Location = new Point(this.Width - 120, 15),
+                BorderRadius = 25,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                Font = new Font("Segoe UI", 18f),
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.Surface }
+            };
+            btnThemeToggle.Click += (s, e) =>
+            {
+                ThemeManager.ToggleTheme();
+                btnThemeToggle.Text = ThemeManager.IsDarkMode ? "🌙" : "☀️";
+                ThemeManager.SaveThemePreference();
+            };
+            this.Controls.Add(btnThemeToggle);
+
             // Botão Fechar
-            var btnFechar = new Button
+            var btnFechar = new SiticoneButton
             {
                 Text = "✕",
-                Size = new Size(40, 40),
-                Location = new Point(this.Width - 50, 10),
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.Transparent,
-                ForeColor = ClickDeskColors.TextSecondary,
+                Size = new Size(50, 50),
+                Location = new Point(this.Width - 60, 15),
+                BorderRadius = 25,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextSecondary,
                 Font = new Font("Segoe UI", 16f, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ClickDeskColors.DangerLight, ForeColor = ClickDeskColors.Danger }
             };
-            btnFechar.FlatAppearance.BorderSize = 0;
             btnFechar.Click += (s, e) => Application.Exit();
             this.Controls.Add(btnFechar);
         }
 
-        private void PanelCentral_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// Aplica o tema atual aos controles do formulário.
+        /// </summary>
+        private void ApplyTheme()
         {
-            var rect = new Rectangle(0, 0, panelCentral.Width - 1, panelCentral.Height - 1);
-            var path = ClickDeskStyles.GetRoundedRectangle(rect, ClickDeskStyles.RadiusXL);
+            panelCentral.FillColor = ThemeManager.CardBackground;
+            txtUsuario.FillColor = ThemeManager.CardBackground;
+            txtUsuario.ForeColor = ThemeManager.TextPrimary;
+            txtUsuario.BorderColor = ThemeManager.Border;
+            txtSenha.FillColor = ThemeManager.CardBackground;
+            txtSenha.ForeColor = ThemeManager.TextPrimary;
+            txtSenha.BorderColor = ThemeManager.Border;
+            btnLogin.FillColor = ThemeManager.Brand;
+            btnLogin.HoverState.FillColor = ThemeManager.BrandHover;
+            btnThemeToggle.FillColor = ThemeManager.CardBackground;
+            btnThemeToggle.ForeColor = ThemeManager.TextPrimary;
 
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            using (var brush = new SolidBrush(Color.White))
+            // Atualiza labels
+            foreach (Control control in panelCentral.Controls)
             {
-                e.Graphics.FillPath(brush, path);
+                if (control is Label label && label != lblMensagem)
+                {
+                    if (label.Font.Bold)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
+                else if (control is LinkLabel link)
+                {
+                    link.LinkColor = ThemeManager.Brand;
+                }
             }
 
-            using (var pen = new Pen(ClickDeskColors.Border, 1))
-            {
-                e.Graphics.DrawPath(pen, path);
-            }
+            panelCentral.Invalidate();
+            this.Invalidate();
         }
 
         private void TxtSenha_KeyPress(object sender, KeyPressEventArgs e)
@@ -250,7 +316,7 @@ namespace ClickDesk.Forms.Auth
 
             btnLogin.Enabled = false;
             btnLogin.Text = "Aguarde...";
-            btnLogin.BackColor = ClickDeskColors.StatusClosed;
+            btnLogin.FillColor = ClickDeskColors.StatusClosed;
 
             try
             {
@@ -305,7 +371,7 @@ namespace ClickDesk.Forms.Auth
         {
             btnLogin.Enabled = true;
             btnLogin.Text = "ENTRAR";
-            btnLogin.BackColor = ClickDeskColors.Brand;
+            btnLogin.FillColor = ThemeManager.Brand;
         }
     }
 }

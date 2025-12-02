@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using ClickDesk.Forms.Auth;
+using ClickDesk.Utils;
 
 namespace ClickDesk
 {
@@ -22,6 +23,9 @@ namespace ClickDesk
             
             // Configura o texto padrão para controles
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            // Carrega a preferência de tema do usuário
+            ThemeManager.LoadThemePreference();
             
             // Inicia a aplicação com o formulário de login
             // Após login bem-sucedido, o FormLogin abrirá o FormDashboard

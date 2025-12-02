@@ -10,26 +10,29 @@ using ClickDesk.Forms.Perfil;
 using ClickDesk.Models;
 using ClickDesk.Services.API;
 using ClickDesk.Utils;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Forms.Dashboard
 {
     /// <summary>
     /// Formulário principal do dashboard para usuários.
     /// Exibe estatísticas, últimos chamados e menu de navegação.
+    /// Modernizado com Siticone UI Framework e suporte a temas.
     /// </summary>
     public partial class FormDashboard : Form
     {
-        // Componentes da interface
-        protected Panel sidebarPanel;
+        // Componentes da interface (modernizados)
+        protected SiticonePanel sidebarPanel;
         protected Panel contentPanel;
-        protected DataGridView dgvChamados;
+        protected SiticoneDataGridView dgvChamados;
         protected Label lblTotalChamados;
         protected Label lblChamadosAbertos;
         protected Label lblChamadosResolvidos;
         protected Label lblChamadosEscalados;
+        protected SiticoneButton btnThemeToggle;
 
         // Lista de botões do menu para controle de estado ativo
-        protected List<Button> menuButtons = new List<Button>();
+        protected List<SiticoneButton> menuButtons = new List<SiticoneButton>();
 
         /// <summary>
         /// Construtor do dashboard.
@@ -49,8 +52,16 @@ namespace ClickDesk.Forms.Dashboard
             this.Text = "ClickDesk - Dashboard";
             this.Size = new Size(1400, 800);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = ClickDeskColors.BackgroundApp; // Bege #EDE6D9
+            this.FormBorderStyle = FormBorderStyle.Sizable; // Allow resizing for responsive design
+            this.BackColor = ThemeManager.BackgroundApp;
             this.MinimumSize = new Size(1200, 700);
+
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                this.BackColor = ThemeManager.BackgroundApp;
+                ApplyTheme();
+            };
 
             // Cria a sidebar
             SetupSidebar();
@@ -63,26 +74,19 @@ namespace ClickDesk.Forms.Dashboard
         }
 
         /// <summary>
-        /// Configura a sidebar com menu de navegação.
+        /// Configura a sidebar com menu de navegação (Siticone).
         /// </summary>
         protected virtual void SetupSidebar()
         {
-            sidebarPanel = UIHelper.CreateSidebar(260);
-            this.Controls.Add(sidebarPanel);
-
-            // Bordas arredondadas apenas nos cantos direitos
-            sidebarPanel.Paint += (s, e) =>
+            sidebarPanel = new SiticonePanel
             {
-                var rect = new Rectangle(0, 0, sidebarPanel.Width - 1, sidebarPanel.Height - 1);
-                var path = ClickDeskStyles.GetRoundedRectangleRight(rect, ClickDeskStyles.RadiusXXL);
-
-                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-                using (var brush = new SolidBrush(ClickDeskColors.SidebarBackground))
-                {
-                    e.Graphics.FillPath(brush, path);
-                }
+                Width = 260,
+                Dock = DockStyle.Left,
+                FillColor = ThemeManager.SidebarBackground,
+                Padding = new Padding(0),
+                BorderRadius = 0 // No border radius for docked panel
             };
+            this.Controls.Add(sidebarPanel);
 
             int y = 0;
 
@@ -144,7 +148,7 @@ namespace ClickDesk.Forms.Dashboard
             // Dashboard
             var btnDashboard = CreateMenuButton("📊  Dashboard", y);
             btnDashboard.Click += (s, e) => { /* Já está no dashboard */ };
-            UIHelper.SetMenuButtonActive(btnDashboard, true);
+            SetMenuButtonActive(btnDashboard, true);
             menuButtons.Add(btnDashboard);
             sidebarPanel.Controls.Add(btnDashboard);
             y += 50;
@@ -177,6 +181,30 @@ namespace ClickDesk.Forms.Dashboard
             sidebarPanel.Controls.Add(btnPerfil);
             y += 50;
 
+            // Theme Toggle
+            y += 20; // Extra spacing before theme toggle
+            btnThemeToggle = new SiticoneButton
+            {
+                Text = ThemeManager.IsDarkMode ? "🌙  Modo Escuro" : "☀️  Modo Claro",
+                Size = new Size(260, 50),
+                Location = new Point(0, y),
+                BorderRadius = 0,
+                FillColor = ThemeManager.SidebarBackground,
+                ForeColor = ThemeManager.SidebarText,
+                Font = new Font("Segoe UI", 11F),
+                TextAlign = System.Windows.Forms.HorizontalAlignment.Left,
+                ImageAlign = System.Windows.Forms.HorizontalAlignment.Left,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.SidebarHover }
+            };
+            btnThemeToggle.Click += (s, e) =>
+            {
+                ThemeManager.ToggleTheme();
+                btnThemeToggle.Text = ThemeManager.IsDarkMode ? "🌙  Modo Escuro" : "☀️  Modo Claro";
+                ThemeManager.SaveThemePreference();
+            };
+            sidebarPanel.Controls.Add(btnThemeToggle);
+
             // Espaçador
             y = sidebarPanel.Height - 60;
 
@@ -188,13 +216,42 @@ namespace ClickDesk.Forms.Dashboard
         }
 
         /// <summary>
-        /// Cria um botão de menu estilizado.
+        /// Cria um botão de menu estilizado (Siticone).
         /// </summary>
-        protected Button CreateMenuButton(string text, int y)
+        protected SiticoneButton CreateMenuButton(string text, int y)
         {
-            var button = UIHelper.CreateMenuButton(text);
-            button.Location = new Point(0, y);
+            var button = new SiticoneButton
+            {
+                Text = text,
+                Size = new Size(260, 50),
+                Location = new Point(0, y),
+                BorderRadius = 0,
+                FillColor = ThemeManager.SidebarBackground,
+                ForeColor = ThemeManager.SidebarText,
+                Font = new Font("Segoe UI", 11F),
+                TextAlign = System.Windows.Forms.HorizontalAlignment.Left,
+                ImageAlign = System.Windows.Forms.HorizontalAlignment.Left,
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.SidebarHover }
+            };
             return button;
+        }
+
+        /// <summary>
+        /// Destaca um botão de menu como ativo.
+        /// </summary>
+        protected void SetMenuButtonActive(SiticoneButton button, bool active)
+        {
+            if (active)
+            {
+                button.FillColor = ThemeManager.SidebarHover;
+                button.ForeColor = ThemeManager.Brand;
+            }
+            else
+            {
+                button.FillColor = ThemeManager.SidebarBackground;
+                button.ForeColor = ThemeManager.SidebarText;
+            }
         }
 
         /// <summary>
@@ -204,6 +261,7 @@ namespace ClickDesk.Forms.Dashboard
         {
             contentPanel = UIHelper.CreateContentArea();
             contentPanel.Padding = new Padding(ClickDeskStyles.PaddingMainArea, ClickDeskStyles.PaddingMainAreaVertical, ClickDeskStyles.PaddingMainArea, ClickDeskStyles.PaddingMainAreaVertical);
+            contentPanel.BackColor = ThemeManager.BackgroundApp;
             this.Controls.Add(contentPanel);
 
             // Título
@@ -211,9 +269,10 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = "Dashboard",
                 Font = new Font("Segoe UI", 24, FontStyle.Bold),
-                ForeColor = ClickDeskColors.TextPrimary,
+                ForeColor = ThemeManager.TextPrimary,
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 10),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             contentPanel.Controls.Add(lblTitle);
 
@@ -221,9 +280,10 @@ namespace ClickDesk.Forms.Dashboard
             {
                 Text = $"Bem-vindo, {SessionManager.UserDisplayName}!  👋",
                 Font = new Font("Segoe UI", 12),
-                ForeColor = ClickDeskColors.Gray500,
+                ForeColor = ThemeManager.TextSecondary,
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 50),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
             contentPanel.Controls.Add(lblSubtitle);
 
@@ -570,6 +630,94 @@ namespace ClickDesk.Forms.Dashboard
             var formLogin = new FormLogin();
             formLogin.FormClosed += (s, e) => this.Close();
             formLogin.Show();
+        }
+
+        /// <summary>
+        /// Aplica o tema atual a todos os controles do formulário.
+        /// </summary>
+        protected virtual void ApplyTheme()
+        {
+            // Update sidebar
+            sidebarPanel.FillColor = ThemeManager.SidebarBackground;
+            
+            // Update all menu buttons
+            foreach (var button in menuButtons)
+            {
+                if (button.FillColor == ThemeManager.SidebarBackground || 
+                    button.FillColor == ClickDeskColors.Gray800)
+                {
+                    button.FillColor = ThemeManager.SidebarBackground;
+                    button.ForeColor = ThemeManager.SidebarText;
+                    button.HoverState.FillColor = ThemeManager.SidebarHover;
+                }
+            }
+
+            // Update theme toggle button
+            if (btnThemeToggle != null)
+            {
+                btnThemeToggle.FillColor = ThemeManager.SidebarBackground;
+                btnThemeToggle.ForeColor = ThemeManager.SidebarText;
+                btnThemeToggle.HoverState.FillColor = ThemeManager.SidebarHover;
+            }
+
+            // Update content area
+            if (contentPanel != null)
+            {
+                contentPanel.BackColor = ThemeManager.BackgroundApp;
+                
+                // Update all labels in content panel
+                UpdateLabelsTheme(contentPanel.Controls);
+            }
+
+            // Update DataGridView if exists
+            if (dgvChamados != null)
+            {
+                dgvChamados.BackgroundColor = ThemeManager.CardBackground;
+                dgvChamados.GridColor = ThemeManager.Border;
+                dgvChamados.DefaultCellStyle.BackColor = ThemeManager.CardBackground;
+                dgvChamados.DefaultCellStyle.ForeColor = ThemeManager.TextPrimary;
+                dgvChamados.ColumnHeadersDefaultCellStyle.BackColor = ThemeManager.SidebarBackground;
+                dgvChamados.ColumnHeadersDefaultCellStyle.ForeColor = ThemeManager.SidebarText;
+                dgvChamados.AlternatingRowsDefaultCellStyle.BackColor = ThemeManager.Surface;
+            }
+
+            this.Invalidate();
+        }
+
+        /// <summary>
+        /// Atualiza recursivamente as cores dos labels.
+        /// </summary>
+        private void UpdateLabelsTheme(Control.ControlCollection controls)
+        {
+            foreach (Control control in controls)
+            {
+                if (control is Label label)
+                {
+                    if (label.Font.Bold || label.Font.Size > 14)
+                    {
+                        label.ForeColor = ThemeManager.TextPrimary;
+                    }
+                    else
+                    {
+                        label.ForeColor = ThemeManager.TextSecondary;
+                    }
+                }
+                else if (control is Panel panel)
+                {
+                    // Update panels (cards)
+                    if (panel.BackColor == ClickDeskColors.White || 
+                        panel.BackColor == ClickDeskColors.CardBackground)
+                    {
+                        panel.BackColor = ThemeManager.CardBackground;
+                    }
+                    
+                    // Recursively update child controls
+                    if (panel.HasChildren)
+                    {
+                        UpdateLabelsTheme(panel.Controls);
+                    }
+                }
+            }
         }
     }
 }

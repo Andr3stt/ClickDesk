@@ -2,12 +2,14 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Siticone.Desktop.UI.WinForms;
 
 namespace ClickDesk.Utils
 {
     /// <summary>
     /// Classe auxiliar para criação e estilização de componentes de UI.
     /// Centraliza a criação de controles estilizados para manter consistência visual.
+    /// Agora inclui suporte a controles Siticone para UI moderna.
     /// </summary>
     public static class UIHelper
     {
@@ -464,6 +466,190 @@ namespace ClickDesk.Utils
         {
             form.Cursor = loading ? Cursors.WaitCursor : Cursors.Default;
             form.UseWaitCursor = loading;
+        }
+
+        // ========================================
+        // SITICONE CONTROLS - MODERN UI
+        // ========================================
+
+        /// <summary>
+        /// Cria um SiticoneButton estilizado com as cores do tema.
+        /// </summary>
+        public static SiticoneButton CreateModernButton(string text, Color fillColor, int width = 150, int height = 45)
+        {
+            var button = new SiticoneButton
+            {
+                Text = text,
+                Size = new Size(width, height),
+                BorderRadius = ClickDeskStyles.RadiusMD,
+                FillColor = fillColor,
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+
+            // Define hover color (slightly darker)
+            button.HoverState.FillColor = ControlPaint.Dark(fillColor, 0.1f);
+
+            return button;
+        }
+
+        /// <summary>
+        /// Cria um SiticoneTextBox estilizado com o tema atual.
+        /// </summary>
+        public static SiticoneTextBox CreateModernTextBox(string placeholder = "", int width = 300, bool isPassword = false)
+        {
+            return new SiticoneTextBox
+            {
+                Size = new Size(width, 45),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderThickness = 1,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                PlaceholderText = placeholder,
+                PasswordChar = isPassword ? '●' : '\0',
+                TextOffset = new Point(10, 0)
+            };
+        }
+
+        /// <summary>
+        /// Cria um SiticonePanel estilizado como card com sombra.
+        /// </summary>
+        public static SiticonePanel CreateModernCard(int width = 400, int height = 300, bool withShadow = true)
+        {
+            var panel = new SiticonePanel
+            {
+                Size = new Size(width, height),
+                BorderRadius = ClickDeskStyles.RadiusXL,
+                FillColor = ThemeManager.CardBackground
+            };
+
+            if (withShadow)
+            {
+                panel.ShadowDecoration.Enabled = true;
+                panel.ShadowDecoration.Shadow = new SiticoneShadow() { Depth = 20 };
+            }
+
+            return panel;
+        }
+
+        /// <summary>
+        /// Cria um SiticoneComboBox estilizado.
+        /// </summary>
+        public static SiticoneComboBox CreateModernComboBox(int width = 300)
+        {
+            return new SiticoneComboBox
+            {
+                Size = new Size(width, 40),
+                Font = ClickDeskStyles.FontBase,
+                BorderRadius = ClickDeskStyles.RadiusSM,
+                BorderColor = ThemeManager.Border,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                ItemsAppearance = { BackColor = ThemeManager.CardBackground }
+            };
+        }
+
+        /// <summary>
+        /// Cria um SiticoneCheckBox estilizado.
+        /// </summary>
+        public static SiticoneCheckBox CreateModernCheckBox(string text)
+        {
+            return new SiticoneCheckBox
+            {
+                Text = text,
+                Font = ClickDeskStyles.FontBase,
+                ForeColor = ThemeManager.TextPrimary,
+                CheckedState = { 
+                    BorderColor = ThemeManager.Brand,
+                    FillColor = ThemeManager.Brand
+                },
+                UncheckedState = {
+                    BorderColor = ThemeManager.Border
+                },
+                AutoSize = true
+            };
+        }
+
+        /// <summary>
+        /// Cria um botão de tema toggle (sol/lua) modernizado.
+        /// </summary>
+        public static SiticoneButton CreateModernThemeToggle()
+        {
+            var btnToggle = new SiticoneButton
+            {
+                Text = ThemeManager.IsDarkMode ? "🌙" : "☀️",
+                Size = new Size(50, 50),
+                BorderRadius = 25,
+                FillColor = ThemeManager.CardBackground,
+                ForeColor = ThemeManager.TextPrimary,
+                Font = new Font("Segoe UI", 18f),
+                Cursor = Cursors.Hand,
+                HoverState = { FillColor = ThemeManager.Surface }
+            };
+
+            btnToggle.Click += (s, e) =>
+            {
+                ThemeManager.ToggleTheme();
+                btnToggle.Text = ThemeManager.IsDarkMode ? "🌙" : "☀️";
+                ThemeManager.SaveThemePreference();
+            };
+
+            return btnToggle;
+        }
+
+        /// <summary>
+        /// Cria um DataGridView moderno com estilização Siticone.
+        /// </summary>
+        public static SiticoneDataGridView CreateModernDataGridView()
+        {
+            var dgv = new SiticoneDataGridView
+            {
+                BackgroundColor = ThemeManager.CardBackground,
+                BorderStyle = BorderStyle.None,
+                CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal,
+                GridColor = ThemeManager.Border,
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+                MultiSelect = false,
+                ReadOnly = true,
+                AllowUserToAddRows = false,
+                AllowUserToDeleteRows = false,
+                AllowUserToResizeRows = false,
+                RowHeadersVisible = false,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                ColumnHeadersHeight = 45,
+                Theme = ThemeManager.IsDarkMode ? Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.Dark : Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.Light
+            };
+
+            dgv.RowTemplate.Height = 40;
+
+            return dgv;
+        }
+
+        /// <summary>
+        /// Configura um formulário com tema moderno.
+        /// </summary>
+        public static void SetupModernForm(Form form, string title, Size? size = null, bool isDialog = false)
+        {
+            form.Text = title;
+            form.Size = size ?? new Size(1200, 700);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormBorderStyle = isDialog ? FormBorderStyle.FixedDialog : FormBorderStyle.None;
+            form.BackColor = ThemeManager.BackgroundApp;
+
+            if (isDialog)
+            {
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
+            }
+
+            // Subscribe to theme changes
+            ThemeManager.ThemeChanged += (s, e) =>
+            {
+                form.BackColor = ThemeManager.BackgroundApp;
+            };
         }
     }
 }
