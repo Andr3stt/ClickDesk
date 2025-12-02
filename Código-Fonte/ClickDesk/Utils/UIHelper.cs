@@ -529,7 +529,7 @@ namespace ClickDesk.Utils
             if (withShadow)
             {
                 panel.ShadowDecoration.Enabled = true;
-                panel.ShadowDecoration.Shadow = new SiticoneShadow() { Depth = 20 };
+                panel.ShadowDecoration.Depth = 20;
             }
 
             return panel;

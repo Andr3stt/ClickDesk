@@ -409,7 +409,7 @@ namespace ClickDesk.Forms.Dashboard
             contentPanel.Controls.Add(btnNovo);
 
             // DataGridView
-            dgvChamados = new DataGridView
+            dgvChamados = new SiticoneDataGridView
             {
                 Location = new Point(ClickDeskStyles.PaddingMainArea, 280),
                 Size = new Size(980, 400),
