@@ -51,6 +51,22 @@ ou via Visual Studio: Clique com botão direito na solução → Restaurar Pacot
    - Abra `ClickDesk.sln` no Visual Studio
    - Pressione F5 para executar
 
+### ✅ Verificação Automatizada
+
+Para verificar se tudo está configurado corretamente:
+
+**No Windows (PowerShell):**
+```powershell
+.\verify-build.ps1
+```
+
+**No Linux/Mac (apenas verificação de configuração):**
+```bash
+bash verify-config.sh
+```
+
+Para mais detalhes, consulte: [BUILD_VERIFICATION_README.md](BUILD_VERIFICATION_README.md)
+
 ## 🎮 Como Usar
 
 ### Login
@@ -190,11 +206,33 @@ ClickDesk/
 
 - **Linguagem**: C# 7.3
 - **Framework**: .NET Framework 4.8
-- **UI**: Windows Forms
+- **UI**: Windows Forms + Siticone.Desktop.UI 2.1.1
 - **Serialização**: Newtonsoft.Json 13.0.3
 - **HTTP**: System.Net.Http
+- **Tema**: Sistema dark/light mode com ThemeManager
+
+## 🎨 UI Moderna com Siticone
+
+O projeto utiliza o framework **Siticone.Desktop.UI** para criar uma interface moderna:
+
+- ✨ Componentes com design flat e moderno
+- 🌓 Suporte a temas claro e escuro
+- 🎯 Animações e transições suaves
+- 📱 Visual responsivo e profissional
+
+**Forms Modernizados:**
+- FormLogin - Tela de autenticação
+- FormRegistro - Cadastro de usuários
+- FormDashboard - Painel principal
+
+Para modernizar novos formulários, consulte: [QUICK_MODERNIZATION_TEMPLATE.md](QUICK_MODERNIZATION_TEMPLATE.md)
 
 ## 🐛 Resolução de Problemas
+
+### "The type or namespace name 'Siticone' could not be found"
+- Execute: `nuget restore ClickDesk.sln`
+- Ou use o script: `.\verify-build.ps1`
+- Adicione: `using Siticone.Desktop.UI.WinForms;`
 
 ### "Erro de conexão com o servidor"
 - Verifique se a API está rodando
@@ -216,6 +254,8 @@ ClickDesk/
 - Verifique se a API está rodando
 - Confirme URL em `App.config`
 
+Para mais problemas de build, veja: [BUILD_VERIFICATION_README.md](BUILD_VERIFICATION_README.md)
+
 ## 👥 Equipe
 
 - **André Barbosa** - Product Owner
@@ -223,10 +263,21 @@ ClickDesk/
 - **Erika Cordeiro** - Dev Team
 - **Kaique Uchoa** - Dev Team
 
+## 📚 Documentação Adicional
+
+- **[BUILD_VERIFICATION_README.md](BUILD_VERIFICATION_README.md)** - Guia de verificação de build
+- **[SITICONE_SETUP_GUIDE.md](SITICONE_SETUP_GUIDE.md)** - Setup completo do Siticone
+- **[SITICONE_AUDIT_COMPLETE_REPORT.md](SITICONE_AUDIT_COMPLETE_REPORT.md)** - Relatório de auditoria
+- **[MODERNIZATION_GUIDE.md](MODERNIZATION_GUIDE.md)** - Guia de modernização de UI
+- **[MANUAL_TECNICO.md](MANUAL_TECNICO.md)** - Manual técnico completo
+
 ## 📄 Licença
 
 Este projeto é de uso acadêmico. Todos os direitos reservados © 2024 ClickDesk Team.
 
 ## 📞 Suporte
 
-Em caso de dúvidas ou problemas, entre em contato com a equipe através do repositório GitHub.
+Em caso de dúvidas ou problemas:
+1. Consulte a documentação acima
+2. Execute os scripts de verificação
+3. Entre em contato através do repositório GitHub
