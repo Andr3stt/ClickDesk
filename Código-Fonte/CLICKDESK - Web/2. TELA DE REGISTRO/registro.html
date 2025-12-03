@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro • Clickdesk</title>
+
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/auth-styles.css" />
+</head>
+
+<body>
+  <main class="auth-page">
+    <div class="login-container">
+      <!-- Lado esquerdo - Branding -->
+      <div class="login-branding">
+        <div class="branding-content">
+          <h1 class="clickdesk-logo">Clickdesk</h1>
+          <p class="clickdesk-subtitle">Crie sua conta e comece a gerenciar seus chamados</p>
+          
+          <div class="features-list">
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Gestão completa de chamados</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Controle de prazos e prioridades</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Colaboração em equipe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito - Formulário -->
+      <div class="auth-card">
+        <header class="auth-header">
+          <h2 class="auth-title">Criar nova conta</h2>
+          <p class="auth-subtitle">Preencha as informações abaixo para começar</p>
+        </header>
+
+        <div id="register-error" class="auth-alert error" role="alert" aria-live="assertive"></div>
+
+        <form id="register-form" class="auth-form" autocomplete="off" novalidate>
+          <!-- Primeira linha: Nome e Sobrenome -->
+          <div class="form-row">
+            <div class="form-field">
+              <label for="first-name" class="label">Nome</label>
+              <input
+                id="first-name"
+                name="first-name"
+                type="text"
+                class="input"
+                placeholder="Seu nome"
+                autocomplete="given-name"
+                required
+                maxlength="50"
+                autofocus
+              />
+            </div>
+            <div class="form-field">
+              <label for="last-name" class="label">Sobrenome</label>
+              <input
+                id="last-name"
+                name="last-name"
+                type="text"
+                class="input"
+                placeholder="Seu sobrenome"
+                autocomplete="family-name"
+                required
+                maxlength="50"
+              />
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div>
+            <label for="email" class="label">E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="input"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+              maxlength="100"
+            />
+          </div>
+
+          <!-- Senha -->
+          <div>
+            <label for="password" class="label">Senha</label>
+            <div class="input-group">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                class="input"
+                placeholder="Crie uma senha segura"
+                autocomplete="new-password"
+                required
+                minlength="8"
+                maxlength="64"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                class="toggle-visibility"
+                aria-label="Mostrar senha"
+                aria-controls="password"
+                aria-pressed="false"
+                title="Mostrar/ocultar senha"
+              ></button>
+            </div>
+            <div class="password-strength">
+              <div class="strength-bar">
+                <div class="strength-fill"></div>
+              </div>
+              <span class="strength-text">Força da senha</span>
+            </div>
+            <p class="help-text">Mínimo 8 caracteres, use letras, números e símbolos</p>
+          </div>
+
+          <!-- Confirmar senha -->
+          <div>
+            <label for="confirm-password" class="label">Confirmar senha</label>
+            <input
+              id="confirm-password"
+              name="confirm-password"
+              type="password"
+              class="input"
+              placeholder="Digite a senha novamente"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+
+          <!-- Termos de uso -->
+          <div class="terms-section">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" name="terms" required />
+              <span class="checkmark"></span>
+              Eu aceito os <a href="../4. TELA LEIA OS TERMOS/leia-termos.html">Termos de Uso</a> e <a href="../4. TELA LEIA OS TERMOS/leia-termos.html">Política de Privacidade</a>
+            </label>
+          </div>
+
+          <!-- Botão criar conta -->
+          <button type="submit" id="register-btn" class="btn btn-primary">Criar conta</button>
+
+          <!-- Divisor -->
+          <div class="divider">
+            <span>ou</span>
+          </div>
+
+          <!-- Já possui conta -->
+          <div class="signin-section">
+            <p class="signin-text">Já possui uma conta?</p>
+            <a href="../1. TELA DE LOGIN/login.html" class="signin-link">Fazer login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="./scripts/registro.js"></script>
+</body>
+</html>

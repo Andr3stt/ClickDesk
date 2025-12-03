@@ -1,0 +1,56 @@
+/**
+ * FAQ - Estilos específicos
+ * Base: clickdesk-base.css
+ */
+
+/* Card container */
+.card {
+  background: white;
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding: 24px;
+}
+
+/* Panel */
+.panel{background:#fff;border:1px solid var(--outline);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);background-clip:padding-box;padding:10px 12px}
+.panel-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px dashed var(--outline);padding-bottom:8px;margin-bottom:8px}
+.panel-header h3{margin:0;font-size:16px;font-weight:900;color:#1E2A22}
+.faq-actions{display:flex;gap:8px}
+.btn{border:1px solid var(--outline);background:var(--surface);color:var(--ink);border-radius:8px;padding:8px 12px;font-weight:600;cursor:pointer;transition:all 0.15s ease}
+.btn:hover{background:var(--surface-secondary);border-color:var(--brand)}
+.btn.btn-mini{padding:6px 10px;font-size:13px}
+
+/* Accordion */
+.faq-accordion{display:flex;flex-direction:column;gap:12px}
+.faq-cat{border-radius:12px;overflow:hidden;border:1px solid var(--outline);box-shadow:0 2px 0 rgba(0,0,0,.02) inset}
+.faq-cat .cat-head{
+  width:100%; border:0; background:var(--brand); color:#fff;
+  font-weight:900; letter-spacing:.2px; text-align:left; cursor:pointer;
+  padding:12px 14px; display:flex; align-items:center; justify-content:space-between;
+}
+.faq-cat .cat-head:hover{filter:brightness(0.98)}
+.faq-cat .chev{width:18px;height:18px;transition:transform .2s}
+.faq-cat[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.faq-cat .cat-body{background:#fff}
+
+.q-item{border-top:1px solid var(--outline);background:#EFEAE2}
+.q-item:nth-child(even){background:#E9E3DA}
+.q-toggle{
+  width:100%; text-align:left; border:0; background:transparent; cursor:pointer;
+  padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  color:#1E2A22; font-weight:800;
+}
+.q-left{display:flex;align-items:center;gap:10px}
+.q-dot{width:18px;height:18px;border-radius:6px;border:1px solid var(--outline-strong);background:#fff;display:grid;place-items:center;color:#888;font-size:12px;font-weight:900}
+.q-chev{width:16px;height:16px;opacity:.8;transition:transform .2s}
+.q-item[aria-expanded="true"] .q-chev{transform:rotate(180deg)}
+.answer{display:none;padding:0 14px 12px 42px;color:#2a322c}
+.q-item[aria-expanded="true"] .answer{display:block}
+
+/* Responsivo */
+@media (max-width:980px){
+  :root{--sidebar-w:84px}
+  .sidebar{align-items:center}
+  .nav-label{display:none}
+}

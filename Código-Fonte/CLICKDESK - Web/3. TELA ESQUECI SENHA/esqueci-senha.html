@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Esqueci a Senha • Clickdesk</title>
+  
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/auth-styles.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="login-container">
+      <!-- Lado esquerdo - Branding -->
+      <div class="login-branding">
+        <div class="branding-content">
+          <h1 class="clickdesk-logo">Clickdesk</h1>
+          <p class="clickdesk-subtitle">Recupere o acesso à sua conta</p>
+          
+          <div class="features-list">
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Link enviado por e-mail</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Recuperação segura</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Processo rápido e fácil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito - Formulário -->
+      <div class="auth-card">
+        <header class="auth-header">
+          <div class="forgot-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h2 class="auth-title">Esqueceu a senha?</h2>
+          <p class="auth-subtitle">Não se preocupe. Insira seu e-mail abaixo e nós lhe enviaremos um link para alterar sua senha.</p>
+        </header>
+
+        <div id="alert" class="auth-alert" role="alert" aria-live="assertive"></div>
+
+        <form id="forgot-form" class="auth-form" autocomplete="off" novalidate>
+          <div>
+            <label for="email" class="label">E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="input"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              inputmode="email"
+              autocapitalize="off"
+              required
+              maxlength="100"
+              autofocus
+            />
+          </div>
+
+          <button type="submit" id="send-btn" class="btn btn-primary">Enviar link de recuperação</button>
+
+          <button type="button" id="close-btn" class="btn btn-outline-cancel">Cancelar</button>
+
+          <!-- Divisor -->
+          <div class="divider">
+            <span>ou</span>
+          </div>
+
+          <!-- Voltar para login -->
+          <div class="signin-section">
+            <a href="../1. TELA DE LOGIN/login.html" class="signin-link">Voltar para o login</a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="./scripts/esqueci-senha.js"></script>
+</body>
+</html>

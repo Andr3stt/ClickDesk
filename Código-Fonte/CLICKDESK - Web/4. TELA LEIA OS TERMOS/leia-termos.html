@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso • Clickdesk</title>
+  
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/auth-styles.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card" style="max-width: 800px;">
+      <header class="auth-header">
+        <h1 class="auth-logo">
+          <span class="auth-logo-brand">Termos</span>
+          <span class="auth-logo-text">de Uso</span>
+        </h1>
+        <p class="auth-subtitle">Leia atentamente nossos termos e condições</p>
+        <span class="auth-divider" aria-hidden="true"></span>
+      </header>
+
+      <div style="max-height: 400px; overflow-y: auto; padding: 20px; background: var(--surface-2); border-radius: var(--radius-md); margin-bottom: 20px;">
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">1. Aceitação dos Termos</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 20px;">
+          Ao utilizar o Clickdesk, você concorda em cumprir estes Termos de Uso. Se não concordar com qualquer parte destes termos, não utilize a plataforma.
+        </p>
+
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">2. Uso da Plataforma</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 20px;">
+          O Clickdesk é uma plataforma de gerenciamento de chamados. Você se compromete a usar o serviço apenas para fins legítimos e de acordo com as leis aplicáveis.
+        </p>
+
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">3. Privacidade e Proteção de Dados (LGPD)</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 12px;">
+          <strong>Em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</strong>, informamos:
+        </p>
+        <ul style="color: var(--muted-ink); line-height: 1.8; margin: 0 0 20px 20px; padding-left: 20px;">
+          <li>Coletamos apenas dados necessários para o funcionamento do sistema</li>
+          <li>Seus dados pessoais são armazenados com segurança e criptografia</li>
+          <li>Não compartilhamos seus dados com terceiros sem consentimento</li>
+          <li>Você tem direito de acessar, corrigir ou excluir seus dados a qualquer momento</li>
+          <li>Você pode revogar consentimentos através das configurações de perfil</li>
+          <li>Mantemos seus dados pelo tempo necessário conforme legislação vigente</li>
+        </ul>
+
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">4. Responsabilidades do Usuário</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 20px;">
+          Você é responsável por manter a confidencialidade de sua senha e por todas as atividades que ocorram sob sua conta.
+        </p>
+
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">5. Limitação de Responsabilidade</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 20px;">
+          O Clickdesk não se responsabiliza por quaisquer danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso ou incapacidade de usar a plataforma.
+        </p>
+
+        <h2 style="font-size: var(--font-lg); font-weight: var(--font-extrabold); margin: 0 0 16px 0;">6. Alterações nos Termos</h2>
+        <p style="color: var(--muted-ink); line-height: 1.6; margin-bottom: 0;">
+          Reservamo-nos o direito de modificar estes termos a qualquer momento. Notificaremos os usuários sobre alterações significativas.
+        </p>
+      </div>
+
+      <div style="background: var(--surface-2); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer;">
+          <input type="checkbox" id="accept-terms" style="margin-top: 4px; width: 20px; height: 20px; cursor: pointer;" required>
+          <span style="font-size: var(--font-sm); color: var(--ink); line-height: 1.5;">
+            Li e aceito os Termos de Uso e Política de Privacidade, incluindo o tratamento de dados pessoais conforme a LGPD
+          </span>
+        </label>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button class="btn btn-secondary" onclick="window.location.href='../2. TELA DE REGISTRO/registro.html'">Voltar</button>
+        <button id="accept-btn" class="btn btn-primary" disabled>Aceitar e Continuar</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="./scripts/leia-termos.js"></script>
+</body>
+</html>

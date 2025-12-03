@@ -1,0 +1,303 @@
+/* ================================
+   MEUS CHAMADOS ADM - ESTILO CLEAN
+   ================================ */
+
+/* Topbar - Cabeçalho branco */
+.topbar {
+  background: #fff !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  height: 56px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Título padronizado - com barra lateral */
+.page-title {
+  margin: 0 !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  letter-spacing: -0.02em !important;
+  position: relative !important;
+  padding-left: 12px !important;
+  padding-bottom: 0 !important;
+}
+
+.page-title::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 4px !important;
+  height: 24px !important;
+  background: #F28A1A !important;
+  border-radius: 2px !important;
+  display: block !important;
+}
+
+.page-title::after {
+  display: none !important;
+}
+
+.page-title--accent {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  padding-bottom: 0 !important;
+}
+
+.page-title--accent::after {
+  display: none !important;
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-area {
+  padding: 28px 32px;
+}
+
+/* Grid de cards */
+.chamados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+/* Card individual - CLEAN */
+.chamado-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  padding: 24px;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.chamado-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #F28A1A;
+}
+
+.chamado-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+/* Header do card */
+.chamado-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chamado-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #F28A1A;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.chamado-status {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.status-em-progresso,
+.status-em-andamento { 
+  color: #1976d2;
+  background: #e3f2fd;
+}
+
+.status-em-espera,
+.status-aguardando { 
+  color: #7b61ff;
+  background: #f3f0ff;
+}
+
+.status-fechado { 
+  color: #757575;
+  background: #f5f5f5;
+}
+
+.status-aberto { 
+  color: #388e3c;
+  background: #e8f5e9;
+}
+
+.status-pendente {
+  color: #ef6c00;
+  background: #fff3e0;
+}
+
+/* Título do chamado */
+.chamado-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin: 4px 0 8px 0;
+}
+
+/* Descrição */
+.chamado-descricao {
+  font-size: 14px;
+  color: #757575;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* Meta informações */
+.chamado-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 2px dashed #e5e5e5;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #999;
+  font-weight: 500;
+}
+
+.meta-item svg {
+  flex-shrink: 0;
+  color: #bbb;
+}
+
+.meta-categoria {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: #fff3e0;
+  color: #F28A1A;
+  letter-spacing: 0.5px;
+}
+
+/* Ações do card */
+.chamado-acoes {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.chamado-acoes .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-ver-detalhes {
+  background: #F28A1A;
+  color: #fff;
+}
+
+.btn-ver-detalhes:hover {
+  background: #e06f00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(242,138,26,0.35);
+}
+
+.btn-aprovar {
+  background: #F28A1A;
+  color: #fff;
+  flex: 1;
+}
+
+.btn-aprovar:hover {
+  background: #e06f00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(242,138,26,0.35);
+}
+
+.btn-recusar {
+  background: #dc2626;
+  color: #fff;
+  flex: 1;
+}
+
+.btn-recusar:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220,38,38,0.35);
+}
+
+/* Responsivo */
+@media (max-width: 1200px) {
+  .chamados-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .chamados-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chamado-acoes {
+    flex-direction: column;
+  }
+  
+  .chamado-acoes .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

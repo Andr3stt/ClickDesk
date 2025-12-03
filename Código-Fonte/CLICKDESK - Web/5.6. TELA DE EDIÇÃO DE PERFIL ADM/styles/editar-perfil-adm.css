@@ -1,0 +1,246 @@
+/* =============================================
+   EDITAR PERFIL ADM - ESTILOS ESPECÍFICOS
+   ============================================= */
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-title {
+  margin: 0 0 24px 0;
+  font-size: var(--font-xl);
+  font-weight: var(--font-extrabold);
+  color: var(--ink);
+}
+
+/* Seção de Foto do Perfil */
+.profile-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+}
+
+.profile-photo-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photo-edit-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.photo-edit-icon svg {
+  color: var(--brand);
+}
+
+.photo-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.photo-hint {
+  color: var(--muted);
+  font-size: var(--font-sm);
+  margin: 0;
+}
+
+/* Informações da Conta */
+.account-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 32px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: var(--font-semibold);
+  color: var(--ink);
+}
+
+.info-value {
+  color: var(--muted);
+  font-family: monospace;
+}
+
+/* Formulários */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.input-hint {
+  color: var(--muted);
+  font-size: var(--font-xs);
+  margin-top: 4px;
+}
+
+/* Preferências de Notificação */
+.notification-prefs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pref-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+}
+
+.pref-info {
+  flex: 1;
+}
+
+.pref-title {
+  margin: 0 0 8px 0;
+  font-weight: var(--font-semibold);
+  color: var(--ink);
+  font-size: var(--font-md);
+}
+
+.pref-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-sm);
+}
+
+/* Switch de Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--brand);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px var(--brand);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-grid,
+  .form-grid-3,
+  .account-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .pref-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

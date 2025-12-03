@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk — Novo chamado</title>
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/photo-upload.css" />
+  <!-- CSS ESPECÍFICO -->
+  <link rel="stylesheet" href="styles/novo-chamado.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <h1 class="logo">Clickdesk</h1>
+      </div>
+
+      <div class="nav-wrapper">
+        <nav class="nav" aria-label="Menu principal">
+          <a class="nav-item" href="../6. TELA DE DASHBOARD/dashboard.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+              </g>
+            </svg>
+            <span class="nav-label">Dashboard</span>
+          </a>
+
+          <a class="nav-item active" href="novo-chamado.html" aria-current="page">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-6-6Z"/>
+                <path d="M14 3v6h6"/>
+                <path d="M12 13v6M9 16h6"/>
+              </g>
+            </svg>
+            <span class="nav-label">Novo chamado</span>
+          </a>
+
+          <a class="nav-item" href="../9. TELA DE MEU CHAMADO/meus-chamado.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6h11M9 12h11M9 18h11"/>
+                <path d="M4.5 6.5 6 8l2.5-2.5"/>
+                <path d="M4.5 12.5 6 14l2.5-2.5"/>
+                <path d="M4.5 18.5 6 20l2.5-2.5"/>
+              </g>
+            </svg>
+            <span class="nav-label">Meus chamados</span>
+          </a>
+
+          <a class="nav-item" href="../10. TELA DE FAQ/faq.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+                <circle cx="12" cy="17" r="1"/>
+              </g>
+            </svg>
+            <span class="nav-label">FAQ</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Menu do usuário no rodapé da sidebar -->
+      <div class="sidebar-footer">
+        <div class="user-menu">
+          <button class="user-avatar" id="userMenuBtn" aria-label="Menu do usuário">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown" hidden>
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="user-dropdown-info">
+                <div class="user-dropdown-name" id="userName">Usuário</div>
+                <div class="user-dropdown-email" id="userEmail">usuario@email.com</div>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-menu">
+              <button class="user-dropdown-item" id="changePhotoBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>Alterar foto</span>
+              </button>
+              <button class="user-dropdown-item logout-btn" id="logoutBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Sair</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title page-title--accent">Novo Chamado</h1>
+        </div>
+        <div class="topbar-right">
+          <!-- Controles de janela -->
+          <div class="window-controls">
+            <button class="window-control minimize" aria-label="Minimizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="6" y1="12" x2="18" y2="12"/>
+              </svg>
+            </button>
+            <button class="window-control maximize" aria-label="Maximizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+            </button>
+            <button class="window-control close" aria-label="Fechar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="main-area">
+        <div class="container">
+          <div class="card" style="width: 100%; margin: 0; padding: 40px 60px;">
+            <form id="ticketForm" novalidate>
+              <h2 style="margin: 0 0 32px 0; font-size: var(--font-xl); font-weight: var(--font-extrabold);">Informações do Chamado</h2>
+              
+              <!-- Primeira linha: Título e Categoria -->
+              <div style="display: grid; grid-template-columns: 3fr 1.5fr; gap: 32px; margin-bottom: 20px;">
+                <div>
+                  <label for="titulo" class="label">Título do Chamado *</label>
+                  <input id="titulo" name="titulo" type="text" class="input" placeholder="Ex: Problema com impressora" required />
+                </div>
+                <div>
+                  <label for="categoria" class="label">Categoria *</label>
+                  <select id="categoria" name="categoria" class="input" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="software">Software</option>
+                    <option value="rede">Rede</option>
+                    <option value="acesso">Acesso</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Segunda linha: Departamento e Localização -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 20px;">
+                <div>
+                  <label for="departamento" class="label">Departamento *</label>
+                  <select id="departamento" name="departamento" class="input" required>
+                    <option value="">Selecione seu departamento</option>
+                    <option value="ti">TI</option>
+                    <option value="rh">RH</option>
+                    <option value="financeiro">Financeiro</option>
+                    <option value="comercial">Comercial</option>
+                    <option value="suporte">Suporte</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="localizacao" class="label">Localização</label>
+                  <input id="localizacao" name="localizacao" type="text" class="input" placeholder="Ex: Andar 2, Sala 205" />
+                </div>
+              </div>
+
+              <!-- Terceira linha: Descrição e Anexos lado a lado -->
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px; margin-bottom: 24px;">
+                <div>
+                  <label for="descricao" class="label">Descrição Detalhada *</label>
+                  <textarea id="descricao" name="descricao" class="input" rows="6" placeholder="Descreva o problema com o máximo de detalhes possível...&#10;Inclua: o que aconteceu, quando começou, mensagens de erro, etc." required style="resize: vertical; min-height: 150px;"></textarea>
+                </div>
+                
+                <div>
+                  <label class="label">Anexos (opcional)</label>
+                  <div class="file-upload-area" style="border: 2px dashed var(--outline); border-radius: 12px; padding: 24px; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); cursor: pointer; transition: all 0.3s ease; height: 150px; display: flex; flex-direction: column; justify-content: center;" onclick="document.getElementById('anexos').click();">
+                    <svg style="margin: 0 auto 12px; color: var(--brand);" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path d="M7 18a4.6 4.4 0 0 1 0-9 5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12"/>
+                      <path d="M9 15l3-3 3 3"/>
+                      <path d="M12 12v9"/>
+                    </svg>
+                    <p style="margin: 0 0 6px; font-weight: var(--font-semibold); font-size: 14px;">Clique ou arraste arquivos</p>
+                    <p style="margin: 0; color: var(--muted); font-size: 12px;">JPG, PNG, PDF, DOC, XLS, ZIP<br/>(máx. 10MB)</p>
+                    <input type="file" id="anexos" name="anexos" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.zip" style="display: none;">
+                  </div>
+                  <ul id="listaAnexos" style="margin: 12px 0 0; padding: 0; list-style: none;"></ul>
+                </div>
+              </div>
+
+              <!-- Botões de ação -->
+              <div style="display: flex; gap: 16px; justify-content: flex-end;">
+                <button type="button" class="btn btn-secondary" onclick="history.back()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" style="background: var(--brand);">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-right: 8px;">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                    <path d="M16.5 5.5L19 8"/>
+                  </svg>
+                  Criar Chamado
+                </button>
+              </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- Modal de Upload de Foto -->
+  <div id="photoModal" class="photo-modal" hidden>
+    <div class="photo-modal-backdrop"></div>
+    <div class="photo-modal-content">
+      <div class="photo-modal-header">
+        <h3>Alterar Foto de Perfil</h3>
+        <button class="photo-modal-close" id="closePhotoModal" aria-label="Fechar"></button>
+      </div>
+      <div class="photo-modal-body">
+        <div class="photo-preview-container">
+          <div class="photo-preview" id="photoPreview">
+            <img id="previewImg" src="" alt="Pr�via da foto" style="display:none;">
+            <div class="photo-placeholder" id="photoPlaceholder">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <p>Clique para selecionar uma foto</p>
+            </div>
+          </div>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" hidden>
+        <div class="photo-actions">
+          <button type="button" class="btn btn-secondary" id="selectPhotoBtn">Escolher foto</button>
+          <button type="button" class="btn btn-primary" id="uploadPhotoBtn" disabled>Salvar foto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Funcionalidade de anexos
+    document.addEventListener('DOMContentLoaded', function() {
+      const anexosInput = document.getElementById('anexos');
+      const listaAnexos = document.getElementById('listaAnexos');
+      const areaAnexos = document.querySelector('.file-upload-area');
+      let arquivosSelecionados = [];
+
+      // Funcionalidade de drag & drop
+      areaAnexos.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        areaAnexos.style.borderColor = 'var(--primary)';
+        areaAnexos.style.backgroundColor = '#f0f8ff';
+        areaAnexos.style.borderStyle = 'solid';
+      });
+
+      areaAnexos.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!areaAnexos.contains(e.relatedTarget)) {
+          areaAnexos.style.borderColor = 'var(--outline)';
+          areaAnexos.style.backgroundColor = '#f8f9fa';
+          areaAnexos.style.borderStyle = 'dashed';
+        }
+      });
+
+      areaAnexos.addEventListener('drop', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        areaAnexos.style.borderColor = 'var(--outline)';
+        areaAnexos.style.backgroundColor = '#f8f9fa';
+        areaAnexos.style.borderStyle = 'dashed';
+        
+        const arquivos = Array.from(e.dataTransfer.files);
+        processarArquivos(arquivos);
+      });
+
+      // Clique na área para abrir seletor
+      areaAnexos.addEventListener('click', function() {
+        anexosInput.click();
+      });
+
+      anexosInput.addEventListener('change', function(e) {
+        const arquivos = Array.from(e.target.files);
+        processarArquivos(arquivos);
+      });
+
+      function processarArquivos(arquivos) {
+        arquivos.forEach(arquivo => {
+          // Validar tamanho (10MB)
+          if (arquivo.size > 10 * 1024 * 1024) {
+            alert(`O arquivo "${arquivo.name}" é muito grande. Máximo 10MB permitido.`);
+            return;
+          }
+
+          // Validar tipo
+          const tiposPermitidos = ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.zip'];
+          const extensao = '.' + arquivo.name.split('.').pop().toLowerCase();
+          if (!tiposPermitidos.includes(extensao)) {
+            alert(`Tipo de arquivo "${extensao}" não permitido.`);
+            return;
+          }
+
+          // Verificar se já não foi adicionado
+          if (arquivosSelecionados.some(a => a.name === arquivo.name)) {
+            alert(`O arquivo "${arquivo.name}" já foi adicionado.`);
+            return;
+          }
+
+          arquivosSelecionados.push(arquivo);
+          adicionarArquivoNaLista(arquivo);
+        });
+      }
+
+      function adicionarArquivoNaLista(arquivo) {
+        const li = document.createElement('li');
+        li.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f0f0f0; border-radius: 4px; margin-bottom: 8px;';
+        
+        li.innerHTML = `
+          <span style="display: flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <span>${arquivo.name}</span>
+            <small style="color: var(--muted);">(${formatarTamanho(arquivo.size)})</small>
+          </span>
+          <button type="button" onclick="removerArquivo('${arquivo.name}')" style="background: none; border: none; color: #dc3545; cursor: pointer; padding: 4px;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-2 14H7L5 6"/>
+              <path d="M10 11v6"/>
+              <path d="M14 11v6"/>
+              <path d="M5 6l1-2h12l1 2"/>
+            </svg>
+          </button>
+        `;
+        
+        listaAnexos.appendChild(li);
+      }
+
+      window.removerArquivo = function(nomeArquivo) {
+        arquivosSelecionados = arquivosSelecionados.filter(arquivo => arquivo.name !== nomeArquivo);
+        
+        // Remover da lista visual
+        const items = listaAnexos.querySelectorAll('li');
+        items.forEach(item => {
+          if (item.textContent.includes(nomeArquivo)) {
+            item.remove();
+          }
+        });
+      };
+
+      function formatarTamanho(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
+
+      // Validação do formulário
+      const form = document.getElementById('ticketForm');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const titulo = document.getElementById('titulo').value.trim();
+        const categoria = document.getElementById('categoria').value;
+        const departamento = document.getElementById('departamento').value;
+        const descricao = document.getElementById('descricao').value.trim();
+
+        if (!titulo || !categoria || !departamento || !descricao) {
+          alert('Por favor, preencha todos os campos obrigatórios (*).');
+          return;
+        }
+
+        // Simular envio - A IA definirá a prioridade automaticamente
+        alert('Chamado criado com sucesso! A prioridade será definida automaticamente pela IA.');
+        // Aqui você adicionaria a lógica real de envio
+      });
+    });
+  </script>
+
+  <script src="scripts/novo-chamado.js"></script>
+</body>
+</html>

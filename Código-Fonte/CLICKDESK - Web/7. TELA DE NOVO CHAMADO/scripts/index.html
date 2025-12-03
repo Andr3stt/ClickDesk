@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk • Página Inicial</title>
+  <link rel="stylesheet" href="./styles/novo-chamado.css" />
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #ece4d3;
+      color: #222;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .index-container {
+      margin-top: 60px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 380px;
+    }
+    h1 {
+      color: #fa8c2b;
+      font-size: 2em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+    .index-btn {
+      display: block;
+      margin: 18px auto 0 auto;
+      background: #fa8c2b;
+      color: #fff;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 0;
+      width: 90%;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      transition: background .18s, box-shadow .18s;
+      text-decoration: none;
+      text-align: center;
+    }
+    .index-btn:hover {
+      background: #e57514;
+      box-shadow: 0 8px 22px rgba(250,140,43,.18);
+    }
+    .index-info {
+      color: #555;
+      font-size: 1.07em;
+      margin-top: 10px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="index-container">
+    <h1>Clickdesk</h1>
+    <div class="index-info">
+      Bem-vindo!<br>
+      Esta é a página inicial do sistema.<br>
+      Clique abaixo para abrir um novo chamado.
+    </div>
+    <a href="novo-chamado.html" class="index-btn">Novo Chamado</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clickdesk - Paleta de Cores</title>
+  <link rel="stylesheet" href="styles/clickdesk-base.css">
+  <style>
+    body {
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--brand);
+    }
+    
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    
+    .color-card {
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .color-preview {
+      height: 100px;
+      width: 100%;
+    }
+    
+    .color-info {
+      padding: 12px;
+      background: white;
+    }
+    
+    .color-name {
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    
+    .color-var {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted-ink);
+      background: var(--surface-2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin: 4px 0;
+      display: inline-block;
+    }
+    
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted-ink);
+    }
+    
+    .typography-sample {
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+    }
+    
+    .font-size-demo {
+      margin: 12px 0;
+    }
+    
+    .components-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title page-title--accent">Clickdesk - Sistema de Design</h1>
+  
+  <!-- CORES PRINCIPAIS -->
+  <section class="section">
+    <h2 class="section-title">🎨 Cores Principais</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-preview" style="background: #EDE6D9;"></div>
+        <div class="color-info">
+          <div class="color-name">Background</div>
+          <div class="color-var">--bg-app</div>
+          <div class="color-hex">#EDE6D9</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #F5EFE6;"></div>
+        <div class="color-info">
+          <div class="color-name">Surface</div>
+          <div class="color-var">--surface</div>
+          <div class="color-hex">#F5EFE6</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #F7F3EC;"></div>
+        <div class="color-info">
+          <div class="color-name">Surface 2</div>
+          <div class="color-var">--surface-2</div>
+          <div class="color-hex">#F7F3EC</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #F28A1A;"></div>
+        <div class="color-info">
+          <div class="color-name">Brand</div>
+          <div class="color-var">--brand</div>
+          <div class="color-hex">#F28A1A</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #1E2A22;"></div>
+        <div class="color-info">
+          <div class="color-name">Ink (Texto)</div>
+          <div class="color-var">--ink</div>
+          <div class="color-hex">#1E2A22</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #6F6F6F;"></div>
+        <div class="color-info">
+          <div class="color-name">Muted Ink</div>
+          <div class="color-var">--muted-ink</div>
+          <div class="color-hex">#6F6F6F</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS COLORS -->
+  <section class="section">
+    <h2 class="section-title">📊 Cores de Status</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-preview" style="background: #0F8C4D;"></div>
+        <div class="color-info">
+          <div class="color-name">✅ Sucesso</div>
+          <div class="color-var">--status-success</div>
+          <div class="color-hex">#0F8C4D</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #A56400;"></div>
+        <div class="color-info">
+          <div class="color-name">⚠️ Atenção</div>
+          <div class="color-var">--status-warning</div>
+          <div class="color-hex">#A56400</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #2855B2;"></div>
+        <div class="color-info">
+          <div class="color-name">ℹ️ Info</div>
+          <div class="color-var">--status-info</div>
+          <div class="color-hex">#2855B2</div>
+        </div>
+      </div>
+      
+      <div class="color-card">
+        <div class="color-preview" style="background: #A12016;"></div>
+        <div class="color-info">
+          <div class="color-name">❌ Erro</div>
+          <div class="color-var">--status-error</div>
+          <div class="color-hex">#A12016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOGRAFIA -->
+  <section class="section">
+    <h2 class="section-title">📝 Tipografia</h2>
+    <div class="typography-sample">
+      <div class="font-size-demo" style="font-size: var(--font-5xl); font-weight: var(--font-black);">
+        KPI Grande - 42px / Black (900)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-3xl); font-weight: var(--font-black);">
+        Título de Página - 28px / Black (900)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-lg); font-weight: var(--font-black);">
+        Subtítulo - 16px / Black (900)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-md); font-weight: var(--font-semibold);">
+        Navegação - 15px / Semibold (650)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-base); font-weight: var(--font-extrabold);">
+        Card Title - 14px / Extrabold (800)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-base);">
+        Texto Base - 14px / Normal (400)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-sm);">
+        Small Text - 13px / Normal (400)
+      </div>
+      <div class="font-size-demo" style="font-size: var(--font-xs); font-weight: var(--font-black);">
+        Badge - 12px / Black (900)
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTES -->
+  <section class="section">
+    <h2 class="section-title">🧩 Componentes</h2>
+    
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Botões</h3>
+    <div class="components-demo">
+      <button class="btn btn-primary">Botão Primário</button>
+      <button class="btn btn-secondary">Botão Secundário</button>
+      <button class="icon-btn">
+        <svg class="icon-stroke" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </button>
+      <button class="btn-mini">Mini</button>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Badges de Status</h3>
+    <div class="components-demo">
+      <span class="badge status-open">Aberto</span>
+      <span class="badge status-progress">Em progresso</span>
+      <span class="badge status-waiting">Aguardando</span>
+      <span class="badge status-closed">Concluído</span>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Prioridades</h3>
+    <div class="components-demo">
+      <span class="prio-flag p1">P1 - Alta</span>
+      <span class="prio-flag p2">P2 - Média</span>
+      <span class="prio-flag p3">P3 - Baixa</span>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Chips</h3>
+    <div class="components-demo">
+      <button class="chip-toggle active">Chip Ativo</button>
+      <button class="chip-toggle">Chip Inativo</button>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Cards</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px;">
+      <article class="card">
+        <h2 class="card-title">Card Padrão</h2>
+        <p>Este é um card com o estilo padrão do sistema.</p>
+      </article>
+      
+      <article class="card card-soft">
+        <h2 class="card-title">Card Soft</h2>
+        <p>Este é um card com fundo suave.</p>
+      </article>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Inputs</h3>
+    <div style="max-width: 400px;">
+      <div style="margin-bottom: 16px;">
+        <label class="label" for="demo-input">Campo de texto</label>
+        <input type="text" id="demo-input" class="input" placeholder="Digite aqui...">
+      </div>
+      
+      <div style="margin-bottom: 16px;">
+        <label class="label" for="demo-select">Select</label>
+        <select id="demo-select" class="input">
+          <option>Opção 1</option>
+          <option>Opção 2</option>
+          <option>Opção 3</option>
+        </select>
+      </div>
+      
+      <div>
+        <label class="label" for="demo-textarea">Textarea</label>
+        <textarea id="demo-textarea" class="input" placeholder="Escreva aqui..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- BORDAS E SOMBRAS -->
+  <section class="section">
+    <h2 class="section-title">📐 Border Radius e Shadows</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div style="background: white; padding: 20px; border-radius: var(--radius-xxl); border: 1px solid var(--outline);">
+        <strong>XXL - 18px</strong><br>
+        Sidebar
+      </div>
+      <div style="background: white; padding: 20px; border-radius: var(--radius-xl); border: 1px solid var(--outline);">
+        <strong>XL - 16px</strong><br>
+        Cards grandes
+      </div>
+      <div style="background: white; padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--outline);">
+        <strong>LG - 12px</strong><br>
+        Cards médios
+      </div>
+      <div style="background: white; padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--outline);">
+        <strong>MD - 10px</strong><br>
+        Botões/Inputs
+      </div>
+      <div style="background: white; padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--outline);">
+        <strong>SM - 8px</strong><br>
+        Badges
+      </div>
+    </div>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px; font-weight: 800;">Sombras</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-lg);">
+        <strong>Large Shadow</strong><br>
+        Modais
+      </div>
+      <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md);">
+        <strong>Medium Shadow</strong><br>
+        Cards
+      </div>
+      <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-sm);">
+        <strong>Small Shadow</strong><br>
+        Elementos pequenos
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top: 60px; padding: 20px; text-align: center; color: var(--muted-ink); border-top: 1px solid var(--outline);">
+    <p><strong>Clickdesk Design System</strong> - Sistema de padronização completo</p>
+    <p style="font-size: 13px;">Todos os componentes seguem a referência da Dashboard</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk — Detalhes do chamado</title>
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="styles/meu-chamado.css" />
+  <link rel="stylesheet" href="styles/meu-chamado-clean.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <h1 class="logo">Clickdesk</h1>
+      </div>
+
+      <div class="nav-wrapper">
+        <nav class="nav" aria-label="Menu principal">
+          <a class="nav-item" href="../6. TELA DE DASHBOARD/dashboard.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+              <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+              <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+              <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+            </g>
+          </svg>
+          <span class="nav-label">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="../7. TELA DE NOVO CHAMADO/novo-chamado.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-6-6Z"/>
+              <path d="M14 3v6h6"/>
+              <path d="M12 13v6M9 16h6"/>
+            </g>
+          </svg>
+          <span class="nav-label">Novo chamado</span>
+        </a>
+
+        <a class="nav-item" href="../9. TELA DE MEU CHAMADO/meus-chamado.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 6h11M9 12h11M9 18h11"/>
+              <path d="M4.5 6.5 6 8l2.5-2.5"/>
+              <path d="M4.5 12.5 6 14l2.5-2.5"/>
+              <path d="M4.5 18.5 6 20l2.5-2.5"/>
+            </g>
+          </svg>
+          <span class="nav-label">Meus chamados</span>
+        </a>
+
+        <a class="nav-item active" href="#" aria-current="page">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10,9 9,9 8,9"/>
+            </g>
+          </svg>
+          <span class="nav-label">Detalhes do chamado</span>
+        </a>
+
+        <a class="nav-item" href="../10. TELA DE FAQ/faq.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+              <circle cx="12" cy="17" r="1"/>
+            </g>
+          </svg>
+          <span class="nav-label">FAQ</span>
+        </a>
+      </nav>
+      </div>
+
+      <!-- Menu do usuário no rodapé da sidebar -->
+      <div class="sidebar-footer">
+        <div class="user-menu">
+          <button class="user-avatar" id="userMenuBtn" aria-label="Menu do usuário">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown" hidden>
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="user-dropdown-info">
+                <div class="user-dropdown-name" id="userName">Usuário</div>
+                <div class="user-dropdown-email" id="userEmail">usuario@email.com</div>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-menu">
+              <button class="user-dropdown-item" id="changePhotoBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <span>Alterar foto</span>
+              </button>
+              <button class="user-dropdown-item logout-btn" id="logoutBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Sair</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title">Detalhes do Chamado</h1>
+        </div>
+        <div class="topbar-right">
+          <!-- Controles de janela (topo) -->
+          <div class="window-controls">
+            <button class="window-control minimize" aria-label="Minimizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="6" y1="12" x2="18" y2="12"/>
+              </svg>
+            </button>
+            <button class="window-control maximize" aria-label="Maximizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+            </button>
+            <button class="window-control close" aria-label="Fechar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="main-area">
+        <div class="controls">
+          <button id="backBtn" class="btn-secondary">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </g>
+            </svg>
+            Voltar
+          </button>
+
+          <button id="refreshBtn" class="btn-secondary">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+              </g>
+            </svg>
+            Atualizar
+          </button>
+        </div>
+
+        <div class="detail-card">
+          <header class="detail-header">
+            <div class="header-left">
+              <span id="ticketNumber" class="ticket-id">CD-—</span>
+              <span class="date-chip">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="17" rx="2"/>
+                    <path d="M8 3v4M16 3v4M3 9h18"/>
+                  </g>
+                </svg>
+                <span id="ticketDate">—</span>
+              </span>
+            </div>
+            <span id="ticketStatus" class="badge open">Aberto</span>
+          </header>
+
+          <div class="detail-body">
+            <div class="info-grid">
+              <div class="info-item">
+                <dt class="info-label">Solicitante</dt>
+                <dd id="requesterName" class="info-value">—</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Departamento</dt>
+                <dd id="department" class="info-value">—</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Categoria</dt>
+                <dd id="category" class="info-value category-text">—</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Prioridade</dt>
+                <dd id="priority" class="info-value"><span class="prio medium">—</span></dd>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="content-section">
+              <h3 class="section-title">Título</h3>
+              <p id="subject" class="subject">—</p>
+            </div>
+
+            <div class="content-section">
+              <h3 class="section-title">Descrição</h3>
+              <div id="description" class="description">—</div>
+            </div>
+
+            <div class="content-section">
+              <h3 class="section-title">Anexos</h3>
+              <div id="attachments" class="attachments">
+                <span class="muted">Nenhum anexo</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="content-section">
+              <h3 class="section-title">Ações do chamado</h3>
+              <button id="closeTicketBtn" class="btn-danger">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </g>
+                </svg>
+                Fechar chamado
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="scripts/meu-chamado.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login • Clickdesk</title>
+  
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/auth-styles.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="login-container">
+      <!-- Lado esquerdo - Branding -->
+      <div class="login-branding">
+        <div class="branding-content">
+          <h1 class="clickdesk-logo">Clickdesk</h1>
+          <p class="clickdesk-subtitle">Sistema de Gerenciamento de Chamados</p>
+        </div>
+      </div>
+
+      <!-- Lado direito - Formulário -->
+      <div class="auth-card">
+        <header class="auth-header">
+          <h2 class="auth-title"><span class="login-orange">Login</span> Clickdesk</h2>
+          <p class="auth-subtitle">Acesse sua conta para continuar</p>
+        </header>
+
+        <div id="login-error" class="auth-alert error" role="alert" aria-live="assertive"></div>
+
+        <form id="login-form" class="auth-form" autocomplete="off" novalidate>
+        <div>
+          <label for="username" class="label">Usuário</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="input"
+            placeholder="vini"
+            autocomplete="username"
+            inputmode="text"
+            autocapitalize="none"
+            required
+            maxlength="50"
+            autofocus
+          />
+        </div>
+
+        <div>
+          <label for="password" class="label">Senha</label>
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="input"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+              maxlength="50"
+            />
+            <button
+              type="button"
+              id="toggle-password"
+              class="toggle-visibility"
+              aria-label="Mostrar senha"
+              aria-controls="password"
+              aria-pressed="false"
+              title="Mostrar/ocultar senha"
+            ></button>
+          </div>
+        </div>
+
+        <div class="remember-section">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me" name="remember" />
+            <span class="checkmark"></span>
+            Lembrar-me
+          </label>
+          <a href="../3. TELA ESQUECI SENHA/esqueci-senha.html" class="forgot-link">Esqueci minha senha</a>
+        </div>
+
+        <button type="submit" id="login-btn" class="btn btn-primary">ENTRAR</button>
+      </form>
+
+        <div class="divider">
+          <span>ou</span>
+        </div>
+
+        <div class="signup-section">
+          <p class="signup-text">Ainda não tem uma conta?</p>
+          <a href="../2. TELA DE REGISTRO/registro.html" class="btn btn-outline">
+            Criar conta
+          </a>
+        </div>
+
+        <p class="auth-terms">
+          Ao fazer login, você aceita nossos <a href="../4. TELA LEIA OS TERMOS/leia-termos.html">Termos de Uso</a> e <a href="../4. TELA LEIA OS TERMOS/leia-termos.html">Política de Privacidade</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="./scripts/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Criar novo chamado • Clickdesk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Caminho RELATIVO para css, funciona se abrir pelo Live Server ou localhost -->
+  <link rel="stylesheet" href="./styles/novo-chamado.css" />
+</head>
+<body>
+  <div class="chamado-shell">
+    <header class="chamado-topbar">
+      <span class="chamado-logo">Clickdesk</span>
+      <span class="chamado-usericon">👤</span>
+    </header>
+    <nav class="chamado-sidebar">
+      <ul>
+        <li><span>📋</span> Menu</li>
+        <li class="active"><span>📝</span> Novo chamado</li>
+        <li><span>📂</span> Meus chamados</li>
+        <li><span>❓</span> FAQ</li>
+      </ul>
+    </nav>
+    <main class="chamado-main">
+      <h2 class="chamado-titulo">Criar novo chamado</h2>
+      <form class="chamado-form" autocomplete="off" novalidate>
+        <div class="chamado-row">
+          <label for="nome">Nome:</label>
+          <input id="nome" name="nome" type="text" maxlength="60" required />
+          <label for="data">Data:</label>
+          <input id="data" name="data" type="date" required />
+        </div>
+        <div class="chamado-row">
+          <label for="setor">Setor:</label>
+          <input id="setor" name="setor" type="text" maxlength="40" required />
+        </div>
+        <div class="chamado-row">
+          <label for="assunto">Assunto:</label>
+          <input id="assunto" name="assunto" type="text" maxlength="80" required />
+        </div>
+        <div class="chamado-row">
+          <label for="categoria">Categoria:</label>
+          <input id="categoria" name="categoria" type="text" maxlength="30" required />
+          <label for="descricao">Descrição:</label>
+          <div class="chamado-descricao-wrapper">
+            <textarea id="descricao" name="descricao" required placeholder="Descreva o problema..."></textarea>
+            <label class="chamado-anexo-label" for="anexo" title="Anexar arquivo">
+              <span>📎</span>
+              <input type="file" id="anexo" name="anexo" style="display:none;" />
+            </label>
+          </div>
+        </div>
+        <div class="chamado-actions">
+          <button type="submit" class="btn chamar-btn">Enviar</button>
+        </div>
+        <div class="chamado-alert" id="chamado-alert"></div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

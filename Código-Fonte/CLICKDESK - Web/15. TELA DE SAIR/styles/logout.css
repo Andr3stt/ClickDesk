@@ -1,0 +1,238 @@
+/* Estilos específicos da tela de logout */
+/* Seguindo o mesmo padrão da tela de login */
+
+/* Ícone de logout no lado esquerdo */
+.logout-icon {
+  margin-top: 40px;
+  color: var(--brand);
+  opacity: 0.8;
+}
+
+.logout-icon svg {
+  filter: drop-shadow(0 4px 8px rgba(242, 138, 26, 0.3));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Ajustes no header do auth-card */
+.auth-header .thanks-message {
+  color: var(--brand);
+  font-weight: var(--font-semi);
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* Container da barra de progresso */
+.progress-container {
+  margin: 32px 0;
+  padding: 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(242, 138, 26, 0.2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand) 0%, #ff9f40 100%);
+  border-radius: var(--radius);
+  width: 0%;
+  animation: fillProgress 3s ease-in-out forwards;
+  transition: width 0.3s ease;
+}
+
+@keyframes fillProgress {
+  to {
+    width: 100%;
+  }
+}
+
+.progress-text {
+  color: var(--muted-ink);
+  font-size: 14px;
+  margin: 0;
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+/* Botões de ação seguindo padrão do projeto */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.action-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.action-buttons .btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.action-buttons .btn svg {
+  flex-shrink: 0;
+}
+
+/* Informações da sessão */
+.session-info {
+  margin: 24px 0;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius);
+}
+
+.session-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.session-detail:first-child {
+  margin-top: 0;
+}
+
+.session-detail:last-child {
+  margin-bottom: 0;
+}
+
+.session-detail span:first-child {
+  color: var(--muted-ink);
+  font-weight: var(--font-medium);
+}
+
+.session-detail span:last-child {
+  color: var(--ink);
+  font-weight: var(--font-semi);
+}
+
+/* Nota de segurança */
+.security-note {
+  font-size: 12px !important;
+  color: var(--muted-ink) !important;
+  text-align: center;
+  font-style: italic;
+  margin-top: 16px !important;
+}
+
+/* Animações de entrada */
+.auth-card > * {
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.auth-card > *:nth-child(1) { animation-delay: 0.1s; }
+.auth-card > *:nth-child(2) { animation-delay: 0.2s; }
+.auth-card > *:nth-child(3) { animation-delay: 0.3s; }
+.auth-card > *:nth-child(4) { animation-delay: 0.4s; }
+.auth-card > *:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo - seguindo padrão do auth-styles.css */
+@media (max-width: 768px) {
+  .action-buttons {
+    gap: 12px;
+  }
+  
+  .session-info {
+    padding: 12px;
+  }
+  
+  .session-detail {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+  
+  .logout-icon {
+    margin-top: 20px;
+  }
+  
+  .logout-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Estados dos botões durante o progresso */
+.btn-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Melhorias visuais específicas para logout */
+.progress-container {
+  position: relative;
+}
+
+.progress-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--brand);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}

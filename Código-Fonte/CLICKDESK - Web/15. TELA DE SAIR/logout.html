@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logout • Clickdesk</title>
+  
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="../shared/styles/auth-styles.css" />
+  <link rel="stylesheet" href="styles/logout.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="login-container">
+      <!-- Lado esquerdo - Branding -->
+      <div class="login-branding">
+        <div class="branding-content">
+          <h1 class="clickdesk-logo">Clickdesk</h1>
+          <p class="clickdesk-subtitle">Sistema de Gerenciamento de Chamados</p>
+          
+          <!-- Ícone de logout -->
+          <div class="logout-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16,17 21,12 16,7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito - Card de logout -->
+      <div class="auth-card">
+        <header class="auth-header">
+          <h2 class="auth-title">Saindo do sistema...</h2>
+          <p class="auth-subtitle">Você está sendo desconectado do Clickdesk.</p>
+          <p class="thanks-message">Obrigado por usar nosso sistema!</p>
+        </header>
+
+        <!-- Barra de progresso -->
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="progress-text">Finalizando sessão...</p>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="action-buttons">
+          <button type="button" id="loginBtn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10,17 15,12 10,7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            Fazer login novamente
+          </button>
+          
+          <button type="button" id="homeBtn" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            Ir para início
+          </button>
+        </div>
+
+        <!-- Informações da sessão -->
+        <div class="session-info">
+          <div class="session-detail">
+            <span>Usuário: </span>
+            <span id="sessionUser">Usuário</span>
+          </div>
+          <div class="session-detail">
+            <span>Tempo de sessão: </span>
+            <span id="sessionTime">Sessão ativa</span>
+          </div>
+        </div>
+
+        <!-- Nota de segurança -->
+        <p class="auth-terms security-note">
+          Por segurança, feche todas as abas do navegador após sair.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="./scripts/logout.js"></script>
+</body>
+</html>

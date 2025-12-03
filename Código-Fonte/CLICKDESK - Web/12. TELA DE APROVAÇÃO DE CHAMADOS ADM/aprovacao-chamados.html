@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk — Aprovação de chamados</title>
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <link rel="stylesheet" href="./styles/aprovacao-chamados.css" />
+  <link rel="stylesheet" href="./styles/aprovacao-clean.css" />
+  <link rel="stylesheet" href="../shared/styles/photo-upload.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <h1 class="logo">Clickdesk</h1>
+      </div>
+
+      <div class="nav-wrapper">
+        <nav class="nav" aria-label="Menu principal">
+          <a class="nav-item" href="../11. TELA DASHBOARD ADM/dashboard-adm.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+              </g>
+            </svg>
+            <span class="nav-label">Dashboard Técnico</span>
+          </a>
+
+          <a class="nav-item active" href="aprovacao-chamados.html" aria-current="page">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12l2 2 4-4"/>
+                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+              </g>
+            </svg>
+            <span class="nav-label">Aprovação de chamados</span>
+          </a>
+
+          <a class="nav-item" href="../13. TELA DE MEUS CHAMADOS ADM/meus-chamado-adm.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6h11M9 12h11M9 18h11"/>
+                <path d="M4.5 6.5 6 8l2.5-2.5"/>
+                <path d="M4.5 12.5 6 14l2.5-2.5"/>
+                <path d="M4.5 18.5 6 20l2.5-2.5"/>
+              </g>
+            </svg>
+            <span class="nav-label">Meus chamados</span>
+          </a>
+
+          <a class="nav-item" href="../5.6. TELA DE EDIÇÃO DE PERFIL ADM/editar-perfil-adm.html" id="editProfileLink">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="7" r="3"/>
+                <path d="M13.5 14.5A6.5 6.5 0 0 0 10 13H10a6.5 6.5 0 0 0-6.5 6.5"/>
+                <path d="M21.5 12.5l-4.2 4.2a2 2 0 0 0-.5 1l-.3 2.1 2.1-.3a2 2 0 0 0 1-.5l4.2-4.2a1.8 1.8 0 0 0-2.3-2.3Z"/>
+              </g>
+            </svg>
+            <span class="nav-label">Edição de perfil</span>
+          </a>
+
+          <a class="nav-item" href="../10.1. TELA DE FAQ ADM/faq-adm.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+                <circle cx="12" cy="17" r="1"/>
+              </g>
+            </svg>
+            <span class="nav-label">FAQ</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Menu do usuário no rodapé da sidebar -->
+      <div class="sidebar-footer">
+        <div class="user-menu">
+          <button class="user-avatar" id="userMenuBtn" aria-label="Menu do usuário">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown" hidden>
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="user-dropdown-info">
+                <div class="user-dropdown-name" id="userName">Técnico</div>
+                <div class="user-dropdown-email" id="userEmail">tecnico@email.com</div>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-menu">
+              <a href="../5.6. TELA DE EDIÇÃO DE PERFIL ADM/editar-perfil-adm.html" class="user-dropdown-item">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                  <polyline points="17 21 17 13 7 13 7 21"/>
+                  <polyline points="7 3 7 8 15 8"/>
+                </svg>
+                <span>Editar perfil</span>
+              </a>
+              <button class="user-dropdown-item logout-btn" id="logoutBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Sair</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title page-title--accent">Aprovação de chamados</h1>
+        </div>
+        <div class="topbar-right">
+          <!-- Controles de janela -->
+          <div class="window-controls">
+            <button class="window-control minimize" aria-label="Minimizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="6" y1="12" x2="18" y2="12"/>
+              </svg>
+            </button>
+            <button class="window-control maximize" aria-label="Maximizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+            </button>
+            <button class="window-control close" aria-label="Fechar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="main-area">
+
+        <div class="container">
+          <div class="controls">
+            <label class="show-wrap">
+              Exibir:
+              <select id="pageSize" aria-label="Itens por página">
+                <option value="5" selected>05</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+              <span>Entradas</span>
+            </label>
+
+            <div class="search-wrap">
+              <input id="searchInput" type="search" placeholder="Buscar por número ou assunto" aria-label="Buscar" />
+              <svg class="icon-stroke search-icon" viewBox="0 0 24 24" aria-hidden>
+                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="7"/>
+                  <path d="M20 20 16.65 16.65"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Grid de cards dos chamados -->
+          <div class="chamados-grid" id="chamadosGrid">
+            <!-- Os cards serão inseridos aqui dinamicamente -->
+          </div>
+
+          <div class="pagination-wrapper">
+            <div id="rangeInfo" class="muted">—</div>
+            <nav class="pagination" aria-label="Paginação">
+              <button id="prevBtn" class="page-btn" aria-label="Página anterior" title="Anterior">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <span id="pageIndex" class="page-index">1</span>
+              <button id="nextBtn" class="page-btn" aria-label="Próxima página" title="Próxima">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS desta tela (subpasta scripts) -->
+  
+  <!-- MODAL DE UPLOAD DE FOTO -->
+  <div id="photoModal" class="photo-modal" hidden>
+    <div class="photo-modal-backdrop"></div>
+    <div class="photo-modal-content">
+      <div class="photo-modal-header">
+        <h2>Alterar foto de perfil</h2>
+        <button class="photo-modal-close" id="closePhotoModal" aria-label="Fechar"></button>
+      </div>
+      <div class="photo-modal-body">
+        <div class="photo-preview" id="photoPreview">
+          <img id="previewImg" alt="Preview" style="display:none;">
+          <div id="photoPlaceholder" class="photo-placeholder">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+        <button class="photo-btn photo-btn-secondary" id="selectPhotoBtn">Selecionar foto</button>
+        <p class="photo-help">M�ximo 5MB  JPG, PNG ou GIF</p>
+      </div>
+      <div class="photo-modal-footer">
+        <button class="photo-btn photo-btn-secondary" id="closePhotoModal">Cancelar</button>
+        <button class="photo-btn photo-btn-primary" id="uploadPhotoBtn" disabled>Salvar</button>
+      </div>
+    </div>
+  </div><script src="./scripts/aprovacao-chamados.js"></script>
+</body>
+</html>

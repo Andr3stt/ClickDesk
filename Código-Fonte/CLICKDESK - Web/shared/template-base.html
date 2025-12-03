@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk — [NOME DA PÁGINA]</title>
+  
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  
+  <!-- CSS ESPECÍFICO DA PÁGINA (se necessário) -->
+  <link rel="stylesheet" href="styles/[nome-pagina].css" />
+</head>
+<body>
+  <div class="app-shell">
+    
+    <!-- ============================================
+         SIDEBAR - NAVEGAÇÃO PRINCIPAL
+         ============================================ -->
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <h1 class="logo">Clickdesk</h1>
+      </div>
+
+      <nav class="nav" aria-label="Menu principal">
+        <!-- Dashboard -->
+        <a class="nav-item" href="../6. TELA DE DASHBOARD/dashboard.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+              <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+              <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+              <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+            </g>
+          </svg>
+          <span class="nav-label">Dashboard</span>
+        </a>
+
+        <!-- Novo chamado -->
+        <a class="nav-item" href="../7. TELA DE NOVO CHAMADO/novo-chamado.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-6-6Z"/>
+              <path d="M14 3v6h6"/>
+              <path d="M12 13v6M9 16h6"/>
+            </g>
+          </svg>
+          <span class="nav-label">Novo chamado</span>
+        </a>
+
+        <!-- Meus chamados -->
+        <a class="nav-item" href="../9. TELA DE MEU CHAMADO/meus-chamado.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 6h11M9 12h11M9 18h11"/>
+              <path d="M4.5 6.5 6 8l2.5-2.5"/>
+              <path d="M4.5 12.5 6 14l2.5-2.5"/>
+              <path d="M4.5 18.5 6 20l2.5-2.5"/>
+            </g>
+          </svg>
+          <span class="nav-label">Meus chamados</span>
+        </a>
+
+        <!-- Edição de perfil -->
+        <a class="nav-item" href="../5.6. TELA DE EDIÇÃO DE PERFIL ADM/editar-perfil-adm.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="7" r="3"/>
+              <path d="M13.5 14.5A6.5 6.5 0 0 0 10 13H10a6.5 6.5 0 0 0-6.5 6.5"/>
+              <path d="M21.5 12.5l-4.2 4.2a2 2 0 0 0-.5 1l-.3 2.1 2.1-.3a2 2 0 0 0 1-.5l4.2-4.2a1.8 1.8 0 0 0-2.3-2.3Z"/>
+            </g>
+          </svg>
+          <span class="nav-label">Edição de perfil</span>
+        </a>
+
+        <!-- FAQ -->
+        <a class="nav-item" href="../10. TELA DE FAQ/faq.html">
+          <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+              <circle cx="12" cy="17" r="1"/>
+            </g>
+          </svg>
+          <span class="nav-label">FAQ</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL
+         ============================================ -->
+    <main class="content">
+      
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-right">
+          <span id="lastUpdated" class="muted">Atualizado às 20:56</span>
+          <button id="refreshBtn" class="icon-btn refresh-btn" title="Atualizar" aria-label="Atualizar">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 7v5h-5"/>
+                <path d="M20 12a8 8 0 1 1-2.34-5.66L20 7"/>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Área principal de conteúdo -->
+      <section class="main-area">
+        
+        <!-- Título da página com acento laranja -->
+        <h1 class="page-title page-title--accent">[Título da Página]</h1>
+
+        <!-- Container do conteúdo -->
+        <div class="container">
+          
+          <!-- ===== EXEMPLO: Card simples ===== -->
+          <article class="card">
+            <h2 class="card-title">Título do card</h2>
+            <p>Conteúdo do card aqui...</p>
+          </article>
+
+          <!-- ===== EXEMPLO: Grid de cards ===== -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px;">
+            <article class="card">
+              <h2 class="card-title">Card 1</h2>
+              <p>Conteúdo...</p>
+            </article>
+            <article class="card">
+              <h2 class="card-title">Card 2</h2>
+              <p>Conteúdo...</p>
+            </article>
+          </div>
+
+          <!-- ===== EXEMPLO: Formulário ===== -->
+          <article class="card">
+            <h2 class="card-title">Formulário de exemplo</h2>
+            <form style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <label class="label" for="campo1">Nome do campo</label>
+                <input type="text" id="campo1" class="input" placeholder="Digite aqui...">
+              </div>
+              
+              <div>
+                <label class="label" for="campo2">Outro campo</label>
+                <select id="campo2" class="input">
+                  <option value="">Selecione...</option>
+                  <option value="1">Opção 1</option>
+                  <option value="2">Opção 2</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="label" for="campo3">Descrição</label>
+                <textarea id="campo3" class="input" placeholder="Escreva aqui..."></textarea>
+              </div>
+              
+              <div style="display: flex; gap: 12px;">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+              </div>
+            </form>
+          </article>
+
+          <!-- ===== EXEMPLO: Badges e prioridades ===== -->
+          <article class="card">
+            <h2 class="card-title">Badges e status</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+              <span class="badge status-open">Aberto</span>
+              <span class="badge status-progress">Em progresso</span>
+              <span class="badge status-waiting">Aguardando</span>
+              <span class="badge status-closed">Concluído</span>
+              
+              <span class="prio-flag p1">P1</span>
+              <span class="prio-flag p2">P2</span>
+              <span class="prio-flag p3">P3</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript da página (se necessário) -->
+  <script src="scripts/[nome-pagina].js"></script>
+</body>
+</html>

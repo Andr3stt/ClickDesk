@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clickdesk — Dashboard</title>
+  <!-- CSS GLOBAL PADRONIZADO -->
+  <link rel="stylesheet" href="../shared/styles/clickdesk-base.css" />
+  <!-- CSS ESPECÍFICO DA DASHBOARD -->
+  <link rel="stylesheet" href="styles/dashboard-specific.css" />
+  <!-- CSS UPLOAD DE FOTO -->
+  <link rel="stylesheet" href="../shared/styles/photo-upload.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <h1 class="logo">Clickdesk</h1>
+      </div>
+
+      <div class="nav-wrapper">
+        <nav class="nav" aria-label="Menu principal">
+          <a class="nav-item active" href="dashboard.html" aria-current="page">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+                <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+                <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+              </g>
+            </svg>
+            <span class="nav-label">Dashboard</span>
+          </a>
+
+          <a class="nav-item" href="../7. TELA DE NOVO CHAMADO/novo-chamado.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-6-6Z"/>
+                <path d="M14 3v6h6"/>
+                <path d="M12 13v6M9 16h6"/>
+              </g>
+            </svg>
+            <span class="nav-label">Novo chamado</span>
+          </a>
+
+          <a class="nav-item" href="../9. TELA DE MEU CHAMADO/meus-chamado.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6h11M9 12h11M9 18h11"/>
+                <path d="M4.5 6.5 6 8l2.5-2.5"/>
+                <path d="M4.5 12.5 6 14l2.5-2.5"/>
+                <path d="M4.5 18.5 6 20l2.5-2.5"/>
+              </g>
+            </svg>
+            <span class="nav-label">Meus chamados</span>
+          </a>
+
+          <a class="nav-item" href="../10. TELA DE FAQ/faq.html">
+            <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+              <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+                <circle cx="12" cy="17" r="1"/>
+              </g>
+            </svg>
+            <span class="nav-label">FAQ</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Menu do usuário no rodapé da sidebar -->
+      <div class="sidebar-footer">
+        <div class="user-menu">
+          <button class="user-avatar" id="userMenuBtn" aria-label="Menu do usuário">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown" hidden>
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #F28A1A;">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="user-dropdown-info">
+                <div class="user-dropdown-name" id="userName">Usuário</div>
+                <div class="user-dropdown-email" id="userEmail">usuario@email.com</div>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-menu">
+              <button class="user-dropdown-item" id="changePhotoBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <span>Alterar foto</span>
+              </button>
+              <button class="user-dropdown-item logout-btn" id="logoutBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Sair</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title page-title--accent">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <!-- Controles de janela -->
+          <div class="window-controls">
+            <button class="window-control minimize" aria-label="Minimizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="6" y1="12" x2="18" y2="12"/>
+              </svg>
+            </button>
+            <button class="window-control maximize" aria-label="Maximizar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+            </button>
+            <button class="window-control close" aria-label="Fechar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="main-area">
+        <div class="container">
+          <!-- Toolbar simplificada -->
+          <div class="toolbar" role="region" aria-label="Filtros da dashboard">
+            <label class="range">
+              Período
+              <select id="rangeSelect" aria-label="Selecionar período">
+                <option value="today">Hoje</option>
+                <option value="7d" selected>Últimos 7 dias</option>
+                <option value="30d">Últimos 30 dias</option>
+              </select>
+            </label>
+            <button id="refreshBtn" class="icon-btn refresh-btn" title="Atualizar" aria-label="Atualizar">
+              <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 7v5h-5"/>
+                  <path d="M20 12a8 8 0 1 1-2.34-5.66L20 7"/>
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          <!-- KPIs (sem gráficos) -->
+          <div class="cards" role="list">
+            <article class="card" role="listitem">
+              <h2 class="card-title">Total de chamados</h2>
+              <div class="kpi">
+                <div class="card-value" id="kpi-total" aria-live="polite">—</div>
+                <span class="delta" id="delta-total" aria-live="polite"></span>
+              </div>
+            </article>
+
+            <article class="card soft" role="listitem">
+              <h2 class="card-title">Chamados atendidos</h2>
+              <div class="kpi">
+                <div class="card-value" id="kpi-attended" aria-live="polite">—</div>
+                <span class="delta" id="delta-attended" aria-live="polite"></span>
+              </div>
+            </article>
+
+            <article class="card" role="listitem">
+              <h2 class="card-title">Chamados em espera</h2>
+              <div class="kpi">
+                <div class="card-value" id="kpi-waiting" aria-live="polite">—</div>
+                <span class="delta" id="delta-waiting" aria-live="polite"></span>
+              </div>
+            </article>
+
+            <article class="card" role="listitem">
+              <h2 class="card-title">Chamados em progresso</h2>
+              <div class="kpi">
+                <div class="card-value" id="kpi-inprogress" aria-live="polite">—</div>
+                <span class="delta" id="delta-inprogress" aria-live="polite"></span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Ações rápidas -->
+          <div class="quick-actions" role="list">
+            <a class="qa-card" role="listitem" href="../7. TELA DE NOVO CHAMADO/novo-chamado.html" id="qa-new">
+              <span class="qa-icon">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                    <path d="M12 8v8M8 12h8"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="qa-title">Novo chamado</span>
+              <span class="qa-arrow" aria-hidden>›</span>
+            </a>
+
+            <a class="qa-card" role="listitem" href="../9. TELA DE MEU CHAMADO/meus-chamado.html" id="qa-my">
+              <span class="qa-icon">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11"/>
+                    <path d="M4.5 6.5 6 8l2.5-2.5"/>
+                    <path d="M4.5 12.5 6 14l2.5-2.5"/>
+                    <path d="M4.5 18.5 6 20l2.5-2.5"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="qa-title">Meus chamados</span>
+              <span class="qa-arrow" aria-hidden>›</span>
+            </a>
+
+            <a class="qa-card" role="listitem" href="../10. TELA DE FAQ/faq.html" id="qa-faq">
+              <span class="qa-icon">
+                <svg class="icon-stroke" viewBox="0 0 24 24" aria-hidden>
+                  <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.6.6-1.35.9-1.95 1.5-.3.3-.45.6-.45 1.5"/>
+                    <circle cx="12" cy="17" r="1"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="qa-title">FAQ</span>
+              <span class="qa-arrow" aria-hidden>›</span>
+            </a>
+          </div>
+
+          <!-- Gráficos de Analytics -->
+          <div class="charts-grid">
+            <!-- Gráfico: Chamados por Categoria -->
+            <article class="chart-card">
+              <header class="chart-header">
+                <h3 class="chart-title">Chamados por Categoria</h3>
+                <div class="chart-filter-container">
+                  <select class="chart-filter" id="categoryTimeFilter">
+                    <option value="7">📊 Últimos 7 dias</option>
+                    <option value="30">📈 Últimos 30 dias</option>
+                    <option value="90">📉 Últimos 90 dias</option>
+                  </select>
+                </div>
+              </header>
+              
+              <div class="chart-content">
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #4285f4;"></span>
+                      <span>Hardware</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 100%; background-color: #4285f4;"></div>
+                    </div>
+                    <span class="chart-value">32</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #34a853;"></span>
+                      <span>Software</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 69%; background-color: #34a853;"></div>
+                    </div>
+                    <span class="chart-value">22</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #fbbc04;"></span>
+                      <span>Rede</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 53%; background-color: #fbbc04;"></div>
+                    </div>
+                    <span class="chart-value">17</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #ea4335;"></span>
+                      <span>Acesso</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 38%; background-color: #ea4335;"></div>
+                    </div>
+                    <span class="chart-value">12</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #9c27b0;"></span>
+                      <span>Outros</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 28%; background-color: #9c27b0;"></div>
+                    </div>
+                    <span class="chart-value">9</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Gráfico: Status dos Chamados -->
+            <article class="chart-card">
+              <header class="chart-header">
+                <h3 class="chart-title">Status dos Chamados</h3>
+              </header>
+              
+              <div class="chart-content">
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #fbbc04;"></span>
+                      <span>Aberto</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 27%; background-color: #fbbc04;"></div>
+                    </div>
+                    <span class="chart-value">12</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #4285f4;"></span>
+                      <span>Em Andamento</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 18%; background-color: #4285f4;"></div>
+                    </div>
+                    <span class="chart-value">8</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #9e9e9e;"></span>
+                      <span>Aguardando</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 11%; background-color: #9e9e9e;"></div>
+                    </div>
+                    <span class="chart-value">5</span>
+                  </div>
+                </div>
+
+                <div class="chart-item">
+                  <div class="chart-row">
+                    <div class="chart-label">
+                      <span class="chart-dot" style="background-color: #34a853;"></span>
+                      <span>Resolvido</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-progress" style="width: 100%; background-color: #34a853;"></div>
+                    </div>
+                    <span class="chart-value">45</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Parte inferior: Chamados Recentes -->
+          <div class="bottom-grid">
+            <article class="panel wide" id="recentPanel">
+              <header class="panel-header">
+                <h3>Chamados Recentes</h3>
+                <a href="../9. TELA DE MEU CHAMADO/meus-chamado.html" class="panel-link-btn" id="seeAllTickets">
+                  <span>Ver Todos</span>
+                  <span class="arrow">›</span>
+                </a>
+              </header>
+
+              <div class="recent-cards-grid" id="recentCardsGrid">
+                <!-- Os tickets serão inseridos aqui dinamicamente -->
+              </div>
+              <div class="empty" id="recentEmpty" hidden>Nenhum chamado recente.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL DE UPLOAD DE FOTO -->
+  <div id="photoModal" class="photo-modal" hidden>
+    <div class="photo-modal-backdrop"></div>
+    <div class="photo-modal-content">
+      <div class="photo-modal-header">
+        <h2>Alterar foto de perfil</h2>
+        <button class="photo-modal-close" id="closePhotoModal" aria-label="Fechar"></button>
+      </div>
+      <div class="photo-modal-body">
+        <div class="photo-preview" id="photoPreview">
+          <img id="previewImg" alt="Preview" style="display:none;">
+          <div id="photoPlaceholder" class="photo-placeholder">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+        <button class="photo-btn photo-btn-secondary" id="selectPhotoBtn">Selecionar foto</button>
+        <p class="photo-help">Máximo 5MB • JPG, PNG ou GIF</p>
+      </div>
+      <div class="photo-modal-footer">
+        <button class="photo-btn photo-btn-secondary" id="closePhotoModal">Cancelar</button>
+        <button class="photo-btn photo-btn-primary" id="uploadPhotoBtn" disabled>Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rotas configuráveis -->
+  <script>
+    window.CLICKDESK_ROUTES = {
+      ticketDetail: "/chamado.html?id={id}"
+    };
+  </script>
+
+  <!-- Scripts -->
+  <script src="scripts/dashboard.js"></script>
+</body>
+</html>
