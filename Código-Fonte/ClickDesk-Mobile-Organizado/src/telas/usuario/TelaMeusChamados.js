@@ -43,17 +43,10 @@ export default function MyTicketScreen({ navigation }) {
     return colors[status] || '#9E9E9E';
   };
 
-  const kpis = [
-    { label: 'Total de chamados', value: '8', delta: '-27%', isPositive: false },
-    { label: 'Chamados atendidos', value: '6', delta: '-45%', isPositive: false },
-    { label: 'Chamados em espera', value: '10', delta: '+100%', isPositive: true },
-    { label: 'Chamados em progresso', value: '15', delta: '+25%', isPositive: true },
-  ];
-
   const renderTicket = ({ item }) => (
     <TouchableOpacity
       style={styles.ticketCard}
-      onPress={() => navigation.navigate('TicketDetails', { id: item.id })}
+      onPress={() => navigation.navigate('DetalhesChamado', { id: item.id })}
     >
       <View style={styles.ticketHeader}>
         <Text style={styles.ticketId}>#{item.id}</Text>
@@ -74,7 +67,7 @@ export default function MyTicketScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor="#EDE6D9" />
       
       <View style={styles.header}>
         <TouchableOpacity style={styles.refreshButton}>
@@ -123,27 +116,6 @@ export default function MyTicketScreen({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.kpisContainer}>
-          {kpis.map((kpi, index) => (
-            <View key={index} style={styles.kpiCard}>
-              <Text style={styles.kpiLabel}>{kpi.label}</Text>
-              <View style={styles.kpiValueRow}>
-                <Text style={styles.kpiValue}>{kpi.value}</Text>
-                <View style={[styles.deltaBadge, { backgroundColor: kpi.isPositive ? '#34A85320' : '#EA433520' }]}>
-                  <MaterialCommunityIcons 
-                    name={kpi.isPositive ? 'arrow-up' : 'arrow-down'} 
-                    size={12} 
-                    color={kpi.isPositive ? '#34A853' : '#EA4335'} 
-                  />
-                  <Text style={[styles.deltaText, { color: kpi.isPositive ? '#34A853' : '#EA4335' }]}>
-                    {kpi.delta}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          ))}
-        </View>
-
         {filteredTickets.length === 0 ? (
           <View style={styles.emptyState}>
             <MaterialCommunityIcons name="file-document-outline" size={64} color="#BDC3C7" />
@@ -165,8 +137,8 @@ export default function MyTicketScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: '#EDE6D9' },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: Cores.background, borderBottomWidth: 0 },
   backButton: { padding: 4 },
   headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#E67E22' },
   refreshButton: { padding: 4 },
@@ -181,13 +153,6 @@ const styles = StyleSheet.create({
   filterButtonActive: { backgroundColor: '#E67E22', borderColor: '#E67E22' },
   filterButtonText: { fontSize: 12, fontWeight: '600', color: '#7F8C8D' },
   filterButtonTextActive: { color: 'white' },
-  kpisContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: 16 },
-  kpiCard: { backgroundColor: 'white', borderRadius: 12, padding: 16, minWidth: '47%', flex: 1, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 2 },
-  kpiLabel: { fontSize: 12, color: '#7F8C8D', marginBottom: 8 },
-  kpiValueRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  kpiValue: { fontSize: 24, fontWeight: 'bold', color: '#2C3E50' },
-  deltaBadge: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6 },
-  deltaText: { fontSize: 11, fontWeight: '600', marginLeft: 2 },
   ticketsList: { gap: 12 },
   ticketCard: { backgroundColor: 'white', borderRadius: 12, padding: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 2 },
   ticketHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },

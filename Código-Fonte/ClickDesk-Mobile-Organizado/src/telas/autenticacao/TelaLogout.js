@@ -28,7 +28,7 @@ export default function LogoutScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor="#EDE6D9" />
       
       <View style={styles.content}>
         {/* Branding Section */}
@@ -106,7 +106,7 @@ export default function LogoutScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8D5C4',
+    backgroundColor: '#EDE6D9',
   },
   content: {
     flex: 1,

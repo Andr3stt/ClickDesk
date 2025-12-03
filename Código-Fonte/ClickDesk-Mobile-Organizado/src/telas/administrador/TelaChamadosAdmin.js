@@ -11,11 +11,15 @@ import {
   Alert,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cores } from '../../estilos/cores';
+import MenuLateral from '../../componentes/MenuLateral';
+import LogoClickDesk from '../../componentes/LogoClickDesk';
 
 export default function MyTicketsAdminScreen({ navigation }) {
   const [statusFilter, setStatusFilter] = useState('todos');
   const [categoryFilter, setCategoryFilter] = useState('todas');
   const [searchQuery, setSearchQuery] = useState('');
+  const [menuVisible, setMenuVisible] = useState(false);
   const [tickets, setTickets] = useState([
     { id: 'CD-145', title: 'Problema com impressora HP', category: 'Hardware', status: 'aberto', date: 'Hoje • 14:30', requester: 'João Silva' },
     { id: 'CD-144', title: 'Acesso negado ao sistema', category: 'Acesso', status: 'em-andamento', date: 'Hoje • 13:15', requester: 'Maria Santos' },
@@ -76,7 +80,7 @@ export default function MyTicketsAdminScreen({ navigation }) {
   const renderTicket = ({ item }) => (
     <TouchableOpacity
       style={styles.ticketCard}
-      onPress={() => navigation.navigate('TicketDetails', { ticketId: item.id })}
+      onPress={() => navigation.navigate('DetalhesChamado', { id: item.id, userType: 'admin' })}
     >
       <View style={styles.ticketHeader}>
         <Text style={styles.ticketId}>{item.id}</Text>
@@ -120,18 +124,30 @@ export default function MyTicketsAdminScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor={Cores.background} />
+      
+      <MenuLateral 
+        visible={menuVisible}
+        onClose={() => setMenuVisible(false)}
+        navigation={navigation}
+        tipoUsuario="administrador"
+      />
       
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <MaterialCommunityIcons name="arrow-left" size={24} color="#2C3E50" />
+        <TouchableOpacity 
+          style={styles.menuButton}
+          onPress={() => setMenuVisible(true)}
+        >
+          <MaterialCommunityIcons name="menu" size={28} color={Cores.brand} />
         </TouchableOpacity>
-        <View style={styles.headerTextContainer}>
-          <Text style={styles.headerTitle}>Meus Chamados</Text>
-          <Text style={styles.headerSubtitle}>(Técnico)</Text>
-        </View>
-        <TouchableOpacity style={styles.refreshButton}>
-          <MaterialCommunityIcons name="refresh" size={24} color="#E67E22" />
+        
+        <LogoClickDesk size="medium" />
+        
+        <TouchableOpacity 
+          style={styles.menuButton}
+          onPress={() => navigation.navigate('EditarPerfil')}
+        >
+          <MaterialCommunityIcons name="account-circle" size={32} color={Cores.brand} />
         </TouchableOpacity>
       </View>
 
@@ -221,8 +237,9 @@ export default function MyTicketsAdminScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: Cores.background },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: Cores.background, borderBottomWidth: 0 },
+  menuButton: { padding: 4 },
   backButton: { padding: 4 },
   headerTextContainer: { flex: 1, alignItems: 'center' },
   headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#2C3E50' },

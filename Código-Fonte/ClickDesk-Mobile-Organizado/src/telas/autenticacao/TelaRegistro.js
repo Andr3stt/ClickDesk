@@ -1,517 +1,292 @@
 /**
  * Tela de Registro
  * 
- * Permite que novos usuários criem uma conta no sistema ClickDesk.
+ * Permite que novos usuários criem uma conta no ClickDesk
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
-  StatusBar,
+  ScrollView,
   Alert,
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cores } from '../../estilos/cores';
+import { registrar } from '../../servicos/api/autenticacaoService';
+import { validarEmail } from '../../servicos/utilitarios/validadores';
+import LogoClickDesk from '../../componentes/LogoClickDesk';
 
-export default function TelaRegistro({ navigation, route }) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+export default function TelaRegistro({ navigation }) {
+  const [nome, setNome] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const [userType, setUserType] = useState('usuario'); // 'usuario' ou 'tecnico'
+  const [carregando, setCarregando] = useState(false);
+  const [erros, setErros] = useState({});
 
-  // Verifica se voltou da tela de termos
-  useEffect(() => {
-    if (route?.params?.termsAccepted) {
-      setTermsAccepted(true);
-      const userData = route.params.userData;
-      if (userData) {
-        setFirstName(userData.firstName);
-        setLastName(userData.lastName);
-        setEmail(userData.email);
-        setPassword(userData.password);
-        setConfirmPassword(userData.confirmPassword);
-        setUserType(userData.userType);
+  const validarFormulario = () => {
+    const novosErros = {};
+
+    if (!nome.trim()) {
+      novosErros.nome = 'Nome é obrigatório';
+    }
+
+    if (!sobrenome.trim()) {
+      novosErros.sobrenome = 'Sobrenome é obrigatório';
+    }
+
+    if (!email.trim()) {
+      novosErros.email = 'Email é obrigatório';
+    } else if (!validarEmail(email)) {
+      novosErros.email = 'Email inválido';
+    }
+
+    setErros(novosErros);
+    return Object.keys(novosErros).length === 0;
+  };
+
+  const handleRegistro = async () => {
+    if (!validarFormulario()) {
+      return;
+    }
+
+    setCarregando(true);
+
+    try {
+      const resultado = await registrar({
+        firstName: nome,
+        lastName: sobrenome,
+        email: email,
+        password: 'temp123', // Senha temporária - será definida via email
+        userType: 'USER',
+      });
+
+      if (resultado.success) {
+        Alert.alert(
+          'Sucesso!',
+          'Conta criada com sucesso! Verifique seu email para definir sua senha.',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('Login'),
+            },
+          ]
+        );
       }
-      // Limpa os parâmetros
-      navigation.setParams({ termsAccepted: undefined, userData: undefined });
-    }
-  }, [route?.params]);
-
-  const handleRegister = () => {
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      Alert.alert('Erro', 'Por favor, preencha todos os campos');
-      return;
-    }
-    
-    if (password !== confirmPassword) {
-      Alert.alert('Erro', 'As senhas não correspondem');
-      return;
-    }
-
-    if (!termsAccepted) {
+    } catch (error) {
       Alert.alert(
-        'Termos de Uso',
-        'Você precisa ler e aceitar os Termos de Uso para continuar.',
-        [
-          { text: 'Cancelar', style: 'cancel' },
-          { 
-            text: 'Ler Termos', 
-            onPress: () => navigation.navigate('Terms', { 
-              returnTo: 'Register',
-              userData: { firstName, lastName, email, password, confirmPassword, userType }
-            })
-          }
-        ]
+        'Erro',
+        error.mensagem || 'Não foi possível criar a conta. Tente novamente.'
       );
-      return;
+    } finally {
+      setCarregando(false);
     }
-
-    Alert.alert(
-      'Sucesso', 
-      `Conta criada com sucesso!\nTipo: ${userType === 'tecnico' ? 'Técnico' : 'Usuário'}`,
-      [{ text: 'OK', onPress: () => navigation.navigate('Login') }]
-    );
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#E67E22" />
-      <KeyboardAvoidingView 
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardAvoid}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
       >
-        <ScrollView 
-          contentContainerStyle={styles.scrollContent} 
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.brandingSection}>
-            <Text style={styles.brandTitle}>ClickDesk</Text>
-            <Text style={styles.brandSubtitle}>Crie sua conta e comece a gerenciar seus chamados</Text>
-            
-            <View style={styles.featuresList}>
-              <View style={styles.featureItem}>
-                <Text style={styles.featureIcon}>✓</Text>
-                <Text style={styles.featureText}>Gestão completa de chamados</Text>
-              </View>
-              <View style={styles.featureItem}>
-                <Text style={styles.featureIcon}>✓</Text>
-                <Text style={styles.featureText}>Controle de prazos e prioridades</Text>
-              </View>
-              <View style={styles.featureItem}>
-                <Text style={styles.featureIcon}>✓</Text>
-                <Text style={styles.featureText}>Colaboração em equipe</Text>
-              </View>
-            </View>
+        {/* Logo e Título */}
+        <View style={styles.headerContainer}>
+          <LogoClickDesk size="large" showText={false} />
+          <Text style={styles.titulo}>ClickDesk</Text>
+          <Text style={styles.subtitulo}>Criar nova conta</Text>
+        </View>
+
+        {/* Formulário */}
+        <View style={styles.formContainer}>
+          {/* Campo Nome */}
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Nome</Text>
+            <TextInput
+              style={[styles.input, erros.nome && styles.inputErro]}
+              placeholder="Digite seu nome"
+              placeholderTextColor={Cores.textoSecundario}
+              value={nome}
+              onChangeText={(text) => {
+                setNome(text);
+                if (erros.nome) {
+                  setErros({ ...erros, nome: null });
+                }
+              }}
+              autoCapitalize="words"
+              autoCorrect={false}
+            />
+            {erros.nome && (
+              <Text style={styles.textoErro}>{erros.nome}</Text>
+            )}
           </View>
 
-          <View style={styles.formCard}>
-            <View style={styles.header}>
-              <Text style={styles.title}>Criar nova conta</Text>
-              <Text style={styles.subtitle}>Preencha as informações abaixo para começar</Text>
-            </View>
-
-            <View style={styles.form}>
-              <View style={styles.formRow}>
-                <View style={[styles.inputContainer, styles.halfWidth]}>
-                  <Text style={styles.label}>Nome</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Seu nome"
-                    placeholderTextColor="#BDC3C7"
-                    value={firstName}
-                    onChangeText={setFirstName}
-                  />
-                </View>
-
-                <View style={[styles.inputContainer, styles.halfWidth]}>
-                  <Text style={styles.label}>Sobrenome</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Seu sobrenome"
-                    placeholderTextColor="#BDC3C7"
-                    value={lastName}
-                    onChangeText={setLastName}
-                  />
-                </View>
-              </View>
-
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>E-mail</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="seu@email.com"
-                  placeholderTextColor="#BDC3C7"
-                  value={email}
-                  onChangeText={setEmail}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                />
-              </View>
-
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>Senha</Text>
-                <View style={styles.passwordInputWrapper}>
-                  <TextInput
-                    style={styles.passwordInput}
-                    placeholder="Crie uma senha segura"
-                    placeholderTextColor="#BDC3C7"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={!showPassword}
-                  />
-                  <TouchableOpacity 
-                    style={styles.toggleButton}
-                    onPress={() => setShowPassword(!showPassword)}
-                  >
-                    <MaterialCommunityIcons 
-                      name={showPassword ? 'eye-off' : 'eye'} 
-                      size={20} 
-                      color="#95A5A6" 
-                    />
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.helpText}>Mínimo 8 caracteres, use letras, números e símbolos</Text>
-              </View>
-
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>Confirmar senha</Text>
-                <View style={styles.passwordInputWrapper}>
-                  <TextInput
-                    style={styles.passwordInput}
-                    placeholder="Digite a senha novamente"
-                    placeholderTextColor="#BDC3C7"
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                    secureTextEntry={!showConfirmPassword}
-                  />
-                  <TouchableOpacity 
-                    style={styles.toggleButton}
-                    onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-                  >
-                    <MaterialCommunityIcons 
-                      name={showConfirmPassword ? 'eye-off' : 'eye'} 
-                      size={20} 
-                      color="#95A5A6" 
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>Tipo de Conta</Text>
-                <View style={styles.userTypeContainer}>
-                  <TouchableOpacity
-                    style={[styles.userTypeButton, userType === 'usuario' && styles.userTypeButtonActive]}
-                    onPress={() => setUserType('usuario')}
-                  >
-                    <MaterialCommunityIcons 
-                      name="account" 
-                      size={24} 
-                      color={userType === 'usuario' ? '#E67E22' : '#7F8C8D'} 
-                    />
-                    <Text style={[styles.userTypeText, userType === 'usuario' && styles.userTypeTextActive]}>
-                      Usuário
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={[styles.userTypeButton, userType === 'tecnico' && styles.userTypeButtonActive]}
-                    onPress={() => setUserType('tecnico')}
-                  >
-                    <MaterialCommunityIcons 
-                      name="account-wrench" 
-                      size={24} 
-                      color={userType === 'tecnico' ? '#E67E22' : '#7F8C8D'} 
-                    />
-                    <Text style={[styles.userTypeText, userType === 'tecnico' && styles.userTypeTextActive]}>
-                      Técnico
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <TouchableOpacity 
-                style={styles.termsSection}
-                onPress={() => setTermsAccepted(!termsAccepted)}
-              >
-                <View style={[styles.checkbox, termsAccepted && styles.checkboxChecked]}>
-                  {termsAccepted && (
-                    <MaterialCommunityIcons name="check" size={14} color="white" />
-                  )}
-                </View>
-                <Text style={styles.termsLabel}>
-                  Eu aceito os <Text style={styles.termsLink} onPress={() => navigation.navigate('Terms')}>Termos de Uso</Text> e <Text style={styles.termsLink} onPress={() => navigation.navigate('Terms')}>Política de Privacidade</Text>
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.registerButton}
-                onPress={handleRegister}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.registerButtonText}>Criar conta</Text>
-              </TouchableOpacity>
-
-              <View style={styles.divider}>
-                <View style={styles.dividerLine} />
-                <Text style={styles.dividerText}>ou</Text>
-                <View style={styles.dividerLine} />
-              </View>
-
-              <View style={styles.loginSection}>
-                <Text style={styles.loginText}>Já possui uma conta?</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                  <Text style={styles.loginLink}>Fazer login</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+          {/* Campo Sobrenome */}
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Sobrenome</Text>
+            <TextInput
+              style={[styles.input, erros.sobrenome && styles.inputErro]}
+              placeholder="Digite seu sobrenome"
+              placeholderTextColor={Cores.textoSecundario}
+              value={sobrenome}
+              onChangeText={(text) => {
+                setSobrenome(text);
+                if (erros.sobrenome) {
+                  setErros({ ...erros, sobrenome: null });
+                }
+              }}
+              autoCapitalize="words"
+              autoCorrect={false}
+            />
+            {erros.sobrenome && (
+              <Text style={styles.textoErro}>{erros.sobrenome}</Text>
+            )}
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+
+          {/* Campo Email */}
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={[styles.input, erros.email && styles.inputErro]}
+              placeholder="Digite seu email"
+              placeholderTextColor={Cores.textoSecundario}
+              value={email}
+              onChangeText={(text) => {
+                setEmail(text);
+                if (erros.email) {
+                  setErros({ ...erros, email: null });
+                }
+              }}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {erros.email && (
+              <Text style={styles.textoErro}>{erros.email}</Text>
+            )}
+          </View>
+
+          {/* Botão Registrar */}
+          <TouchableOpacity
+            style={[styles.botao, carregando && styles.botaoDesabilitado]}
+            onPress={handleRegistro}
+            disabled={carregando}
+          >
+            {carregando ? (
+              <ActivityIndicator color={Cores.branco} />
+            ) : (
+              <Text style={styles.botaoTexto}>Criar Conta</Text>
+            )}
+          </TouchableOpacity>
+
+          {/* Link para Login */}
+          <View style={styles.rodapeContainer}>
+            <Text style={styles.textoRodape}>Já tem uma conta? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.linkRodape}>Fazer Login</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8D5C4',
+    backgroundColor: Cores.background,
   },
-  keyboardAvoid: {
-    flex: 1,
-  },
-  scrollContent: {
+  scrollContainer: {
     flexGrow: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 24,
+    justifyContent: 'center',
+    padding: 24,
   },
-  brandingSection: {
+  headerContainer: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 40,
+  },
+  titulo: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: Cores.brand,
     marginTop: 16,
-  },
-  brandTitle: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#E67E22',
-    marginBottom: 8,
-    letterSpacing: 2,
-  },
-  brandSubtitle: {
-    fontSize: 14,
-    color: '#7F8C8D',
-    textAlign: 'center',
-    marginBottom: 16,
-  },
-  featuresList: {
-    width: '100%',
-  },
-  featureItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  featureIcon: {
-    fontSize: 18,
-    color: '#E67E22',
-    marginRight: 12,
-    fontWeight: 'bold',
-  },
-  featureText: {
-    fontSize: 13,
-    color: '#7F8C8D',
-  },
-  formCard: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    paddingHorizontal: 20,
-    paddingVertical: 28,
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  header: {
-    alignItems: 'center',
-    marginBottom: 28,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#2C3E50',
     marginBottom: 8,
   },
-  subtitle: {
-    fontSize: 14,
-    color: '#7F8C8D',
+  subtitulo: {
+    fontSize: 16,
+    color: Cores.textoSecundario,
   },
-  form: {
+  formContainer: {
     width: '100%',
-  },
-  formRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 18,
-  },
-  halfWidth: {
-    width: '48%',
   },
   inputContainer: {
-    marginBottom: 18,
+    marginBottom: 20,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: Cores.textoPrincipal,
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F8F9FA',
-    borderWidth: 1.5,
-    borderColor: '#E1E8ED',
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 15,
-    color: '#2C3E50',
+    backgroundColor: Cores.branco,
+    borderWidth: 1,
+    borderColor: Cores.bordaPadrao,
+    borderRadius: 8,
+    padding: 14,
+    fontSize: 16,
+    color: Cores.textoPrincipal,
   },
-  passwordInputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F8F9FA',
-    borderWidth: 1.5,
-    borderColor: '#E1E8ED',
-    borderRadius: 10,
+  inputErro: {
+    borderColor: Cores.danger,
   },
-  passwordInput: {
-    flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 15,
-    color: '#2C3E50',
-  },
-  toggleButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  helpText: {
+  textoErro: {
     fontSize: 12,
-    color: '#95A5A6',
-    marginTop: 6,
+    color: Cores.danger,
+    marginTop: 4,
   },
-  termsSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
-    borderWidth: 2,
-    borderColor: '#E67E22',
-    borderRadius: 4,
-    marginRight: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkboxChecked: {
-    backgroundColor: '#E67E22',
-  },
-  termsLabel: {
-    fontSize: 13,
-    color: '#2C3E50',
-    flex: 1,
-  },
-  termsLink: {
-    color: '#E67E22',
-    fontWeight: '600',
-  },
-  userTypeContainer: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  userTypeButton: {
-    flex: 1,
-    flexDirection: 'row',
+  botao: {
+    backgroundColor: Cores.brand,
+    borderRadius: 8,
+    padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 12,
-    backgroundColor: '#F8F9FA',
-    borderWidth: 2,
-    borderColor: '#E1E8ED',
-    borderRadius: 10,
-  },
-  userTypeButtonActive: {
-    backgroundColor: '#FFF5ED',
-    borderColor: '#E67E22',
-  },
-  userTypeText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#7F8C8D',
-  },
-  userTypeTextActive: {
-    color: '#E67E22',
-  },
-  registerButton: {
-    backgroundColor: '#E67E22',
-    borderRadius: 10,
-    paddingVertical: 14,
-    alignItems: 'center',
-    marginBottom: 16,
-    shadowColor: '#E67E22',
+    marginTop: 12,
+    shadowColor: Cores.preto,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 4,
+    elevation: 3,
   },
-  registerButtonText: {
-    color: 'white',
+  botaoDesabilitado: {
+    opacity: 0.6,
+  },
+  botaoTexto: {
+    color: Cores.branco,
     fontSize: 16,
     fontWeight: 'bold',
-    letterSpacing: 0.5,
   },
-  divider: {
+  rodapeContainer: {
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginTop: 24,
   },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#E1E8ED',
-  },
-  dividerText: {
-    color: '#95A5A6',
-    marginHorizontal: 12,
-    fontSize: 13,
-  },
-  loginSection: {
-    alignItems: 'center',
-  },
-  loginText: {
+  textoRodape: {
     fontSize: 14,
-    color: '#7F8C8D',
-    marginBottom: 8,
+    color: Cores.textoSecundario,
   },
-  loginLink: {
+  linkRodape: {
     fontSize: 14,
-    color: '#E67E22',
+    color: Cores.brand,
     fontWeight: '600',
   },
 });

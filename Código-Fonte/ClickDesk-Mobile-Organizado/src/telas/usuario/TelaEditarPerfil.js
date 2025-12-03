@@ -56,7 +56,7 @@ export default function EditProfileScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor="#EDE6D9" />
       
       <View style={styles.header}>
       </View>
@@ -165,8 +165,8 @@ export default function EditProfileScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: '#EDE6D9' },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: Cores.background, borderBottomWidth: 0 },
   backButton: { padding: 4 },
   headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#E67E22' },
   scrollView: { flex: 1 },

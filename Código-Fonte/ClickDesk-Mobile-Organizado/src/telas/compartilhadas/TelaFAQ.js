@@ -9,6 +9,8 @@ import {
   StatusBar,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cores } from '../../estilos/cores';
+import LogoClickDesk from '../../componentes/LogoClickDesk';
 
 export default function FAQScreen({ navigation }) {
   const [expandedItems, setExpandedItems] = useState([]);
@@ -84,9 +86,16 @@ export default function FAQScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor={Cores.background} />
       
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialCommunityIcons name="arrow-left" size={28} color={Cores.brand} />
+        </TouchableOpacity>
+        
+        <LogoClickDesk size="medium" />
+        
+        <View style={{ width: 28 }} />
       </View>
 
       <ScrollView
@@ -96,7 +105,7 @@ export default function FAQScreen({ navigation }) {
       >
         <View style={styles.card}>
           <View style={styles.titleRow}>
-            <Text style={styles.cardTitle}>Central de ajuda</Text>
+            <Text style={styles.cardTitle}>FAQ - Perguntas Frequentes</Text>
             <View style={styles.actionButtons}>
               <TouchableOpacity style={styles.actionButton} onPress={expandAll}>
                 <Text style={styles.actionButtonText}>Expandir tudo</Text>
@@ -139,14 +148,28 @@ export default function FAQScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: Cores.background },
+  header: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    paddingHorizontal: 20, 
+    paddingVertical: 16,
+    backgroundColor: Cores.background,
+    borderBottomWidth: 0,
+  },
   backButton: { padding: 4 },
-  headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#E67E22' },
+  headerTitle: { fontSize: 20, fontWeight: 'bold', color: Cores.brand },
   scrollView: { flex: 1 },
-  scrollContent: { paddingHorizontal: 16, paddingBottom: 24 },
+  scrollContent: { paddingHorizontal: 16, paddingBottom: 24, paddingTop: 16 },
   card: { backgroundColor: 'white', borderRadius: 16, padding: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 4, elevation: 3 },
   titleRow: { marginBottom: 20 },
+  cardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    gap: 12,
+  },
   cardTitle: { fontSize: 22, fontWeight: 'bold', color: '#2C3E50', marginBottom: 12 },
   actionButtons: { flexDirection: 'row', gap: 8 },
   actionButton: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, borderWidth: 1.5, borderColor: '#E1E8ED', backgroundColor: '#F8F9FA' },

@@ -11,92 +11,40 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Cores } from '../../estilos/cores';
-import MenuLateral from '../../componentes/MenuLateral';
-import LogoClickDesk from '../../componentes/LogoClickDesk';
 
 export default function TelaDashboard({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const [filtroSelecionado, setFiltroSelecionado] = useState('todos');
-  const [menuVisible, setMenuVisible] = useState(false);
 
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 1500);
   };
 
-  // Dados mockados de chamados
-  const todosChamados = [
-    { id: 'CD-145', title: 'Problema com impressora HP', category: 'Hardware', status: 'aberto', date: 'Hoje • 14:30' },
-    { id: 'CD-144', title: 'Acesso negado ao sistema', category: 'Acesso', status: 'aberto', date: 'Hoje • 13:15' },
-    { id: 'CD-143', title: 'Instalação de software', category: 'Software', status: 'aberto', date: 'Hoje • 11:45' },
-    { id: 'CD-142', title: 'Erro no e-mail corporativo', category: 'E-mail', status: 'aberto', date: 'Ontem • 16:20' },
-    { id: 'CD-141', title: 'Atualização do sistema', category: 'Software', status: 'aberto', date: 'Ontem • 15:00' },
-    { id: 'CD-140', title: 'Configuração de rede', category: 'Rede', status: 'aberto', date: 'Ontem • 14:00' },
-    { id: 'CD-139', title: 'Manutenção de servidor', category: 'Hardware', status: 'aberto', date: '2 dias • 10:30' },
-    { id: 'CD-138', title: 'Reset de senha', category: 'Acesso', status: 'aberto', date: '2 dias • 09:15' },
-    { id: 'CD-137', title: 'Backup do banco de dados', category: 'Software', status: 'em-andamento', date: 'Hoje • 16:00' },
-    { id: 'CD-136', title: 'Instalação de antivírus', category: 'Software', status: 'em-andamento', date: 'Hoje • 15:30' },
-    { id: 'CD-135', title: 'Configurar VPN', category: 'Rede', status: 'em-andamento', date: 'Ontem • 17:00' },
-    { id: 'CD-134', title: 'Troca de mouse', category: 'Hardware', status: 'em-andamento', date: 'Ontem • 14:45' },
-    { id: 'CD-133', title: 'Liberação de acesso', category: 'Acesso', status: 'em-andamento', date: '2 dias • 11:00' },
-    { id: 'CD-132', title: 'Problema resolvido - Impressora', category: 'Hardware', status: 'resolvido', date: '3 dias • 10:00' },
-    { id: 'CD-131', title: 'Acesso configurado', category: 'Acesso', status: 'resolvido', date: '3 dias • 09:00' },
-    { id: 'CD-130', title: 'Software instalado', category: 'Software', status: 'resolvido', date: '4 dias • 15:00' },
-    { id: 'CD-129', title: 'Rede configurada', category: 'Rede', status: 'resolvido', date: '4 dias • 14:00' },
-    { id: 'CD-128', title: 'E-mail funcionando', category: 'E-mail', status: 'resolvido', date: '5 dias • 11:00' },
-    { id: 'CD-127', title: 'Teclado substituído', category: 'Hardware', status: 'resolvido', date: '5 dias • 10:00' },
-    { id: 'CD-126', title: 'Permissões atualizadas', category: 'Acesso', status: 'resolvido', date: '6 dias • 16:00' },
-    { id: 'CD-125', title: 'Backup concluído', category: 'Software', status: 'resolvido', date: '6 dias • 15:00' },
-    { id: 'CD-124', title: 'Firewall configurado', category: 'Rede', status: 'resolvido', date: '7 dias • 14:00' },
-    { id: 'CD-123', title: 'Monitor trocado', category: 'Hardware', status: 'resolvido', date: '7 dias • 13:00' },
-    { id: 'CD-122', title: 'Senha redefinida', category: 'Acesso', status: 'resolvido', date: '1 sem • 12:00' },
-  ];
-
   const dadosKPI = {
-    total: todosChamados.length,
-    abertos: todosChamados.filter(c => c.status === 'aberto').length,
-    emAndamento: todosChamados.filter(c => c.status === 'em-andamento').length,
-    resolvidos: todosChamados.filter(c => c.status === 'resolvido').length,
+    total: 24,
+    abertos: 8,
+    emAndamento: 5,
+    resolvidos: 11,
   };
 
   const filtros = [
     { id: 'todos', label: 'Todos', count: dadosKPI.total },
-    { id: 'aberto', label: 'Abertos', count: dadosKPI.abertos },
-    { id: 'em-andamento', label: 'Em Andamento', count: dadosKPI.emAndamento },
-    { id: 'resolvido', label: 'Resolvidos', count: dadosKPI.resolvidos },
+    { id: 'abertos', label: 'Abertos', count: dadosKPI.abertos },
+    { id: 'andamento', label: 'Em Andamento', count: dadosKPI.emAndamento },
+    { id: 'resolvidos', label: 'Resolvidos', count: dadosKPI.resolvidos },
   ];
-
-  // Filtrar chamados baseado no filtro selecionado
-  const chamadosFiltrados = filtroSelecionado === 'todos' 
-    ? todosChamados 
-    : todosChamados.filter(c => c.status === filtroSelecionado);
-
-  // Pegar apenas os 3 primeiros para exibir
-  const chamadosRecentes = chamadosFiltrados.slice(0, 3);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={Cores.background} />
       
-      {/* Menu Lateral */}
-      <MenuLateral 
-        visible={menuVisible}
-        onClose={() => setMenuVisible(false)}
-        navigation={navigation}
-        tipoUsuario="usuario"
-      />
-
       {/* Header com Logo */}
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.menuButton}
-          onPress={() => setMenuVisible(true)}
-        >
-          <MaterialCommunityIcons name="menu" size={28} color={Cores.brand} />
-        </TouchableOpacity>
-        
-        <LogoClickDesk size="medium" />
-        
+        <View style={styles.logoContainer}>
+          <MaterialCommunityIcons name="ticket" size={28} color={Cores.brand} />
+          <Text style={styles.logoText}>ClickDesk</Text>
+        </View>
         <TouchableOpacity 
           style={styles.menuButton}
           onPress={() => navigation.navigate('EditarPerfil')}
@@ -124,32 +72,48 @@ export default function TelaDashboard({ navigation }) {
           <Text style={styles.welcomeSubtitle}>Gerencie seus chamados de forma eficiente</Text>
         </View>
 
-        {/* Cards de Estatísticas - Apenas Informativos */}
+        {/* Cards de Estatísticas */}
         <View style={styles.statsContainer}>
+          <TouchableOpacity 
+            style={[styles.statCard, styles.statCardPrimary]}
+            onPress={() => navigation.navigate('MeusChamados')}
+          >
+            <View style={styles.statIcon}>
+              <MaterialCommunityIcons name="ticket-confirmation" size={32} color="#FFFFFF" />
+            </View>
+            <View style={styles.statInfo}>
+              <Text style={styles.statValue}>{dadosKPI.total}</Text>
+              <Text style={styles.statLabel}>Total de Chamados</Text>
+            </View>
+          </TouchableOpacity>
+
           <View style={styles.statsRow}>
-            <View style={styles.statCardInfo}>
-              <MaterialCommunityIcons name="ticket-confirmation" size={20} color={Cores.brand} />
-              <Text style={styles.statInfoValue}>{dadosKPI.total}</Text>
-              <Text style={styles.statInfoLabel}>Total</Text>
-            </View>
+            <TouchableOpacity 
+              style={styles.statCardSmall}
+              onPress={() => navigation.navigate('MeusChamados', { filterStatus: 'aberto' })}
+            >
+              <MaterialCommunityIcons name="clock-alert" size={24} color={Cores.brand} />
+              <Text style={styles.statSmallValue}>{dadosKPI.abertos}</Text>
+              <Text style={styles.statSmallLabel}>Abertos</Text>
+            </TouchableOpacity>
 
-            <View style={styles.statCardInfo}>
-              <MaterialCommunityIcons name="clock-alert" size={20} color={Cores.brand} />
-              <Text style={styles.statInfoValue}>{dadosKPI.abertos}</Text>
-              <Text style={styles.statInfoLabel}>Abertos</Text>
-            </View>
+            <TouchableOpacity 
+              style={styles.statCardSmall}
+              onPress={() => navigation.navigate('MeusChamados', { filterStatus: 'em-andamento' })}
+            >
+              <MaterialCommunityIcons name="progress-clock" size={24} color="#4285F4" />
+              <Text style={styles.statSmallValue}>{dadosKPI.emAndamento}</Text>
+              <Text style={styles.statSmallLabel}>Em Andamento</Text>
+            </TouchableOpacity>
 
-            <View style={styles.statCardInfo}>
-              <MaterialCommunityIcons name="progress-clock" size={20} color="#4285F4" />
-              <Text style={styles.statInfoValue}>{dadosKPI.emAndamento}</Text>
-              <Text style={styles.statInfoLabel}>Em Andamento</Text>
-            </View>
-
-            <View style={styles.statCardInfo}>
-              <MaterialCommunityIcons name="check-circle" size={20} color="#34A853" />
-              <Text style={styles.statInfoValue}>{dadosKPI.resolvidos}</Text>
-              <Text style={styles.statInfoLabel}>Resolvidos</Text>
-            </View>
+            <TouchableOpacity 
+              style={styles.statCardSmall}
+              onPress={() => navigation.navigate('MeusChamados', { filterStatus: 'resolvido' })}
+            >
+              <MaterialCommunityIcons name="check-circle" size={24} color="#34A853" />
+              <Text style={styles.statSmallValue}>{dadosKPI.resolvidos}</Text>
+              <Text style={styles.statSmallLabel}>Resolvidos</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -231,65 +195,38 @@ export default function TelaDashboard({ navigation }) {
 
           {/* Lista de Chamados */}
           <View style={styles.ticketsList}>
-            {chamadosRecentes.length === 0 ? (
-              <View style={styles.emptyState}>
-                <MaterialCommunityIcons name="filter-remove" size={48} color={Cores.textoSecundario} />
-                <Text style={styles.emptyStateText}>Nenhum chamado encontrado</Text>
-              </View>
-            ) : (
-              chamadosRecentes.map((chamado) => {
-                const getStatusColor = (status) => {
-                  switch (status) {
-                    case 'aberto': return '#FBBC04';
-                    case 'em-andamento': return '#4285F4';
-                    case 'resolvido': return '#34A853';
-                    default: return '#9E9E9E';
-                  }
-                };
-
-                const getStatusLabel = (status) => {
-                  switch (status) {
-                    case 'aberto': return 'Aberto';
-                    case 'em-andamento': return 'Em Andamento';
-                    case 'resolvido': return 'Resolvido';
-                    default: return status;
-                  }
-                };
-
-                return (
-                  <TouchableOpacity 
-                    key={chamado.id} 
-                    style={styles.ticketCard}
-                    onPress={() => navigation.navigate('DetalhesChamado', { id: chamado.id })}
-                  >
-                    <View style={styles.ticketHeader}>
-                      <View style={styles.ticketIdContainer}>
-                        <MaterialCommunityIcons name="ticket" size={16} color={Cores.brand} />
-                        <Text style={styles.ticketId}>{chamado.id}</Text>
-                      </View>
-                      <View style={[styles.statusBadge, { backgroundColor: getStatusColor(chamado.status) + '20' }]}>
-                        <Text style={[styles.statusText, { color: getStatusColor(chamado.status) }]}>
-                          {getStatusLabel(chamado.status)}
-                        </Text>
-                      </View>
-                    </View>
-                    
-                    <Text style={styles.ticketTitle}>{chamado.title}</Text>
-                    
-                    <View style={styles.ticketFooter}>
-                      <View style={styles.ticketCategory}>
-                        <MaterialCommunityIcons name="tag" size={14} color={Cores.textoSecundario} />
-                        <Text style={styles.ticketCategoryText}>{chamado.category}</Text>
-                      </View>
-                      <View style={styles.ticketDate}>
-                        <MaterialCommunityIcons name="clock-outline" size={14} color={Cores.textoSecundario} />
-                        <Text style={styles.ticketDateText}>{chamado.date}</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
-            )}
+            {[1, 2, 3].map((_, index) => (
+              <TouchableOpacity 
+                key={index} 
+                style={styles.ticketCard}
+                onPress={() => navigation.navigate('DetalhesChamado', { id: `${100 + index}` })}
+              >
+                <View style={styles.ticketHeader}>
+                  <View style={styles.ticketIdContainer}>
+                    <MaterialCommunityIcons name="ticket" size={16} color={Cores.brand} />
+                    <Text style={styles.ticketId}>#{100 + index}</Text>
+                  </View>
+                  <View style={styles.statusBadge}>
+                    <Text style={styles.statusText}>Aberto</Text>
+                  </View>
+                </View>
+                
+                <Text style={styles.ticketTitle}>
+                  Problema no computador da sala {index + 1}
+                </Text>
+                
+                <View style={styles.ticketFooter}>
+                  <View style={styles.ticketCategory}>
+                    <MaterialCommunityIcons name="tag" size={14} color={Cores.textoSecundario} />
+                    <Text style={styles.ticketCategoryText}>Hardware</Text>
+                  </View>
+                  <View style={styles.ticketDate}>
+                    <MaterialCommunityIcons name="clock-outline" size={14} color={Cores.textoSecundario} />
+                    <Text style={styles.ticketDateText}>Hoje • {14 + index}:30</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
 
           <TouchableOpacity 
@@ -319,15 +256,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     backgroundColor: Cores.background,
-    borderBottomWidth: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8E8E8',
   },
-
-  menuButton: {
-    padding: 8,
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
+  logoContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: 10,
+  },
+  logoText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Cores.brand,
+  },
+  menuButton: {
+    padding: 4,
   },
 
   // ScrollView
@@ -394,33 +337,7 @@ const styles = StyleSheet.create({
   },
   statsRow: {
     flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'space-between',
-  },
-  statCardInfo: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 8,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  statInfoValue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Cores.textoPrincipal,
-    marginTop: 6,
-    marginBottom: 2,
-  },
-  statInfoLabel: {
-    fontSize: 10,
-    color: Cores.textoSecundario,
-    textAlign: 'center',
+    gap: 12,
   },
   statCardSmall: {
     flex: 1,
@@ -536,23 +453,6 @@ const styles = StyleSheet.create({
   // Tickets
   ticketsList: {
     gap: 12,
-  },
-  emptyState: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 40,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.06,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  emptyStateText: {
-    fontSize: 14,
-    color: Cores.textoSecundario,
-    marginTop: 12,
   },
   ticketCard: {
     backgroundColor: '#FFFFFF',

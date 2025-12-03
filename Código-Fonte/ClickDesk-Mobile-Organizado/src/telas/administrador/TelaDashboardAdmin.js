@@ -14,6 +14,9 @@ import {
 } from 'react-native';
 // Importa biblioteca de ícones do Material Design
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cores } from '../../estilos/cores';
+import MenuLateral from '../../componentes/MenuLateral';
+import LogoClickDesk from '../../componentes/LogoClickDesk';
 
 // Componente funcional principal da tela de Dashboard do Administrador
 // Recebe navigation como prop para navegação entre telas
@@ -24,6 +27,8 @@ export default function AdminDashboardScreen({ navigation }) {
   const [period, setPeriod] = useState('today');
   // Estado para controlar a visibilidade do menu de perfil
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  // Estado para controlar a visibilidade do menu lateral
+  const [menuVisible, setMenuVisible] = useState(false);
 
   // Função executada quando o usuário puxa a tela para baixo (pull-to-refresh)
   const onRefresh = () => {
@@ -38,19 +43,29 @@ export default function AdminDashboardScreen({ navigation }) {
     // SafeAreaView garante que o conteúdo não fique sob áreas do sistema
     <SafeAreaView style={styles.container}>
       {/* Configura a barra de status com texto escuro e fundo bege */}
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor={Cores.background} />
+      
+      {/* Menu Lateral */}
+      <MenuLateral 
+        visible={menuVisible}
+        onClose={() => setMenuVisible(false)}
+        navigation={navigation}
+        tipoUsuario="administrador"
+      />
       
       {/* Container do cabeçalho da tela */}
       <View style={styles.header}>
-        {/* Container do texto do cabeçalho */}
-        <View>
-          {/* Subtítulo do cabeçalho explicando a tela */}
-          <Text style={styles.headerSubtitle}>Visão geral de todos os chamados</Text>
-        </View>
-        {/* Botão para abrir o menu de perfil */}
+        <TouchableOpacity 
+          style={styles.menuButton}
+          onPress={() => setMenuVisible(true)}
+        >
+          <MaterialCommunityIcons name="menu" size={28} color={Cores.brand} />
+        </TouchableOpacity>
+        
+        <LogoClickDesk size="medium" />
+        
         <TouchableOpacity style={styles.menuButton} onPress={() => setShowProfileMenu(true)}>
-          {/* Ícone de perfil do usuário */}
-          <MaterialCommunityIcons name="account-circle" size={32} color="#E67E22" />
+          <MaterialCommunityIcons name="account-circle" size={32} color={Cores.brand} />
         </TouchableOpacity>
       </View>
 
@@ -74,7 +89,7 @@ export default function AdminDashboardScreen({ navigation }) {
               style={styles.profileMenuItem} // Estilo do item de menu
               onPress={() => {
                 setShowProfileMenu(false); // Fecha o modal
-                navigation.navigate('EditProfile'); // Navega para a tela de edição de perfil
+                navigation.navigate('EditarPerfil'); // Navega para a tela de edição de perfil
               }}
             >
               {/* Ícone de edição de conta */}
@@ -89,7 +104,7 @@ export default function AdminDashboardScreen({ navigation }) {
               style={styles.profileMenuItem} // Estilo do item de menu
               onPress={() => {
                 setShowProfileMenu(false); // Fecha o modal
-                navigation.navigate('Logout'); // Navega para a tela de logout
+                navigation.navigate('TelaLogout'); // Navega para a tela de logout
               }}
             >
               {/* Ícone de logout */}
@@ -173,7 +188,7 @@ export default function AdminDashboardScreen({ navigation }) {
           {/* Card KPI: Chamados pendentes */}
           <TouchableOpacity 
             style={styles.kpiCard} // Estilo do card
-            onPress={() => navigation.navigate('TicketApproval')} // Navega para aprovação de chamados ao tocar
+            onPress={() => navigation.navigate('AprovarChamados')} // Navega para aprovação de chamados ao tocar
           >
             {/* Label do KPI */}
             <Text style={styles.kpiLabel}>Pendentes</Text>
@@ -228,7 +243,7 @@ export default function AdminDashboardScreen({ navigation }) {
         {/* Grid de cards de ações rápidas */}
         <View style={styles.actionsGrid}>
           {/* Card de ação: Aprovar Chamados */}
-          <TouchableOpacity style={styles.actionCard} onPress={() => navigation.navigate('TicketApproval')}>
+          <TouchableOpacity style={styles.actionCard} onPress={() => navigation.navigate('AprovarChamados')}>}
             {/* Ícone de check/aprovação */}
             <MaterialCommunityIcons name="check-circle" size={40} color="#E67E22" />
             {/* Título da ação */}
@@ -266,7 +281,7 @@ export default function AdminDashboardScreen({ navigation }) {
             <TouchableOpacity 
               key={index} // Key única para cada item da lista
               style={styles.ticketCard} // Estilo do card
-              onPress={() => navigation.navigate('TicketDetails', { ticketId: `CD-${String(145 - index).padStart(3, '0')}` })} // Navega para detalhes do chamado
+              onPress={() => navigation.navigate('DetalhesChamado', { id: `CD-${String(145 - index).padStart(3, '0')}`, userType: 'admin' })} // Navega para detalhes do chamado
             >
               {/* Cabeçalho do card com ID e status */}
               <View style={styles.ticketHeader}>
@@ -298,9 +313,10 @@ export default function AdminDashboardScreen({ navigation }) {
 // Objeto StyleSheet que define todos os estilos utilizados no componente
 const styles = StyleSheet.create({
   // Estilo do container principal - ocupa toda a tela com fundo bege
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: Cores.background },
   // Estilo do cabeçalho - layout horizontal com espaçamento entre elementos
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: Cores.background, borderBottomWidth: 0 },
+  menuButton: { padding: 4 },
   // Estilo do título do cabeçalho (não usado atualmente)
   headerTitle: { fontSize: 22, fontWeight: 'bold', color: '#E67E22' },
   // Estilo do subtítulo do cabeçalho - texto pequeno em cinza

@@ -115,7 +115,7 @@ export default function TelaTermos({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8D5C4',
+    backgroundColor: '#EDE6D9',
   },
   scrollContent: {
     paddingHorizontal: 16,

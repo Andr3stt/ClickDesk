@@ -13,6 +13,9 @@ import {
   Alert,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cores } from '../../estilos/cores';
+import MenuLateral from '../../componentes/MenuLateral';
+import LogoClickDesk from '../../componentes/LogoClickDesk';
 
 export default function TicketApprovalScreen({ navigation }) {
   const [statusFilter, setStatusFilter] = useState('pendente');
@@ -20,6 +23,7 @@ export default function TicketApprovalScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedTicketId, setSelectedTicketId] = useState(null);
   const [rejectionReason, setRejectionReason] = useState('');
+  const [menuLateralVisible, setMenuLateralVisible] = useState(false);
   const [tickets, setTickets] = useState([
     { id: 'CD-145', title: 'Problema com impressora HP', category: 'Hardware', priority: 'Alta', requester: 'João Silva', date: 'Hoje • 14:30' },
     { id: 'CD-144', title: 'Acesso negado ao sistema', category: 'Acesso', priority: 'Média', requester: 'Maria Santos', date: 'Hoje • 13:15' },
@@ -70,8 +74,27 @@ export default function TicketApprovalScreen({ navigation }) {
     }
   };
 
+  // Filtrar tickets baseado nos filtros selecionados
+  const getFilteredTickets = () => {
+    return tickets.filter(ticket => {
+      // Filtro de categoria
+      const matchCategory = categoryFilter === 'todas' || ticket.category === categoryFilter;
+      
+      // Para este componente, todos os tickets são pendentes, então não precisa filtrar por status
+      // Se quiser adicionar filtro de status no futuro, adicione aqui
+      
+      return matchCategory;
+    });
+  };
+
+  const filteredTickets = getFilteredTickets();
+
   const renderTicket = ({ item }) => (
-    <View style={styles.ticketCard}>
+    <TouchableOpacity 
+      style={styles.ticketCard}
+      onPress={() => navigation.navigate('DetalhesChamado', { id: item.id, userType: 'admin' })}
+      activeOpacity={0.7}
+    >
       <View style={styles.ticketHeader}>
         <Text style={styles.ticketId}>{item.id}</Text>
         <View style={[styles.priorityBadge, { backgroundColor: getPriorityColor(item.priority) + '20' }]}>
@@ -83,7 +106,7 @@ export default function TicketApprovalScreen({ navigation }) {
       <Text style={styles.ticketTitle}>{item.title}</Text>
       <View style={styles.ticketInfo}>
         <View style={styles.categoryBadge}>
-          <MaterialCommunityIcons name="tag" size={14} color="#E67E22" />
+          <MaterialCommunityIcons name="tag" size={14} color={Cores.brand} />
           <Text style={styles.categoryText}>{item.category}</Text>
         </View>
         <Text style={styles.requesterText}>
@@ -96,64 +119,91 @@ export default function TicketApprovalScreen({ navigation }) {
       <View style={styles.actionButtons}>
         <TouchableOpacity
           style={[styles.actionButton, styles.rejectButton]}
-          onPress={() => handleReject(item.id)}
+          onPress={(e) => {
+            e.stopPropagation();
+            handleReject(item.id);
+          }}
         >
           <MaterialCommunityIcons name="close" size={18} color="white" />
           <Text style={styles.actionButtonText}>Rejeitar</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.actionButton, styles.approveButton]}
-          onPress={() => handleApprove(item.id)}
+          onPress={(e) => {
+            e.stopPropagation();
+            handleApprove(item.id);
+          }}
         >
           <MaterialCommunityIcons name="check" size={18} color="white" />
           <Text style={styles.actionButtonText}>Aprovar</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#E8D5C4" />
+      <StatusBar barStyle="dark-content" backgroundColor={Cores.background} />
+      
+      <MenuLateral 
+        visible={menuLateralVisible}
+        onClose={() => setMenuLateralVisible(false)}
+        navigation={navigation}
+        tipoUsuario="administrador"
+      />
       
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <MaterialCommunityIcons name="arrow-left" size={24} color="#2C3E50" />
+        <TouchableOpacity 
+          style={styles.menuButton}
+          onPress={() => setMenuLateralVisible(true)}
+        >
+          <MaterialCommunityIcons name="menu" size={28} color={Cores.brand} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Aprovação de Chamados</Text>
-        <View style={{ width: 24 }} />
+        
+        <LogoClickDesk size="medium" />
+        
+        <TouchableOpacity 
+          style={styles.menuButton}
+          onPress={() => navigation.navigate('EditarPerfil')}
+        >
+          <MaterialCommunityIcons name="account-circle" size={32} color={Cores.brand} />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.filtersCard}>
-        <View style={styles.filterRow}>
-          <View style={styles.filterGroup}>
-            <Text style={styles.filterLabel}>Status:</Text>
-            <View style={styles.filterChips}>
-              {['pendente', 'todos'].map(status => (
-                <TouchableOpacity
-                  key={status}
-                  style={[styles.chip, statusFilter === status && styles.chipActive]}
-                  onPress={() => setStatusFilter(status)}
-                >
-                  <Text style={[styles.chipText, statusFilter === status && styles.chipTextActive]}>
-                    {status === 'pendente' ? 'Pendentes' : 'Todos'}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
+        <Text style={styles.sectionTitle}>Filtros</Text>
+        
+        <View style={styles.filterSection}>
+          <Text style={styles.filterLabel}>
+            <MaterialCommunityIcons name="filter" size={16} color={Cores.brand} /> Status
+          </Text>
+          <View style={styles.filterChips}>
+            {['pendente', 'todos'].map(status => (
+              <TouchableOpacity
+                key={status}
+                style={[styles.chip, statusFilter === status && styles.chipActive]}
+                onPress={() => setStatusFilter(status)}
+              >
+                <Text style={[styles.chipText, statusFilter === status && styles.chipTextActive]}>
+                  {status === 'pendente' ? 'Pendentes' : 'Todos'}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
-        <View style={styles.filterRow}>
-          <View style={styles.filterGroup}>
-            <Text style={styles.filterLabel}>Categoria:</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View style={styles.filterChips}>
-                {['todas', 'Hardware', 'Software', 'Rede', 'Acesso'].map(cat => (
-                  <TouchableOpacity
-                    key={cat}
-                    style={[styles.chip, categoryFilter === cat && styles.chipActive]}
-                    onPress={() => setCategoryFilter(cat)}
-                  >
+
+        <View style={styles.filterSection}>
+          <Text style={styles.filterLabel}>
+            <MaterialCommunityIcons name="tag" size={16} color={Cores.brand} /> Categoria
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.filterChips}>
+              {['todas', 'Hardware', 'Software', 'Rede', 'Acesso', 'E-mail'].map(cat => (
+                <TouchableOpacity
+                  key={cat}
+                  style={[styles.chip, categoryFilter === cat && styles.chipActive]}
+                  onPress={() => setCategoryFilter(cat)}
+                >
                     <Text style={[styles.chipText, categoryFilter === cat && styles.chipTextActive]}>
                       {cat === 'todas' ? 'Todas' : cat}
                     </Text>
@@ -163,17 +213,21 @@ export default function TicketApprovalScreen({ navigation }) {
             </ScrollView>
           </View>
         </View>
-      </View>
 
-      {tickets.length === 0 ? (
+      {filteredTickets.length === 0 ? (
         <View style={styles.emptyState}>
-          <MaterialCommunityIcons name="check-circle-outline" size={64} color="#95A5A6" />
-          <Text style={styles.emptyTitle}>Nenhum chamado pendente</Text>
-          <Text style={styles.emptySubtitle}>Todos os chamados foram processados</Text>
+          <MaterialCommunityIcons name="filter-remove" size={64} color="#95A5A6" />
+          <Text style={styles.emptyTitle}>Nenhum chamado encontrado</Text>
+          <Text style={styles.emptySubtitle}>
+            {tickets.length === 0 
+              ? 'Todos os chamados foram processados'
+              : 'Tente ajustar os filtros para ver mais resultados'
+            }
+          </Text>
         </View>
       ) : (
         <FlatList
-          data={tickets}
+          data={filteredTickets}
           renderItem={renderTicket}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.listContent}
@@ -219,15 +273,18 @@ export default function TicketApprovalScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8D5C4' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: '#E8D5C4' },
+  container: { flex: 1, backgroundColor: Cores.background },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, backgroundColor: Cores.background, borderBottomWidth: 0 },
+  menuButton: { padding: 4 },
   backButton: { padding: 4 },
   headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#2C3E50' },
-  filtersCard: { backgroundColor: 'white', marginHorizontal: 16, marginBottom: 16, padding: 16, borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 3 },
+  filtersCard: { backgroundColor: 'white', marginHorizontal: 16, marginBottom: 16, padding: 20, borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 3 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', color: Cores.textoPrincipal, marginBottom: 16 },
+  filterSection: { marginBottom: 16 },
   filterRow: { marginBottom: 12 },
   filterGroup: { flex: 1 },
-  filterLabel: { fontSize: 13, fontWeight: '600', color: '#2C3E50', marginBottom: 8 },
-  filterChips: { flexDirection: 'row', gap: 8 },
+  filterLabel: { fontSize: 14, fontWeight: '600', color: Cores.textoPrincipal, marginBottom: 10, flexDirection: 'row', alignItems: 'center' },
+  filterChips: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
   chip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, backgroundColor: '#F8F9FA', borderWidth: 1.5, borderColor: '#E1E8ED' },
   chipActive: { backgroundColor: '#E67E22', borderColor: '#E67E22' },
   chipText: { fontSize: 12, fontWeight: '600', color: '#7F8C8D' },

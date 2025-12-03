@@ -68,7 +68,7 @@ export default function TelaLogin({ navigation }) {
 
         // Navega para o dashboard apropriado com base no tipo de usuário
         if (usuario.role === 'ADMIN' || usuario.role === 'TECH') {
-          navigation.replace('AdminDashboard');
+          navigation.replace('DashboardAdmin');
         } else {
           navigation.replace('Dashboard');
         }
@@ -88,14 +88,14 @@ export default function TelaLogin({ navigation }) {
    * Navega para a tela de registro
    */
   const navegarParaRegistro = () => {
-    navigation.navigate('Register');
+    navigation.navigate('Registro');
   };
 
   /**
    * Navega para a tela de recuperação de senha
    */
   const navegarParaRecuperarSenha = () => {
-    navigation.navigate('ForgotPassword');
+    navigation.navigate('RecuperarSenha');
   };
 
   return (
@@ -207,12 +207,48 @@ export default function TelaLogin({ navigation }) {
 
               {/* Link para Registro */}
               <View style={styles.registerSection}>
-                <Text style={styles.registerText}>Ainda não tem conta? </Text>
+                <Text style={styles.registerText}>Não tem uma conta? </Text>
                 <TouchableOpacity 
-                  onPress={navegarParaRegistro}
+                  onPress={() => navigation.navigate('Registro')}
                   disabled={carregando}
                 >
                   <Text style={styles.registerLink}>Cadastre-se</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Botões de Teste (REMOVER EM PRODUÇÃO) */}
+              <View style={styles.testSection}>
+                <Text style={styles.testTitle}>🧪 Modo Teste - Navegação Rápida:</Text>
+                <TouchableOpacity 
+                  style={styles.testButton}
+                  onPress={() => navigation.navigate('Dashboard')}
+                >
+                  <Text style={styles.testButtonText}>📱 Dashboard Usuário</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.testButton}
+                  onPress={() => navigation.navigate('DashboardAdmin')}
+                >
+                  <Text style={styles.testButtonText}>👨‍💼 Dashboard Admin</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.testButton}
+                  onPress={() => navigation.navigate('FAQ')}
+                >
+                  <Text style={styles.testButtonText}>❓ FAQ</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Footer com Link de Termos */}
+              <View style={styles.footerSection}>
+                <Text style={styles.footerText}>
+                  Ao fazer login, você concorda com nossos{' '}
+                </Text>
+                <TouchableOpacity 
+                  onPress={() => navigation.navigate('TelaTermos')}
+                  disabled={carregando}
+                >
+                  <Text style={styles.termosLink}>Termos de Uso</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -229,31 +265,31 @@ export default function TelaLogin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Cores.brand,
+    backgroundColor: Cores.background, // #EDE6D9 - bege como no web
   },
   keyboardAvoid: {
     flex: 1,
   },
   scrollContent: {
     flexGrow: 1,
-    justifyContent: 'center',
     padding: 20,
   },
   
-  // Branding
+  // Branding (lado esquerdo no web, topo no mobile)
   brandingSection: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
+    marginTop: 20,
   },
   brandTitle: {
-    fontSize: 48,
+    fontSize: 42,
     fontWeight: 'bold',
-    color: Cores.branco,
+    color: Cores.brand, // Laranja como no web
     marginBottom: 8,
   },
   brandSubtitle: {
-    fontSize: 14,
-    color: Cores.branco,
+    fontSize: 15,
+    color: Cores.textoSecundario,
     opacity: 0.9,
   },
   
@@ -297,21 +333,25 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   input: {
-    backgroundColor: Cores.background,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderColor: Cores.brand,
     borderRadius: 8,
-    padding: 12,
+    padding: 14,
     fontSize: 16,
     color: Cores.textoPrincipal,
   },
   passwordInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Cores.background,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderColor: Cores.brand,
     borderRadius: 8,
   },
   passwordInput: {
     flex: 1,
-    padding: 12,
+    padding: 14,
     fontSize: 16,
     color: Cores.textoPrincipal,
   },
@@ -374,5 +414,59 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Cores.brand,
     fontWeight: 'bold',
+  },
+  
+  // Botões de Teste
+  testSection: {
+    marginTop: 30,
+    padding: 15,
+    backgroundColor: '#FFF3CD',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#FFE69C',
+  },
+  testTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#856404',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  testButton: {
+    backgroundColor: '#FFF',
+    borderRadius: 6,
+    padding: 12,
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: '#FFE69C',
+  },
+  testButtonText: {
+    fontSize: 14,
+    color: '#856404',
+    textAlign: 'center',
+    fontWeight: '600',
+  },
+
+  // Footer
+  footerSection: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 24,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: Cores.textoSecundario + '20',
+  },
+  footerText: {
+    fontSize: 12,
+    color: Cores.textoSecundario,
+    textAlign: 'center',
+  },
+  termosLink: {
+    fontSize: 12,
+    color: Cores.brand,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
 });
