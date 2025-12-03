@@ -1,20 +1,31 @@
 {
   "name": "clickdesk-mobile",
   "version": "1.0.0",
-  "description": "Aplicação Mobile React para o Sistema ClickDesk",
+  "description": "Aplicação Mobile React Native para o Sistema ClickDesk",
+  "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
-    "axios": "^1.6.0"
+    "@expo/vector-icons": "^15.0.3",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@react-native-async-storage/async-storage": "^1.19.0",
+    "axios": "^1.6.0",
+    "expo": "~54.0.0",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0"
   },
   "devDependencies": {
-    "react-scripts": "5.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test"
+    "@babel/core": "^7.20.0",
+    "babel-preset-expo": "^54.0.7"
   }
 }
