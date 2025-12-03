@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from '../../configuracao/constantes';
 
 const clienteHttp = axios.create({
@@ -9,26 +10,33 @@ const clienteHttp = axios.create({
   timeout: 30000,
 });
 
-// Interceptador de requisição - adiciona token JWT
+// Interceptador de Requisição - adiciona token JWT automaticamente
 clienteHttp.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
+  async (config) => {
+    const token = await AsyncStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    console.log(`📤 [${config.method.toUpperCase()}] ${config.url}`);
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error('❌ Erro na requisição:', error);
+    return Promise.reject(error);
+  }
 );
 
-// Interceptador de resposta - trata erros
+// Interceptador de Resposta - trata erros globalmente
 clienteHttp.interceptors.response.use(
-  (response) => response,
-  (error) => {
+  (response) => {
+    console.log(`✅ [${response.status}] ${response.config.url}`);
+    return response;
+  },
+  async (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('usuario');
-      window.location.href = '/login';
+      await AsyncStorage.removeItem('token');
+      await AsyncStorage.removeItem('usuario');
+      // Redirecionar para login - será tratado pela navegação
     }
     return Promise.reject(error);
   }
