@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Siticone Technology,  Russell Chidhakwa,  Ilham Mutaqin</dc:creator>
+  <dc:description>Siticone Desktop UI (as part of the Siticone Framework Suite) is the leading developer productivity product in the market of .NET and Windows Forms UI/UX Design.
+
+It is the epitome of all .NET UI developement libraries and frameworks empowering developers to create futuristic, performant, fast and clean user interface to deliver an extremely impressive user experience with minimal effort, low programming experience at a very resonable budget.
+
+Embeded in the .NET Ecosystem, with matching industry accepted naming and design rules, the learning curve is almost flat. Once installed, a few simple clicks are enough to discover the real power of Siticone!
+
+How to add Siticone Desktop UI to your project:
+1. Install the library
+2. Open Visual Studio Toolbox and create a new tab e.g. "Siticone Desktop UI Components"
+3. Right-click and "Choose items".
+4. "Browse..." and locate the installed library i.e. from the "bin" folder and add select.
+5. Drag-n-drop any Siticone Controls onto the Winform.
+That's it!
+
+How to use Siticone Desktop UI:
+1. Watch tutorials and video demos from our channel: https://www.youtube.com/channel/UCdU2lQWL-wqHmBkhhMZeTDQ?sub_confirmation=1
+
+
+Minimum System and User Requirements:
+-Siticone Desktop UI works with C# and VB.NET programming languages, in a Windows Forms Application Development Environment.
+
+Minimal Technical Requirements:
+- Microsoft .NET Framework 4.0 or higher.
+- Visual Studio 2012 or later.
+
+Developer requirements:
+- A basic knowledge of C# or VB.NET programming languages (both is an advantage).
+- A basic knowledge of Windows Forms application development system (Winforms).
+
+For more information, please visit:
+https://siticoneframework.com/get-started
+
+Support email:
+-support@siticoneframework.com
+
+Live support:
+https://www.siticoneframework.com
+
+
+Happy UI/UX Development!</dc:description>
+  <dc:identifier>Siticone.Desktop.UI</dc:identifier>
+  <version>2.1.1</version>
+  <keywords>c# vb winforms controls .net siticone ui siticone-ui framework siticoneframework siticone-framework ui-controls Siticone Technology</keywords>
+  <lastModifiedBy>NuGet, Version=5.6.0.5, Culture=neutral, PublicKeyToken=31bf3856ad364e35;Microsoft Windows NT 10.0.22000.0;.NET Framework 4.7.2</lastModifiedBy>
+</coreProperties>

@@ -1,6 +1,0 @@
-
-Os seguintes arquivos foram especificados na linha de comando:
-
-	ClickDesk.sln
-
-Não foi possível localizar esses arquivos e eles não serão abertos.

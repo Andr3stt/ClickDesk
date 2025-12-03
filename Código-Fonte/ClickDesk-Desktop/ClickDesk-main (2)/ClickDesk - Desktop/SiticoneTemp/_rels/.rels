@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Siticone.Desktop.UI.nuspec" Id="R7184C6C88695D122" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/4a3487d415b14742979b906f9708aec6.psmdcp" Id="R3496A93C860A7102" />
+</Relationships>

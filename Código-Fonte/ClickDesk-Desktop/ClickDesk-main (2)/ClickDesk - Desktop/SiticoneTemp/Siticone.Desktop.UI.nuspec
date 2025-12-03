@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Siticone.Desktop.UI</id>
+    <version>2.1.1</version>
+    <title>Siticone.Desktop.UI</title>
+    <authors>Siticone Technology, Russell Chidhakwa, Ilham Mutaqin</authors>
+    <owners>Siticone Technology</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>icon.png</icon>
+    <projectUrl>https://siticoneframework.com/</projectUrl>
+    <description>Siticone Desktop UI (as part of the Siticone Framework Suite) is the leading developer productivity product in the market of .NET and Windows Forms UI/UX Design.
+
+It is the epitome of all .NET UI developement libraries and frameworks empowering developers to create futuristic, performant, fast and clean user interface to deliver an extremely impressive user experience with minimal effort, low programming experience at a very resonable budget.
+
+Embeded in the .NET Ecosystem, with matching industry accepted naming and design rules, the learning curve is almost flat. Once installed, a few simple clicks are enough to discover the real power of Siticone!
+
+How to add Siticone Desktop UI to your project:
+1. Install the library
+2. Open Visual Studio Toolbox and create a new tab e.g. "Siticone Desktop UI Components"
+3. Right-click and "Choose items".
+4. "Browse..." and locate the installed library i.e. from the "bin" folder and add select.
+5. Drag-n-drop any Siticone Controls onto the Winform.
+That's it!
+
+How to use Siticone Desktop UI:
+1. Watch tutorials and video demos from our channel: https://www.youtube.com/channel/UCdU2lQWL-wqHmBkhhMZeTDQ?sub_confirmation=1
+
+
+Minimum System and User Requirements:
+-Siticone Desktop UI works with C# and VB.NET programming languages, in a Windows Forms Application Development Environment.
+
+Minimal Technical Requirements:
+- Microsoft .NET Framework 4.0 or higher.
+- Visual Studio 2012 or later.
+
+Developer requirements:
+- A basic knowledge of C# or VB.NET programming languages (both is an advantage).
+- A basic knowledge of Windows Forms application development system (Winforms).
+
+For more information, please visit:
+https://siticoneframework.com/get-started
+
+Support email:
+-support@siticoneframework.com
+
+Live support:
+https://www.siticoneframework.com
+
+
+Happy UI/UX Development!</description>
+    <releaseNotes>PRODUCT RELEASE NOTES:
+
+SITICONE UI FRAMEWORK
+
+IMPORTANT NOTICE:
+-----------------
+1. Backup your projects BEFORE updating Siticone.UI.
+2. Contact us for free support. We may ask for your license details for faster assistance.
+
+
+*******************************
+
+Contact Us:
+
+hello@siticoneframework.com
+support@siticoneframework.com
+
+www.siticoneframework.com
+
+*******************************
+
+
+## This is a major version release with extensive performance improvements, bug fixes and support for new development frameworks.
+
+Bug Fix: SiticoneDateTimePicker:
+- Fix: The issue with the MaxDate property has been fixed.
+- Fix: The issue with the MinDate property has been fixed.
+- Fix: The CheckBox behavior issue has been fixed.
+
+Bug Fix: SiticoneCustomGradientPanel:
+- Fix: Memory leak has been fixed.
+
+Improved: SiticoneDateTimePicker:
+- Add a ShowUpDown property.
+- Support RightToLeft.
+
+&gt; Improve: SiticoneProgressBar, SiticoneVProgressBar And SiticoneCircleProgressBar
+- Add ShowText property : Allows you to show or hide text.
+- Add TextMode property : Allows you to change the text mode to Percentage, Value and Custom when ShowText = true.
+- Remove ShowPercentage property
+
+SiticoneTextBox:
+- Fixed an issue with DisabledState.
+- Fixed an issue with PlaceholderText.
+
+SiticoneHScrollBar:
+- Fixed issue with BindingContainer for TexBox and ListBox.
+
+SiticoneVScrollBar:
+- Fixed issue with BindingContainer for TexBox and ListBox.
+
+SiticoneDragControl:
+- Fixed issue with DragMode property.
+
+SiticoneButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneTileButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneCircleButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneGradientButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneGradientTileButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneGradientCircleButton:
+- Fixed an issue with CustomImage property.
+
+SiticoneTextBox:
+- Fixed issue with ContextMenuStrip.
+- Fixed issue with text selection.
+
+SiticoneRatingStar:
+- Added ReadOnly property, If ReadOnly = true then RatingStar can only be read.
+
+SiticoneTextBox:
+- Fixed issue with TextChanged event.
+
+SiticoneBorderlessForm:
+- Fixed an issue with Focus on Target Form.
+
+SiticoneBorderlessForm:
+- Fixed issue with StartPosition on Forms.
+
+SiticoneShadowForm:
+- Fixed issue with StartPosition on Forms.
+
+SiticoneTextBox:
+- Fixed an issue with text display when disabled.
+
+Siticone Buttons:
+- Fixed issue with click event delay.
+
+SiticoneComboBox:
+- Added DisabledState property.
+
+SiticoneTextBox: Fixed issue with textbox not updating text when enabled = false.
+
+- SiticoneComboBox: Fixed issue with BorderColor on DropDownList.
+
+- Fixed issue with Thrown Exception: (System.NullReferenceException: object reference not set to object instance)
+
+- SiticoneTextBox: Fixed the issue of PasswordChar when the textbox is disabled.
+
+- SiticoneNumericUpDown: Fixed ForeColor issue with Color.White.
+
+- SiticoneMessageDialog: Fixed an issue with the region of the text being displayed.
+
+- SiticoneComboBox: Fixed an issue where dropdown items didn't refresh when scrolling
+
+- SiticoneDataGridView: Fixed an issue changing values for some properties such as: SelectionMode, AutoSizeColumnsMode ColumnHeadersBorderStyle, CellBorderStyle, and ColumnHeadersHeightSizeMode
+ 
+- Fixed some issues with SiticoneCombobox
+- MessageDialog: Support changes to the text on each button
+ Example: Siticone.UI2.WinForms.MessageDialog.TextOnButtons.Ok = "Okay";
+
+
+******************************
+
+www.siticoneframework.com
+
+******************************</releaseNotes>
+    <copyright>© 2022 Siticone Technology</copyright>
+    <tags>c# vb winforms controls .net siticone ui siticone-ui framework siticoneframework siticone-framework ui-controls Siticone Technology</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0" />
+    </dependencies>
+  </metadata>
+</package>
