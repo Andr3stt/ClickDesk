@@ -96,7 +96,7 @@
   }
 
   function ticketDetailUrl(id){
-    return `../14. TELA DE DETALHES DO CHAMADO ADM/detalhes-chamado.html?id=${encodeURIComponent(id)}`;
+    return encodeURI(`../14. TELA DE MEU CHAMADO/detalhes-chamado.html?id=${id}`);
   }
 
   function render(){

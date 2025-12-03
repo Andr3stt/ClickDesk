@@ -83,7 +83,7 @@
     // Ajuste conforme a localização da sua tela de detalhes
     // Ex 1: na raiz: ../detalhes-chamado.html?id=ID
     // Ex 2: na pasta "7.5 DETALHES DO CHAMADO": ../7.5 DETALHES DO CHAMADO/detalhes-chamado.html?id=ID
-    return `../detalhes-chamado.html?id=${encodeURIComponent(id)}`;
+    return encodeURI(`../14. TELA DE MEU CHAMADO/detalhes-chamado.html?id=${id}`);
   }
 
   function renderAssignSelect(current, id){
@@ -180,7 +180,7 @@
       // Aqui você faria a chamada para a API
       console.log('Aprovando chamado:', id);
       // Redirecionar para a tela de detalhes do chamado
-      window.location.href = `../14. TELA DE DETALHES DO CHAMADO ADM/detalhes-chamado.html?id=${encodeURIComponent(id)}`;
+      window.location.href = encodeURI(`../14. TELA DE MEU CHAMADO/detalhes-chamado.html?id=${id}`);
     }
   }
 

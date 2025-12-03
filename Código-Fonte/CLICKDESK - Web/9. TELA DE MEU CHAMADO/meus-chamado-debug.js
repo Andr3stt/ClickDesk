@@ -93,7 +93,7 @@ function renderTickets(tickets) {
           <span class="ticket-category">${ticket.category}</span>
           <span class="ticket-time">Há 2 horas</span>
         </div>
-        <button class="ticket-btn" onclick="window.location.href='../14.1. TELA DE DETALHES DO CHAMADO/meu-chamado.html?id=${ticket.id}'">
+        <button class="ticket-btn" onclick="window.location.href=encodeURI('../14.1. TELA DETALHES CHAMADO/meu-chamado.html?id=${ticket.id}')">
           VER DETALHES
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>

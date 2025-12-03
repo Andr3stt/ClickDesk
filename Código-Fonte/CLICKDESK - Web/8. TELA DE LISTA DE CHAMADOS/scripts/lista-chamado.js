@@ -198,7 +198,7 @@ function filterTickets() {
 
 // Função para abrir detalhes do chamado
 function openTicket(ticketId) {
-  window.location.href = `../7.5 DETALHES DO CHAMADO/detalhes-chamado.html?id=${ticketId}`;
+  window.location.href = encodeURI(`../7.5 DETALHES DO CHAMADO/detalhes-chamado.html?id=${ticketId}`);
 }
 
 // Função de refresh

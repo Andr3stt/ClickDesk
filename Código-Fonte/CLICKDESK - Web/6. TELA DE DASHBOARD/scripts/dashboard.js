@@ -46,7 +46,7 @@
       if (typeof r === 'function') return r(id);
       if (typeof r === 'string') return r.replace('{id}', encodeURIComponent(id));
     }catch(_){}
-    return `/chamados/${encodeURIComponent(id)}`;
+    return encodeURI('../14.1. TELA DETALHES CHAMADO/meu-chamado.html?id=' + id);
   }
   function toInt(v){ const n = Number(v); return Number.isFinite(n) ? n : 0; }
   function parseIso(x){ const d=new Date(x); return isNaN(d.getTime())? new Date(): d; }
@@ -262,6 +262,7 @@
 
   async function reload(){
     state.range = $('#rangeSelect')?.value || '7d';
+    console.log('🔄 Atualizando dashboard com período:', state.range);
 
     const btn = $('#refreshBtn');
     if (btn){
@@ -272,6 +273,7 @@
 
     try{
       await Promise.all([ loadKPIs(), loadRecents() ]);
+      console.log('✅ Dashboard atualizado com sucesso');
     } finally {
       if (btn){
         btn.classList.remove('is-spinning');
@@ -428,6 +430,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    bindUI();
+    setupUserMenu();
     setupPhotoUpload();
     loadSavedPhoto();
+    reload();
   });

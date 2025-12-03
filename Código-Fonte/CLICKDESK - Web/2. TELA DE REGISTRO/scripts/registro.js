@@ -12,11 +12,7 @@ const userType = document.getElementById('user-type');
 const btn = document.getElementById('register-btn');
 const msgBox = document.getElementById('register-error');
 
-const loginLink = document.getElementById('login-link');
 const togglePasswordBtn = document.getElementById('toggle-password');
-
-function buildUrl(...parts){ return encodeURI(parts.join('/')); }
-const LOGIN_URL = buildUrl('..', '1. TELA DE LOGIN', 'login.html');
 
 // Ícones minimalistas
 const ICON_EYE =
@@ -195,12 +191,6 @@ form.addEventListener('submit', (e) => {
       window.location.href = TERMOS_URL;
     }, 800);
   }, 500);
-});
-
-// Link "Logar" por JS
-loginLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.location.href = LOGIN_URL;
 });
 
 // Inicial

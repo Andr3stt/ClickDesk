@@ -163,7 +163,7 @@
               Há ${escapeHtml(it.time || '2 horas')}
             </div>
           </div>
-          <button class="ticket-btn" onclick="window.location.href='../14. TELA DE DETALHES DO CHAMADO ADM/detalhes-chamado.html?id=${escapeHtml(it.id)}'">
+          <button class="ticket-btn" onclick="window.location.href=encodeURI('../14. TELA DE MEU CHAMADO/detalhes-chamado.html?id=${escapeHtml(it.id)}')">
             VER DETALHES
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M5 12h14M12 5l7 7-7 7"/>

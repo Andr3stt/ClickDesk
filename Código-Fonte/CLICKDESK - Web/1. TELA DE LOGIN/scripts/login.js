@@ -10,13 +10,6 @@ const togglePasswordBtn = document.getElementById('toggle-password');
 const loginBtn = document.getElementById('login-btn');
 const errorDiv = document.getElementById('login-error');
 
-const forgotLink = document.getElementById('forgot-password');
-const registerLink = document.getElementById('register-link');
-
-function buildUrl(...parts) { return encodeURI(parts.join('/')); }
-const FORGOT_URL = buildUrl('..', '3. TELA ESQUECI SENHA', 'esqueci-senha.html');
-const REGISTER_URL = buildUrl('..', '2. TELA DE REGISTRO', 'registro.html');
-
 // SVGs minimalistas (outline), herdam cor de currentColor
 const ICON_EYE =
   '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -79,9 +72,6 @@ togglePasswordBtn.addEventListener('click', () => {
   setIcon(isPassword); // se era password, agora está visível (shown = true)
 });
 
-forgotLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = FORGOT_URL; });
-registerLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = REGISTER_URL; });
-
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -104,13 +94,12 @@ loginForm.addEventListener('submit', async (e) => {
     // Base de usuários padrão para demonstração
     const usuariosPadrao = {
       // Técnicos/Administradores
-      'admin': { senha: 'admin123', tipo: 'tecnico', nome: 'Administrador' },
-      'tecnico': { senha: 'tecnico123', tipo: 'tecnico', nome: 'Técnico Suporte' },
-      'suporte': { senha: 'suporte123', tipo: 'tecnico', nome: 'Suporte TI' },
+      'admin': { senha: 'admin', tipo: 'tecnico', nome: 'Administrador' },
+      'tecnico': { senha: 'tecnico', tipo: 'tecnico', nome: 'Técnico Suporte' },
       
       // Usuários comuns
-      'usuario': { senha: 'usuario123', tipo: 'usuario', nome: 'Usuário Comum' },
-      'cliente': { senha: 'cliente123', tipo: 'usuario', nome: 'Cliente' }
+      'vini': { senha: '123', tipo: 'usuario', nome: 'Vinicius' },
+      'usuario': { senha: '123', tipo: 'usuario', nome: 'Usuário Comum' }
     };
 
     // Buscar usuários registrados no localStorage
@@ -163,10 +152,10 @@ loginForm.addEventListener('submit', async (e) => {
     // Redirecionar baseado no tipo de usuário
     if (usuarioEncontrado.tipo === 'tecnico') {
       // Técnico/Admin vai para o Dashboard Administrativo
-      window.location.href = '../11. TELA DASHBOARD ADM/dashboard-adm.html';
+      window.location.href = encodeURI('../11. TELA DASHBOARD ADM/dashboard-adm.html');
     } else {
       // Usuário comum vai para o Dashboard normal
-      window.location.href = '../6. TELA DE DASHBOARD/dashboard.html';
+      window.location.href = encodeURI('../6. TELA DE DASHBOARD/dashboard.html');
     }
 
   } catch (error) {
