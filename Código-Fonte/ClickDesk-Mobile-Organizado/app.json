@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "ClickDesk Mobile",
+    "slug": "clickdesk-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E8D5C4"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.clickdesk.mobile",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "O ClickDesk precisa acessar suas fotos para anexar imagens aos chamados.",
+        "NSCameraUsageDescription": "O ClickDesk precisa acessar sua câmera para tirar fotos de chamados."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#E8D5C4"
+      },
+      "package": "com.clickdesk.mobile",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
