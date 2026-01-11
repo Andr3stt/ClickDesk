@@ -1,0 +1,9 @@
+﻿{
+  "expo": {
+    "name": "ClickDesk Mobile",
+    "slug": "clickdesk-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "sdkVersion": "54.0.0"
+  }
+}
