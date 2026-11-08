@@ -1,0 +1,13 @@
+flowchart LR
+  T((Técnico))
+  Tel[Tela do técnico]
+  A[API REST]
+  B[(Azure SQL)]
+
+  T ---|"1"| Tel
+  Tel ---|"2 GET /api/chamados/{id}"| A
+  A ---|"3 consultar"| B
+  B ---|"4 retorno"| A
+  Tel ---|"5 PUT status"| A
+  A ---|"6 atualizar"| B
+  Tel ---|"7 confirmar"| T

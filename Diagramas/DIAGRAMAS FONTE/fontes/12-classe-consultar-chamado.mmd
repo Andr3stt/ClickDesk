@@ -1,0 +1,31 @@
+classDiagram
+    class Usuario {
+        +int Id
+        +string Nome
+        +string Perfil
+        +ConsultarHistorico()
+    }
+    class ControladorConsulta {
+        +ListarPorUsuario()
+        +FiltrarPorStatus()
+        +ConsultarPorId()
+    }
+    class ApiChamados {
+        +GET_meus_chamados()
+        +GET_chamados_id()
+    }
+    class RepositorioAzure {
+        +BuscarLista()
+        +BuscarPorId()
+    }
+    class Chamado {
+        +int Id
+        +string Titulo
+        +string Status
+        +string Prioridade
+        +DateTime DataAbertura
+    }
+    Usuario "1" --> "1" ControladorConsulta : solicita
+    ControladorConsulta --> ApiChamados : chama
+    ApiChamados --> RepositorioAzure : consulta
+    RepositorioAzure "1" --> "0..*" Chamado : retorna

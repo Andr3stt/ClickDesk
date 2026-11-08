@@ -1,4 +1,11 @@
 <h1> 📋 Definições de Pronto e Feito (DoR/DoD) </h1>
+
+## Integração técnica (API e Azure)
+
+Texto para o relatório do PIM IV sobre conexão dos clientes com a API e persistência no **Azure SQL Database**:
+
+- [Integração da API e do banco no Azure](./Integracao_API_e_Azure.md)
+
 &nbsp;&nbsp;
 ## 📖 Nossos Conceitos
 
@@ -23,7 +30,7 @@ Um checklist de qualidade. Uma tarefa ou sprint só é considerada 100% concluí
 ### 🏁 DoD
 - A estrutura de pastas base do projeto (ex: `/documentos`, `/sprints`) foi criada e enviada ao repositório.
 - O arquivo `README.md` principal foi preenchido com a descrição, objetivos e membros da equipe.
-- O Diagrama de Caso de Uso foi validado, e o arquivo-fonte (ex: `.asta`) junto com uma imagem (`.png`) foram commitados na pasta da Sprint 1.
+- O Diagrama de Caso de Uso foi validado, e a imagem (`.png`) foi commitada na pasta da Sprint 1 (arquivo-fonte da ferramenta UML, ex.: `.asta` ou projeto Lucidchart, quando disponível).
 
 ---
 

@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor U as Usuário
+    participant T as Tela do cliente
+    participant A as API REST no Azure
+    participant I as Módulo de IA
+    participant B as Azure SQL
+
+    U->>T: Preencher título, categoria, departamento e descrição
+    T->>A: POST /api/chamados e token JWT
+    A->>A: Validar token e campos
+    A->>I: Analisar criticidade da descrição
+    I-->>A: Prioridade e sugestão opcional
+    A->>B: Gravar chamado e prioridade
+    B-->>A: Confirmação
+    A-->>T: Resposta JSON do chamado
+    T-->>U: Exibir prioridade definida pela IA

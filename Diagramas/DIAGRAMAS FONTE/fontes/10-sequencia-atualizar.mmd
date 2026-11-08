@@ -1,0 +1,18 @@
+sequenceDiagram
+    autonumber
+    actor T as Técnico
+    participant Tel as Tela do técnico
+    participant A as API REST
+    participant B as Azure SQL
+
+    T->>Tel: Selecionar chamado
+    Tel->>A: GET /api/chamados/{id}
+    A->>B: Consultar registro
+    B-->>A: Chamado
+    A-->>Tel: JSON
+    T->>Tel: Alterar status
+    Tel->>A: PUT /api/chamados/{id}/status
+    A->>B: Atualizar status
+    B-->>A: Confirmação
+    A-->>Tel: Chamado atualizado
+    Tel-->>T: Nova situação exibida

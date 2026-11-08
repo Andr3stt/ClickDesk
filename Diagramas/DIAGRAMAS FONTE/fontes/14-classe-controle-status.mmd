@@ -1,0 +1,35 @@
+classDiagram
+    class Tecnico {
+        +long Id
+        +string Nome
+        +AtualizarStatusChamado()
+    }
+    class ControladorStatus {
+        +ValidarTransicao()
+        +AtualizarStatus()
+        +NotificarSolicitante()
+    }
+    class ApiChamados {
+        +PUT_status()
+    }
+    class Chamado {
+        +int IdChamado
+        +string Status
+        +string Prioridade
+        +string Titulo
+    }
+    class Notificacao {
+        +Enviar()
+    }
+    class RegistroHistorico {
+        +RegistrarAlteracao()
+    }
+    class RepositorioAzure {
+        +SalvarChamado()
+    }
+    Tecnico "1" --> "1" ControladorStatus : solicita
+    ControladorStatus --> ApiChamados : envia
+    ControladorStatus --> Notificacao : gera
+    ControladorStatus --> Chamado : altera
+    Chamado "1" --> "0..*" RegistroHistorico : registra
+    ApiChamados --> RepositorioAzure : persiste

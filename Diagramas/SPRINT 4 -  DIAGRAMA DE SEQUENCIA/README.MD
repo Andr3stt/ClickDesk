@@ -1,25 +1,32 @@
 
-# 🎯 Diagrama de Sequência
+# Diagrama de sequência — Sprint 4
+
+| Arquivo | Versão |
+|---------|--------|
+| `Sequencia Abertura de Chamado .png` | **Atualizado** |
+| `Sequencia Atualizar Chamado.png` | **Atualizado** |
+| `Sugestao IA .png` | **Atualizado** |
 
 <details>
-  <summary><b>## Abertura de chamado </b></summary>
+  <summary><b>Abertura de chamado</b></summary>
   <br>
-  <img width="977" height="775" alt="Abertura de chamado" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Sequencia%20Abertura%20de%20Chamado%20.png" />
+  <img width="1200" alt="Sequência abertura de chamado" src="./Sequencia Abertura de Chamado .png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Atualizar Chamado </b></summary>
+  <summary><b>Atualizar chamado</b></summary>
   <br>
-  <img alt="Diagrama de Gerenciamento de Relatórios" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Sequencia%20Atualizar%20Chamado.png" />
+  <img width="1200" alt="Sequência atualizar chamado" src="./Sequencia Atualizar Chamado.png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Sugestao Ia  </b></summary>
+  <summary><b>Sugestão da IA</b></summary>
   <br>
-  <img alt="Sugestao Ia" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Sugestao%20IA%20.png/github.com/user-attachments/assets/a0278261-767f-4bae-9c78-25e477b5fcea" />
+  <img width="1200" alt="Sequência sugestão IA" src="./Sugestao IA .png" />
 </details>
 
+[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

@@ -1,0 +1,19 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EDE6D9', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#F28A1A', 'lineColor': '#333', 'fontSize': '14px'}}}%%
+flowchart TB
+  subgraph DEV["Dispositivos do usuário"]
+    WEB["Navegador\nClickDesk Web"]
+    DESK["Windows\nClickDesk Desktop"]
+    MOB["Smartphone\nClickDesk Mobile"]
+  end
+
+  subgraph AZURE["Microsoft Azure"]
+    API["App Service\nAPI REST\nHTTPS :443"]
+    IA["Módulo de IA\nCriticidade e sugestão"]
+    SQL[("Azure SQL Database\nClickDesk")]
+  end
+
+  WEB -->|"HTTPS / JSON"| API
+  DESK -->|"HTTPS / JSON"| API
+  MOB -->|"HTTPS / JSON"| API
+  API -->|"chamada interna"| IA
+  API -->|"ADO.NET / TLS"| SQL

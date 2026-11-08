@@ -1,0 +1,19 @@
+sequenceDiagram
+    autonumber
+    actor U as Usuário
+    participant T as Tela detalhes do chamado
+    participant A as API REST
+    participant I as Módulo de IA
+    participant B as Azure SQL
+
+    U->>T: Abrir chamado existente
+    T->>A: GET /api/chamados/{id}
+    A->>B: Consultar chamado
+    B-->>A: Dados do chamado
+    A-->>T: Resposta JSON
+    U->>T: Solicitar sugestão da IA
+    T->>A: POST /api/ia/assist
+    A->>I: Analisar descrição
+    I-->>A: Passos de solução
+    A-->>T: Sugestão da IA
+    T-->>U: Exibir recomendação

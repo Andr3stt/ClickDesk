@@ -1,19 +1,17 @@
 ## ⏯️ Guia de Uso, Visualização e Validação do Projeto ⏯️
 
-Este projeto consiste em artefatos de modelagem de sistema (Diagramas UML) e não em código-fonte executável. As seções abaixo detalham como visualizar, interpretar e validar este trabalho.
+O repositório reúne **diagramas UML**, **documentação do PIM**, **Product Backlog** e **código-fonte** (Web, Desktop e Mobile em `Código-Fonte/`). Esta página foca em **visualizar, interpretar e validar os diagramas**; para executar as aplicações, consulte os README dentro de cada pasta de código e o texto [Integração API e Azure](../Documentacao%20do%20projeto/Integracao_API_e_Azure.md).
 
 ### ⚙️ 1. Como Visualizar os Modelos
 
 Para abrir e interagir com os diagramas, siga estes passos.
 
-**Pré-requisito Essencial:**
-* É **obrigatório** ter o software **Astah** (Professional, UML ou Community) instalado em sua máquina. Os arquivos-fonte `.asta` só podem ser abertos com ele.
+**Visualização dos diagramas:**
 
-**Passos para Visualização:**
-1.  **Acesse os Arquivos-Fonte:** Navegue até a pasta de diagramas no repositório (ex: `/ClickDesk/Diagramas/` ou a pasta de cada Sprint).
-2.  **Identifique os Arquivos:** Dentro de cada subpasta de Sprint (ex: `SPRINT 1...`, `SPRINT 2...`), você encontrará o arquivo-fonte principal com a extensão `.asta`.
-3.  **Obtenha o Arquivo:** Você pode clonar o repositório inteiro (`git clone ...`) ou baixar o arquivo `.asta` individualmente.
-4.  **Abra no Astah:** Execute o software Astah em seu computador e abra o arquivo `.asta` baixado para explorar, editar ou exportar os diagramas.
+1. **PNG (todos):** em `Diagramas/DIAGRAMAS FONTE/` e nos README de cada sprint — não exigem software especial.
+2. **Fonte editável (opcional):** `Completo.asta` abre no **Astah**, se a equipe usar Astah; não é obrigatório ter Astah para consultar o projeto. Lucidchart, Draw.io ou outras ferramentas podem ser as usadas para manter os diagramas.
+
+Para editar, use a ferramenta que o grupo adotou e siga [`Diagramas/PADRAO_DIAGRAMAS_E_REVISAO.md`](../Diagramas/PADRAO_DIAGRAMAS_E_REVISAO.md).
 
 ### 🧠 2. Como Interpretar e Utilizar os Diagramas
 

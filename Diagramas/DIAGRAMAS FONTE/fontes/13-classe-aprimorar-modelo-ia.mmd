@@ -1,0 +1,33 @@
+classDiagram
+    class Administrador {
+        +int Id
+        +string Nome
+        +AvaliarModelo()
+        +SolicitarRetreinamento()
+    }
+    class ServicoTreinamentoIA {
+        +ColetarDadosHistoricos()
+        +RetreinarModelo()
+        +RegistrarFeedback()
+    }
+    class ModeloClassificacao {
+        +int IdModelo
+        +string Nome
+        +float Precisao
+        +AtualizarPesos()
+    }
+    class Chamado {
+        +int Id
+        +string Descricao
+        +string Prioridade
+        +string Categoria
+    }
+    class ArmazenamentoHistorico {
+        +ObterDatasetTreino()
+        +PersistirMetricas()
+    }
+    Administrador --> ServicoTreinamentoIA : governa
+    ServicoTreinamentoIA --> ModeloClassificacao : aprimora
+    ServicoTreinamentoIA --> ArmazenamentoHistorico : lê e grava
+    ArmazenamentoHistorico ..> Chamado : usa registros
+    ModeloClassificacao ..> Chamado : define criticidade

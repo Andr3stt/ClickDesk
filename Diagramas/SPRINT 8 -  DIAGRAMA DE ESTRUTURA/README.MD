@@ -1,9 +1,14 @@
 
-# 🎯 Diagrama de Estrutura
+# Diagrama de estrutura — Sprint 8
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `Estrutura.png` | Componentes: interfaces → API REST → IA e persistência → Azure SQL |
 
 <details>
-  <summary><b>## Diagrama de Estrutura</b></summary>
+  <summary><b>Diagrama de estrutura</b></summary>
   <br>
-  <img width="977" height="775" alt="Diagrama de Estrutura
-" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Estrutura.png" />
+  <img width="1200" alt="Diagrama de estrutura" src="./Estrutura.png" />
 </details>
+
+[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

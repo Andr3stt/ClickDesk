@@ -1,10 +1,13 @@
 # 🎯 Diagrama de Pacote
 
+| Arquivo | Descrição |
+|---------|-----------|
+| `Pacotes.png` | Pacotes interface, API, domínio, IA, persistência |
+
 <details>
-  <summary><b>## Diagrama de Pacote</b></summary>
+  <summary><b>Diagrama de pacotes</b></summary>
   <br>
-  <img width="977" height="775" alt="Diagrama de Pacote" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Pacotes.png" />
+  <img width="1200" alt="Diagrama de pacotes" src="./Pacotes.png" />
 </details>
 
-
-
+[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)
