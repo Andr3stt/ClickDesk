@@ -1,0 +1,15 @@
+flowchart LR
+  U((Usuário))
+  T[Tela de consulta]
+  API[API REST]
+  B[(Azure SQL)]
+  C[Chamado]
+
+  U ---|"1 informar filtros ou ID"| T
+  T ---|"2 GET /api/chamados"| API
+  API ---|"3 validar JWT"| API
+  API ---|"4 SELECT"| B
+  B ---|"5 registros"| API
+  API ---|"6 JSON lista ou detalhe"| T
+  T ---|"7 exibir resultado"| U
+  B -.->|"instância"| C

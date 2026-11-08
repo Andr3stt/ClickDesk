@@ -1,0 +1,15 @@
+flowchart LR
+  U((Usuário))
+  T[Tela do cliente]
+  A[API REST]
+  I[Módulo de IA]
+  B[(Azure SQL)]
+
+  U ---|"1"| T
+  T ---|"2 POST /api/chamados"| A
+  A ---|"3 validar JWT"| A
+  A ---|"4 classificar criticidade"| I
+  I ---|"5 retornar prioridade"| A
+  A ---|"6 gravar chamado"| B
+  A ---|"7 resposta JSON"| T
+  T ---|"8 exibir prioridade"| U

@@ -1,0 +1,23 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f5f5f5', 'primaryBorderColor': '#F28A1A'}}}%%
+flowchart LR
+  subgraph APRESENTACAO["Camada de apresentação"]
+    W["Interface Web"]
+    D["Interface Desktop"]
+    M["Interface Mobile"]
+  end
+
+  API["API REST no Azure"]
+
+  subgraph SERVICOS["Serviços da API"]
+    IA["Módulo de IA"]
+    PERS["Persistência"]
+  end
+
+  DB[("Azure SQL")]
+
+  W -->|"HTTPS JSON"| API
+  D -->|"HTTPS JSON"| API
+  M -->|"HTTPS JSON"| API
+  API --> IA
+  API --> PERS
+  PERS --> DB

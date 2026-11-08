@@ -1,9 +1,16 @@
 
+# Diagrama de objeto — Sprint 3
 
-# 🎯 Diagrama de Objeto 
+Período: 04/08/2025 – 08/08/2025
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `OBJETO.png` | Instâncias de usuário e chamado (prioridade Alta) |
 
 <details>
-  <summary><b>## Diagrama de Objeto</b></summary>
+  <summary><b>Diagrama de objeto</b></summary>
   <br>
-  <img width="977" height="775" alt="Diagrama de Objeto" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/OBJETO.png" />
+  <img width="1200" alt="Diagrama de objeto" src="./OBJETO.png" />
 </details>
+
+[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

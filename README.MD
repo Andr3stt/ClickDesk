@@ -19,6 +19,8 @@ O **Clickdesk** é um sistema de atendimento e suporte técnico (Helpdesk) volta
 
 ## 📚 [Documentação do Projeto (DoR, DoD)](/Documentacao%20do%20projeto/README.MD) 📚
 
+## 🔗 [Integração API e Azure SQL](/Documentacao%20do%20projeto/Integracao_API_e_Azure.md) 🔗
+
 ## 📖 [Manual de Instalação e Execução](/Manual%20de%20instalacao/README.MD) 📖
 
 ---

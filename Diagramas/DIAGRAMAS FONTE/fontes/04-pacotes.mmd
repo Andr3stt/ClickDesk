@@ -1,0 +1,35 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryBorderColor': '#F28A1A'}}}%%
+flowchart TB
+  subgraph UI["Pacote interface"]
+    ui_web[Web]
+    ui_desktop[Desktop]
+    ui_mobile[Mobile]
+  end
+
+  subgraph API_PKG["Pacote API"]
+    rest[Controllers REST]
+    jwt[Autenticação JWT]
+  end
+
+  subgraph DOM["Pacote domínio"]
+    entidades[Entidades]
+    regras[Regras de negócio]
+  end
+
+  subgraph PERS["Pacote persistência"]
+    repos[Repositórios]
+  end
+
+  subgraph IAPKG["Pacote IA"]
+    classificador[Classificação de criticidade]
+  end
+
+  SQL[("Azure SQL")]
+
+  ui_web -->|HTTP| API_PKG
+  ui_desktop -->|HTTP| API_PKG
+  ui_mobile -->|HTTP| API_PKG
+  API_PKG --> DOM
+  API_PKG --> IAPKG
+  DOM --> PERS
+  PERS --> SQL

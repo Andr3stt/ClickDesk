@@ -1,0 +1,16 @@
+flowchart LR
+  A((Administrador))
+  T[Tela de configuração]
+  API[API REST]
+  R[Regras de SLA e criticidade]
+  I[Módulo de IA]
+  B[(Azure SQL)]
+
+  A ---|"1"| T
+  T ---|"2 PUT /api/admin/config"| API
+  API ---|"3 validar perfil ADMIN"| API
+  API ---|"4 atualizar regras"| R
+  R ---|"5 recalibrar classificador"| I
+  I ---|"6 persistir configuração"| B
+  B ---|"7 confirmação"| T
+  T ---|"8"| A

@@ -1,0 +1,31 @@
+classDiagram
+    class Usuario {
+        +int Id
+        +string Nome
+        +string Email
+        +string Role
+        +AbrirChamado()
+    }
+    class Chamado {
+        +int Id
+        +string Titulo
+        +string Descricao
+        +string Categoria
+        +string Prioridade
+        +string Status
+        +DateTime DataAbertura
+    }
+    class ControladorChamado {
+        +CriarChamado()
+    }
+    class ServicoIA {
+        +ClassificarCriticidade(texto) Prioridade
+    }
+    class RepositorioAzure {
+        +Inserir(chamado)
+    }
+    Usuario "1" --> "0..*" Chamado : abre
+    ControladorChamado --> ServicoIA : utiliza
+    ControladorChamado --> RepositorioAzure : persiste
+    ControladorChamado ..> Chamado : instancia
+    ServicoIA ..> Chamado : define prioridade

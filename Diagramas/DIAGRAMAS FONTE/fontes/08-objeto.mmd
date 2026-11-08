@@ -1,0 +1,16 @@
+classDiagram
+    class usuario_ana {
+        <<instância>>
+        id = 1
+        nome = Ana Silva
+        email = ana@empresa.com
+        papel = USER
+    }
+    class chamado_42 {
+        <<instância>>
+        id = 42
+        titulo = Impressora sem rede
+        prioridade = Alta
+        status = Aberto
+    }
+    usuario_ana --> chamado_42 : abriu

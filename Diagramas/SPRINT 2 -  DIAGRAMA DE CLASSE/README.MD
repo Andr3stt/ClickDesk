@@ -1,33 +1,41 @@
 
+# Diagrama de classes — Sprint 2
 
-# 🎯 Diagrama de Classes 
+| Arquivo | Versão |
+|---------|--------|
+| `Classe Abertura de chamado .png` | **Atualizado** (API, IA, Azure) |
+| `Classe Aprimorar  Modelo IA .png` | **Atualizado** |
+| `Classe consultar chamado.png` | **Atualizado** |
+| `Classe controle de status .png` | **Atualizado** |
 
 <details>
-  <summary><b>## Abertura de Chamado</b></summary>
+  <summary><b>Abertura de chamado</b></summary>
   <br>
-  <img width="977" height="775" alt="Abertura de Chamado" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Classe%20Abertura%20de%20chamado%20.png" />
+  <img width="1200" alt="Classe abertura de chamado" src="./Classe Abertura de chamado .png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Aprimorar Modelo Ia </b></summary>
+  <summary><b>Aprimorar modelo de IA</b></summary>
   <br>
-  <img alt="Aprimorar Modelo Ia" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Classe%20Aprimorar%20%20Modelo%20IA%20.png" />
+  <img width="1200" alt="Classe aprimorar modelo de IA" src="./Classe Aprimorar  Modelo IA .png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Consultar Chamado </b></summary>
+  <summary><b>Consultar chamado</b></summary>
   <br>
-  <img alt="Consultar Chamado" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Classe%20consultar%20chamado.png" />
+  <img width="1200" alt="Classe consultar chamado" src="./Classe consultar chamado.png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>##Controle de Status </b></summary>
+  <summary><b>Controle de status</b></summary>
   <br>
-  <img alt="Controle de Status " src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Classe%20controle%20de%20status%20.png" />
+  <img width="1200" alt="Classe controle de status" src="./Classe controle de status .png" />
 </details>
+
+Referência histórica completa: [`ANTIGOS/Diagrama de Classe.png`](../ANTIGOS/Diagrama%20de%20Classe.png)

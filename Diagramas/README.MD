@@ -4,12 +4,15 @@ Esta pasta centraliza toda a documentação visual e modelagem do sistema **Clic
 
 ---
 
+- **Organização por sprint e comparativo antigo × novo:** [ORGANIZACAO_E_COERENCIA.md](./ORGANIZACAO_E_COERENCIA.md).
+- **Revisão manual antes da entrega:** [CHECKLIST_REVISAO_MANUAL.md](./CHECKLIST_REVISAO_MANUAL.md).
+- Fontes e ferramentas: [DIAGRAMAS FONTE/README.md](./DIAGRAMAS%20FONTE/README.md) (`Completo.asta` é opcional).
+- Padrão de revisão (português + UML): [PADRAO_DIAGRAMAS_E_REVISAO.md](./PADRAO_DIAGRAMAS_E_REVISAO.md).
+- Checklist de conteúdo (API, Azure SQL, IA): [GUIA_REFATORACAO_DIAGRAMAS.md](./GUIA_REFATORACAO_DIAGRAMAS.md).
+
 ### 🛠 Ferramentas Utilizadas
 
-Para a criação e manutenção destes diagramas, utilizamos principalmente as seguintes ferramentas:
-
-* **Astah:** Para a maioria da modelagem UML (Classe, Caso de Uso, Sequência, etc.).
-* **Lucidchart:** Para fluxogramas e diagramas de arquitetura de alto nível.
+* **Lucidchart** e/ou **Astah** (ou equivalente UML): modelagem conforme as sprints do PIM; a equipe define qual usa — nenhuma é obrigatória por si só.
 
 ---
 

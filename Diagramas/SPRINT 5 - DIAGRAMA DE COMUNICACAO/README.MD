@@ -1,26 +1,43 @@
 
-# 🎯 Diagrama de Comunicaçao
+# Diagrama de comunicação — Sprint 5
+
+| Arquivo | Versão |
+|---------|--------|
+| `Comunicacao Abertura de Chamado.png` | **Atualizado** |
+| `Comunicacao Atualizar Status.png` | **Atualizado** |
+| `Comunicacao Controle Configuracao.png` | **Atualizado** |
+| `Comunicacao Tela de consulta.png` | **Atualizado** |
+| `Comunicaçao Controle Configuraçao.png` | Cópia (nome legado no Git) |
+| `Comunicaçao Tela de consulta .png` | Cópia (nome legado no Git) |
 
 <details>
-  <summary><b>## Atualizar Status</b></summary>
+  <summary><b>Abertura de chamado</b></summary>
   <br>
-  <img width="977" height="775" alt="Atualizar Status" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Comunica%C3%A7ao%20Atualizar%20Status.png" />
+  <img width="1200" alt="Comunicação abertura" src="./Comunicacao Abertura de Chamado.png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Abertura de Chamado</b></summary>
+  <summary><b>Atualizar status</b></summary>
   <br>
-  <img alt="Abertura de Chamado" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Cominica%C3%A7ao%20Abertura%20de%20Chamado%20.png" />
+  <img width="1200" alt="Comunicação atualizar status" src="./Comunicacao Atualizar Status.png" />
 </details>
 
 <br>
 
 <details>
-  <summary><b>## Controle Configuraçao</b></summary>
+  <summary><b>Controle de configuração</b></summary>
   <br>
-  <img alt="Controle Configuraçao" src="https://github.com/Andr3stt/ClickDesk/blob/main/Diagramas/DIAGRAMAS%20FONTE/Comunica%C3%A7ao%20Controle%20Configura%C3%A7ao.png" />
+  <img width="1200" alt="Comunicação controle configuração" src="./Comunicacao Controle Configuracao.png" />
 </details>
 
+<br>
 
+<details>
+  <summary><b>Tela de consulta</b></summary>
+  <br>
+  <img width="1200" alt="Comunicação consulta" src="./Comunicacao Tela de consulta.png" />
+</details>
+
+[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

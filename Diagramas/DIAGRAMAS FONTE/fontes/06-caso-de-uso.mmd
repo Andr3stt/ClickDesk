@@ -1,0 +1,29 @@
+flowchart LR
+  subgraph Sistema["Sistema ClickDesk"]
+    UC1((Autenticar))
+    UC2((Abrir chamado))
+    UC3((Classificar criticidade com IA))
+    UC4((Consultar chamados))
+    UC5((Atualizar status))
+    UC6((Consultar FAQ))
+    UC7((Gerenciar FAQ))
+  end
+
+  usr((Usuário))
+  tec((Técnico))
+  adm((Administrador))
+
+  usr --> UC1
+  usr --> UC2
+  usr --> UC4
+  usr --> UC6
+  tec --> UC1
+  tec --> UC4
+  tec --> UC5
+  tec --> UC6
+  adm --> UC1
+  adm --> UC4
+  adm --> UC5
+  adm --> UC7
+
+  UC2 -.->|"<<include>>"| UC3

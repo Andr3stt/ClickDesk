@@ -1,0 +1,7 @@
+flowchart TB
+  U[Usuário] --> T[Tela lista de chamados]
+  T --> API[API REST]
+  API --> B[(Azure SQL)]
+  B --> API
+  API --> T
+  T --> U
