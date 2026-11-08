@@ -11,5 +11,3 @@ Período: 16/10/2025 – 22/10/2025
   <br>
   <img width="1200" alt="Diagrama de implantação" src="./Implantacao.png" />
 </details>
-
-[PADRAO_DIAGRAMAS_E_REVISAO.md](../PADRAO_DIAGRAMAS_E_REVISAO.md) · [ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

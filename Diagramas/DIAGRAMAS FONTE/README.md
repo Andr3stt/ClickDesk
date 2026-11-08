@@ -14,16 +14,16 @@ Arquivo **opcional**: projeto consolidado criado no **Astah** em algum momento d
 
 Dentro do `Completo.asta` há, entre outros, sequências de abertura/atualização de chamado e elementos como `ControleAberturaChamado`, `Chamado`, `Usuario`. Abre apenas no Astah; serve de referência para quem for refazer no mesmo software.
 
-## Pasta `fontes/` (Mermaid)
+## Pasta `fontes/`
 
-Arquivos `.mmd` geram os PNG desta pasta (comando no `fontes/README.md`). **Última geração:** API no Azure, Azure SQL, módulo de IA e textos em português. Se refizerem no Lucidchart, use os `.mmd` só como roteiro do conteúdo.
+Arquivos `.mmd` (Mermaid) como rascunho interno; os entregáveis oficiais são os **PNG** desta pasta e das pastas `SPRINT n - …`.
 
 ## Fluxo sugerido
 
 1. Escolher a ferramenta (Lucidchart, Astah, Draw.io, …).
-2. Seguir [`../PADRAO_DIAGRAMAS_E_REVISAO.md`](../PADRAO_DIAGRAMAS_E_REVISAO.md) (conteúdo + português).
+2. Manter nos desenhos: clientes Web/Desktop/Mobile, API REST no Azure, Azure SQL e IA na abertura de chamado.
 3. Exportar **PNG** para esta pasta.
-4. **Copiar** o mesmo PNG para a pasta `SPRINT n - …` correspondente (ver mapa em [`../ORGANIZACAO_E_COERENCIA.md`](../ORGANIZACAO_E_COERENCIA.md)).
+4. **Copiar** o mesmo PNG para a pasta `SPRINT n - …` correspondente.
 5. Atualizar o README da sprint e, se usar Astah, commitar `Completo.asta` junto.
 
 ## Nomes de arquivo (correções)

@@ -13,5 +13,3 @@ Arquivos nesta pasta (cópia de [`DIAGRAMAS FONTE`](../DIAGRAMAS%20FONTE/)):
   <br>
   <img width="1200" alt="Diagrama de casos de uso" src="./Caso de uso.png" />
 </details>
-
-Mapa e coerência: [ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

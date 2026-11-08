@@ -28,5 +28,3 @@
   <br>
   <img width="1200" alt="Sequência sugestão IA" src="./Sugestao IA .png" />
 </details>
-
-[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

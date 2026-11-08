@@ -11,7 +11,7 @@ Para abrir e interagir com os diagramas, siga estes passos.
 1. **PNG (todos):** em `Diagramas/DIAGRAMAS FONTE/` e nos README de cada sprint — não exigem software especial.
 2. **Fonte editável (opcional):** `Completo.asta` abre no **Astah**, se a equipe usar Astah; não é obrigatório ter Astah para consultar o projeto. Lucidchart, Draw.io ou outras ferramentas podem ser as usadas para manter os diagramas.
 
-Para editar, use a ferramenta que o grupo adotou e siga [`Diagramas/PADRAO_DIAGRAMAS_E_REVISAO.md`](../Diagramas/PADRAO_DIAGRAMAS_E_REVISAO.md).
+Para editar, use a ferramenta UML que o grupo adotou (Lucidchart, Astah, Draw.io, etc.) e exporte os PNG para a pasta da sprint correspondente.
 
 ### 🧠 2. Como Interpretar e Utilizar os Diagramas
 

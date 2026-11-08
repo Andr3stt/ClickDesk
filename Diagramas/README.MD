@@ -4,11 +4,7 @@ Esta pasta centraliza toda a documentação visual e modelagem do sistema **Clic
 
 ---
 
-- **Organização por sprint e comparativo antigo × novo:** [ORGANIZACAO_E_COERENCIA.md](./ORGANIZACAO_E_COERENCIA.md).
-- **Revisão manual antes da entrega:** [CHECKLIST_REVISAO_MANUAL.md](./CHECKLIST_REVISAO_MANUAL.md).
-- Fontes e ferramentas: [DIAGRAMAS FONTE/README.md](./DIAGRAMAS%20FONTE/README.md) (`Completo.asta` é opcional).
-- Padrão de revisão (português + UML): [PADRAO_DIAGRAMAS_E_REVISAO.md](./PADRAO_DIAGRAMAS_E_REVISAO.md).
-- Checklist de conteúdo (API, Azure SQL, IA): [GUIA_REFATORACAO_DIAGRAMAS.md](./GUIA_REFATORACAO_DIAGRAMAS.md).
+Diagramas exportados em **PNG** em cada pasta de sprint e em [`DIAGRAMAS FONTE/`](./DIAGRAMAS%20FONTE/README.md). O arquivo `Completo.asta` é opcional.
 
 ### 🛠 Ferramentas Utilizadas
 
