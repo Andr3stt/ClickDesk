@@ -131,8 +131,6 @@ A equipe pode desenvolver localmente e publicar a API no Azure para a banca, des
 | Sequência – abertura de chamado | Mensagens até a API, IA e banco |
 | Classe | Entidade `Chamado` com atributo prioridade/criticidade coerente com o banco |
 
-O arquivo `Diagramas/GUIA_REFATORACAO_DIAGRAMAS.md` complementa este texto com checklist de figuras a refazer.
-
 ---
 
 ## 7. Texto sugerido para o relatório impresso (parágrafo único)

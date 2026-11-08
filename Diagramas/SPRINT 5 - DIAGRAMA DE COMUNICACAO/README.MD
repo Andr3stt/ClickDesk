@@ -39,5 +39,3 @@
   <br>
   <img width="1200" alt="Comunicação consulta" src="./Comunicacao Tela de consulta.png" />
 </details>
-
-[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)

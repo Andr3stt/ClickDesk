@@ -12,5 +12,3 @@ Período: 04/08/2025 – 08/08/2025
   <br>
   <img width="1200" alt="Diagrama de objeto" src="./OBJETO.png" />
 </details>
-
-[ORGANIZACAO_E_COERENCIA.md](../ORGANIZACAO_E_COERENCIA.md)
